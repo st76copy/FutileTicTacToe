@@ -7,13 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "Tiles.h"
 
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-    __weak IBOutlet UILabel *winsLabel;
-    __weak IBOutlet UILabel *lossesLabel;
-    __weak IBOutlet UIImageView *boardImageView;
+    Tiles                           *tiles;
+    __weak IBOutlet UILabel         *winsLabel;
+    __weak IBOutlet UILabel         *lossesLabel;
+    __weak IBOutlet UIImageView     *boardImageView;
 }
 - (IBAction)startGameButton:(id)sender;
 - (IBAction)resetGameButton:(id)sender;
@@ -25,7 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    tiles = [[Tiles alloc] init];
+    tiles.backgroundColor = [UIColor blackColor];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
+    
 }
 
 - (void)didReceiveMemoryWarning

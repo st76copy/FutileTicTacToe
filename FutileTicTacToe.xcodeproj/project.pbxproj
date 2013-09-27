@@ -22,6 +22,7 @@
 		CFB2A0F417F628F70097E0CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0F217F628F70097E0CB /* InfoPlist.strings */; };
 		CFB2A0F617F628F70097E0CB /* FutileTicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */; };
 		CFB2A10017F62E3E0097E0CB /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0FF17F62E3E0097E0CB /* board.png */; };
+		CFB2A10317F632B70097E0CB /* Tiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A10217F632B70097E0CB /* Tiles.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		CFB2A0F317F628F70097E0CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutileTicTacToeTests.m; sourceTree = "<group>"; };
 		CFB2A0FF17F62E3E0097E0CB /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		CFB2A10117F632B70097E0CB /* Tiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tiles.h; sourceTree = "<group>"; };
+		CFB2A10217F632B70097E0CB /* Tiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tiles.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
 				CFB2A0DF17F628F70097E0CB /* ViewController.h */,
 				CFB2A0E017F628F70097E0CB /* ViewController.m */,
+				CFB2A10117F632B70097E0CB /* Tiles.h */,
+				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A0E217F628F70097E0CB /* Images.xcassets */,
 				CFB2A0D117F628F70097E0CB /* Supporting Files */,
 			);
@@ -256,6 +261,7 @@
 				CFB2A0E117F628F70097E0CB /* ViewController.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
+				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +470,7 @@
 				CFB2A0FB17F628F70097E0CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CFB2A0FC17F628F70097E0CB /* Build configuration list for PBXNativeTarget "FutileTicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +479,7 @@
 				CFB2A0FE17F628F70097E0CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
