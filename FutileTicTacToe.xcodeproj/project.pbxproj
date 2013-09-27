@@ -21,6 +21,7 @@
 		CFB2A0EC17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
 		CFB2A0F417F628F70097E0CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0F217F628F70097E0CB /* InfoPlist.strings */; };
 		CFB2A0F617F628F70097E0CB /* FutileTicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */; };
+		CFB2A10017F62E3E0097E0CB /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0FF17F62E3E0097E0CB /* board.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		CFB2A0F117F628F70097E0CB /* FutileTicTacToeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutileTicTacToeTests-Info.plist"; sourceTree = "<group>"; };
 		CFB2A0F317F628F70097E0CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutileTicTacToeTests.m; sourceTree = "<group>"; };
+		CFB2A0FF17F62E3E0097E0CB /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		CFB2A0D117F628F70097E0CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CFB2A0FF17F62E3E0097E0CB /* board.png */,
 				CFB2A0D217F628F70097E0CB /* FutileTicTacToe-Info.plist */,
 				CFB2A0D317F628F70097E0CB /* InfoPlist.strings */,
 				CFB2A0D617F628F70097E0CB /* main.m */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFB2A0E317F628F70097E0CB /* Images.xcassets in Resources */,
+				CFB2A10017F62E3E0097E0CB /* board.png in Resources */,
 				CFB2A0D517F628F70097E0CB /* InfoPlist.strings in Resources */,
 				CFB2A0DE17F628F70097E0CB /* Main.storyboard in Resources */,
 			);

@@ -8,7 +8,15 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+// I learned to create outlets here rather than in the header file because it keeps them private
+@interface ViewController () {
+    
+    __weak IBOutlet UILabel *winsLabel;
+    __weak IBOutlet UILabel *lossesLabel;
+    __weak IBOutlet UIImageView *boardImageView;
+}
+- (IBAction)startGameButton:(id)sender;
+- (IBAction)resetGameButton:(id)sender;
 
 @end
 
@@ -17,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    boardImageView.image = [UIImage imageNamed:@"board.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +34,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)startGameButton:(id)sender {
+}
+
+- (IBAction)resetGameButton:(id)sender {
+}
 @end
