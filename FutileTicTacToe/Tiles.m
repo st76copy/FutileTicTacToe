@@ -15,18 +15,29 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self testIfInit];
     }
     return self;
 }
 
-- (void)testIfInit {
-    NSLog(@"Tiles init-ed");
-}
+//- (void)firstMove {
+//    NSLog(@"first move called");
+//    UIColor *xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+//    for (int index = 0; index < 8; index++) {
+//        if (self.tag == index) {
+//            self.backgroundColor = xBackground;
+//        }
+//    }
+//}
+
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"touched %i", self.tag);
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
 }
+
+//- (void)computerMove:(int)tag {
+//    UIColor *xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+//}
 
 /*
  // Only override drawRect: if you perform custom drawing.

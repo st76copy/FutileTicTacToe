@@ -28,9 +28,8 @@
 {
     [super viewDidLoad];
     tiles = [[Tiles alloc] init];
-    tiles.backgroundColor = [UIColor blackColor];
+
     boardImageView.image = [UIImage imageNamed:@"board.png"];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,6 +39,7 @@
 }
 
 - (IBAction)startGameButton:(id)sender {
+    [tiles firstMove];
 }
 
 - (IBAction)resetGameButton:(id)sender {
