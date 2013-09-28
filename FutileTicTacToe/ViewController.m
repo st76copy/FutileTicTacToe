@@ -3,7 +3,7 @@
 //  FutileTicTacToe
 //
 //  Created by Jeremy Herrero on 9/27/13.
-//  Copyright (c) 2013 Jeremy Herrero. All rights reserved.
+//  Copyright (c) 2s13 Jeremy Herrero. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -12,7 +12,7 @@
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-//    Tiles                           *tiles;
+    //    Tiles                           *tiles;
     UIColor                         *xBackground;
     NSMutableArray                  *computerMoves;
     NSMutableArray                  *playerMoves;
@@ -40,7 +40,7 @@
             tiles.delegate = self;
         }
     }
-
+    
     boardImageView.image = [UIImage imageNamed:@"board.png"];
 }
 
@@ -56,9 +56,43 @@
 }
 
 - (void)nextMove {
-    if (![playerMoves containsObject:[NSNumber numberWithInteger:5]]) {
-        if (<#condition#>) {
-            <#statements#>
+    if (playerMoves.count == 1) {
+        if (![playerMoves containsObject:[NSNumber numberWithInteger:5]] && ![playerMoves containsObject:[NSNumber numberWithBool:9]]) {
+            if (playerMoves.count == 1) {
+                if ([playerMoves containsObject:[NSNumber numberWithInteger:2]] || [playerMoves containsObject:[NSNumber numberWithInteger:4]]) {
+                    [self computerMakesMove:9];
+                }
+            } else {
+                //        tag 9
+            }
+        }
+    }
+    
+    
+    
+    else if (playerMoves.count == 2) {
+        
+    }
+    
+    
+    
+    else if (playerMoves.count == 3) {
+        
+    }
+    
+    
+    
+    else if (playerMoves.count == 4) {
+        
+    }
+}
+
+- (void)computerMakesMove:(int)tagNumber {
+    for (UIView *tileMove in self.view.subviews) {
+        if (tileMove.tag == tagNumber) {
+            tileMove.backgroundColor = xBackground;
+            [tileMove setUserInteractionEnabled:NO];
+            [computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
         }
     }
 }

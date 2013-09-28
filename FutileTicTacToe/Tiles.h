@@ -16,6 +16,4 @@
 @property (weak, nonatomic) UIColor *xBackground;
 @property (weak, nonatomic) UIColor *oBackground;
 
-- (void)firstMove;
-
 @end
