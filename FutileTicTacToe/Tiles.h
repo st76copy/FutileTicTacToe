@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TilesDelegate.h"
 
 @interface Tiles : UIView
 
-//  cannot seem to set an 'ivar' for background color this way;
-//  @property (weak, nonatomic) UIColor *xBackground;
-//  @property (weak, nonatomic) UIColor *oBackground;
+@property (strong, nonatomic) id <TilesDelegate> delegate;
+
+@property (weak, nonatomic) UIColor *xBackground;
+@property (weak, nonatomic) UIColor *oBackground;
 
 - (void)firstMove;
 

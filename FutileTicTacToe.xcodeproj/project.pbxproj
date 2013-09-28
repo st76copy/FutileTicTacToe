@@ -62,6 +62,7 @@
 		CFB2A10217F632B70097E0CB /* Tiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tiles.m; sourceTree = "<group>"; };
 		CFB2A10C17F754170097E0CB /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = x.png; path = ../x.png; sourceTree = "<group>"; };
 		CFB2A10D17F754170097E0CB /* o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = o.png; path = ../o.png; sourceTree = "<group>"; };
+		CFB2A11017F763250097E0CB /* TilesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TilesDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +129,7 @@
 				CFB2A0E017F628F70097E0CB /* ViewController.m */,
 				CFB2A10117F632B70097E0CB /* Tiles.h */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
+				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
 				CFB2A0E217F628F70097E0CB /* Images.xcassets */,
 				CFB2A0D117F628F70097E0CB /* Supporting Files */,
 			);
