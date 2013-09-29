@@ -12,19 +12,30 @@
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-    //    Tiles                           *tiles;
-    BOOL                            bestStart;
+    BOOL                            compHasCornersNoHumanCenter;
+    BOOL                            compHasCornersHumanHasCenter;
+    BOOL                            compDoesNotHaveBothGoldenCorners;
+    BOOL                            compHasAllThreeCorners;
+    BOOL                            wonTimerStarted;
     int                             moveCount;
+    int                             loseCount;
+    int                             count;
+    NSTimer                         *timer;
     UIColor                         *xBackground;
     NSMutableArray                  *computerMoves;
     NSMutableArray                  *playerMoves;
+    __weak IBOutlet UILabel         *resultLabel;
     __weak IBOutlet UILabel         *winsLabel;
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIImageView     *boardImageView;
     __weak IBOutlet UIButton        *startGameButton;
+    __weak IBOutlet UIView          *gameResultsView;
 }
+
 - (IBAction)startGame:(id)sender;
 - (IBAction)resetScores:(id)sender;
+- (IBAction)tryAgain:(id)sender;
+
 
 @end
 
@@ -33,9 +44,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    count = 0;
     playerMoves = [[NSMutableArray alloc] initWithCapacity:4];
     computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+    
+    boardImageView.image = [UIImage imageNamed:@"board.png"];
+    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+    [gameResultsView setHidden:YES];
     
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[Tiles class]]) {
@@ -43,8 +59,6 @@
             tiles.delegate = self;
         }
     }
-    
-    boardImageView.image = [UIImage imageNamed:@"board.png"];
 }
 
 - (void)initialGame {
@@ -52,7 +66,10 @@
         [tile setUserInteractionEnabled:YES];
     }
     [startGameButton setTitle:@"Reset Game" forState:UIControlStateNormal];
-//    startGameButton.titleLabel.text = @"Reset Game";
+    compHasCornersNoHumanCenter = NO;
+    compHasCornersHumanHasCenter = NO;
+    compDoesNotHaveBothGoldenCorners = NO;
+    compHasAllThreeCorners = NO;
     [self firstMove];
 }
 
@@ -64,11 +81,51 @@
     [playerMoves removeAllObjects];
     [computerMoves removeAllObjects];
     moveCount = 0;
+    compHasCornersNoHumanCenter = NO;
+    compHasCornersHumanHasCenter = NO;
+    compDoesNotHaveBothGoldenCorners = NO;
+    compHasAllThreeCorners = NO;
     [self firstMove];
 }
 
+- (void)youLose {
+    resultLabel.text = @"You Lose";
+    [UIView animateWithDuration:0.03 animations:^{
+        gameResultsView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [gameResultsView setHidden:NO];
+    }];
+    loseCount++;
+    lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", loseCount];
+    if (!wonTimerStarted) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+    }
+    if (loseCount == 5 || loseCount == 10) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+    }
+    wonTimerStarted = YES;
+}
+
+- (void)catsTie {
+    resultLabel.text = @"Cat's";
+    [UIView animateWithDuration:0.03 animations:^{
+        gameResultsView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        [gameResultsView setHidden:NO];
+    }];
+}
+
+- (void)blinkWonCount {
+    if (count % 2 == 0) {
+        winsLabel.text = @"Won:";
+    } else if (count % 2 != 0) {
+        winsLabel.text = @"Won: 0";
+    }
+    count++;
+}
+
 - (void)firstMove {
-    
+    NSLog(@"firstMove");
     for (UIView *firstTile in self.view.subviews) {
         if (firstTile.tag == 1) {
             firstTile.backgroundColor = xBackground;
@@ -79,49 +136,212 @@
 }
 
 - (void)secondMove {
-    if (![playerMoves containsObject:[NSNumber numberWithInteger:9]]) {
-        [self computerMakesMove:9];
-        bestStart = YES;
-    } else if ([playerMoves containsObject:[NSNumber numberWithInteger:9]]) {
+    NSLog(@"secondMove");
+    if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+        if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:3]];
+            compHasCornersNoHumanCenter = YES;
+            [self computerMakesMove:3];
+        } else  {
+            [computerMoves addObject:[NSNumber numberWithInt:7]];
+            compHasCornersNoHumanCenter = YES;
+            [self computerMakesMove:7];
+        }
+    } else if ([playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+        [computerMoves addObject:[NSNumber numberWithInt:3]];
+        compDoesNotHaveBothGoldenCorners = YES;
         [self computerMakesMove:3];
-        bestStart = NO;
+    } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
+        [computerMoves addObject:[NSNumber numberWithInt:9]];
+        compHasCornersHumanHasCenter = YES;
+        [self computerMakesMove:9];
     }
 }
 
 - (void)thirdMove {
-//    if (bestStart) {
-        if ([playerMoves containsObject:[NSNumber numberWithInteger:2]] && ![playerMoves containsObject:[NSNumber numberWithInteger:8]]) {
-            [self computerMakesMove:8];
-        } else if ([playerMoves containsObject:[NSNumber numberWithInteger:4]] && ![playerMoves containsObject:[NSNumber numberWithInteger:6]]) {
-            [self computerMakesMove:6];
-        } else if ([playerMoves containsObject:[NSNumber numberWithInteger:6]] && ![playerMoves containsObject:[NSNumber numberWithInteger:4]]) {
+    NSLog(@"thirdMove");
+    if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
+        compHasCornersNoHumanCenter = NO;
+    }
+    
+    //    NSLog(@"third move noCenter:%d  center:%d  noBoth:%d", compHasCornersNoHumanCenter, compHasCornersHumanHasCenter, compDoesNotHaveBothGoldenCorners);
+    
+    if (compHasCornersNoHumanCenter) {
+        if ([computerMoves containsObject:[NSNumber numberWithInt:7]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
             [self computerMakesMove:4];
-        } else if ([playerMoves containsObject:[NSNumber numberWithInteger:8]] && ![playerMoves containsObject:[NSNumber numberWithInteger:2]]) {
+            [self youLose];
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
             [self computerMakesMove:2];
-        } else if ([computerMoves containsObject:[NSNumber numberWithBool:9]] && ![playerMoves containsObject:[NSNumber numberWithInteger:5]]) {
+            [self youLose];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:8]];
+            [self computerMakesMove:8];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:6]];
+            [self computerMakesMove:6];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:8]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:7]];
+            compHasAllThreeCorners = YES;
+            [self computerMakesMove:7];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:9]];
+            compHasAllThreeCorners = YES;
+            [self computerMakesMove:9];
+        }
+        else {
+            [computerMoves addObject:[NSNumber numberWithInt:5]];
             [self computerMakesMove:5];
-        } else if (![playerMoves containsObject:[NSNumber numberWithInteger:3]]) {
-            [self computerMakesMove:3];
-        } else if (![playerMoves containsObject:[NSNumber numberWithInteger:7]]) {
+        }
+    }
+    
+    else if (compDoesNotHaveBothGoldenCorners) {
+        if (![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+            [self computerMakesMove:2];
+            [self youLose];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:7]];
             [self computerMakesMove:7];
         }
-//    }
-}
-
-- (void)fourthMove:(BOOL)bestStartWin {
-//    if (bestStartWin) {
-        if ([computerMoves containsObject:[NSNumber numberWithInteger:3]]) {
-            if (![playerMoves containsObject:[NSNumber numberWithInteger:2]]) {
+    }
+    
+    else if (compHasCornersHumanHasCenter) {
+        if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:7]];
+            [self computerMakesMove:7];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:3]];
+            [self computerMakesMove:3];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:4]];
+            [self computerMakesMove:4];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:2]];
+            [self computerMakesMove:2];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:8]];
+            [self computerMakesMove:8];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:4]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:6]];
+            [self computerMakesMove:6];
+        }
+    }
+    
+    else if (!compHasCornersHumanHasCenter && !compHasCornersNoHumanCenter) {
+        if (!compDoesNotHaveBothGoldenCorners && !compHasAllThreeCorners) {
+            if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
                 [self computerMakesMove:2];
-            } else if (![playerMoves containsObject:[NSNumber numberWithInteger:6]]) {
-                [self computerMakesMove:6];
+                [self youLose];
             }
         }
-//    }
+    }
+}
+
+- (void)fourthMove {
+    NSLog(@"forthMove");
+    if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
+        compHasCornersNoHumanCenter = NO;
+    }
+    
+    if (compHasAllThreeCorners) {
+        if (![playerMoves containsObject:[NSNumber numberWithInt:5]]) {
+            [self computerMakesMove:5];
+            [self youLose];
+        } else if (![playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+            if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && [computerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                [self computerMakesMove:6];
+                [self youLose];
+            }
+        }
+    }
+    
+    else if (compHasCornersNoHumanCenter) {
+        if ([computerMoves containsObject:[NSNumber numberWithInt:7]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [self computerMakesMove:3];
+                [self youLose];
+            } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                [self computerMakesMove:9];
+                [self youLose];
+            }
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [self computerMakesMove:7];
+                [self youLose];
+            } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                [self computerMakesMove:9];
+                [self youLose];
+            }
+        }
+    }
+    
+    else if (compDoesNotHaveBothGoldenCorners) {
+        if (![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
+            [self computerMakesMove:4];
+            [self youLose];
+        } else if (![playerMoves containsObject:[NSNumber numberWithInt:5]]) {
+            [self computerMakesMove:5];
+            [self youLose];
+        }
+    }
+    
+    else if (compHasCornersHumanHasCenter) {
+        if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+            [self computerMakesMove:2];
+            [self youLose];
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+            [self computerMakesMove:6];
+            [self youLose];
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [self computerMakesMove:7];
+                [self youLose];
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [computerMoves addObject:[NSNumber numberWithInt:3]];
+                [self computerMakesMove:3];
+            }
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:4]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [self computerMakesMove:3];
+                [self youLose];
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [computerMoves addObject:[NSNumber numberWithInt:7]];
+                [self computerMakesMove:7];
+            }
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [self computerMakesMove:7];
+                [self youLose];
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [computerMoves addObject:[NSNumber numberWithInt:3]];
+                [self computerMakesMove:3];
+            }
+        } else if ([playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [self computerMakesMove:8];
+                [self youLose];
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [computerMoves addObject:[NSNumber numberWithInt:7]];
+                [self computerMakesMove:7];
+            }
+        }
+    }
+    
 }
 
 - (void)fifthMove {
-    
+    if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
+        [self computerMakesMove:2];
+        [self catsTie];
+    } else if (![playerMoves containsObject:[NSNumber numberWithInt:4]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
+        [self computerMakesMove:4];
+        [self catsTie];
+    } else if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
+        [self computerMakesMove:6];
+        [self catsTie];
+    } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
+        [self computerMakesMove:8];
+        [self catsTie];
+    }
 }
 
 - (void)computerMakesMove:(int)tagNumber {
@@ -143,11 +363,7 @@
     } else if (moveCount == 2) {
         [self thirdMove];
     } else if (moveCount == 3) {
-        if (bestStart) {
-            [self fourthMove:YES];
-        } else {
-            [self fourthMove:NO];
-        }
+        [self fourthMove];
     } else if (moveCount == 4) {
         [self fifthMove];
     }
@@ -163,6 +379,15 @@
 
 
 - (IBAction)resetScores:(id)sender {
+}
+
+- (IBAction)tryAgain:(id)sender {
+    [UIView animateWithDuration:0.03 animations:^{
+        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+    } completion:^(BOOL finished) {
+        [gameResultsView setHidden:YES];
+        [self resetGame];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
