@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */; };
 		CFB2A0CB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0CD17F628F70097E0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */; };
 		CFB2A0CF17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerMovesFirst.h; sourceTree = "<group>"; };
+		CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerMovesFirst.m; sourceTree = "<group>"; };
 		CFB2A0C717F628F70097E0CB /* FutileTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutileTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0CA17F628F70097E0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -127,6 +130,8 @@
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
 				CFB2A0DF17F628F70097E0CB /* ViewController.h */,
 				CFB2A0E017F628F70097E0CB /* ViewController.m */,
+				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
+				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
 				CFB2A10117F632B70097E0CB /* Tiles.h */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
@@ -269,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFB2A0E117F628F70097E0CB /* ViewController.m in Sources */,
+				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,
