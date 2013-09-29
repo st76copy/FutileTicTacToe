@@ -25,6 +25,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.backgroundColor != self.xBackground) {
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+    [self setUserInteractionEnabled:NO];
     [delegate tileSelected:self];
     }
 }

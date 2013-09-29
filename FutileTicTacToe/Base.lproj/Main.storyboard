@@ -85,7 +85,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startGameButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Sd3-IC-bTN"/>
+                                    <action selector="startGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b0J-SW-jhd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSc-eW-Kxq">
@@ -95,7 +95,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="resetGameButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lPI-Tq-dst"/>
+                                    <action selector="resetScores:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="aba-PJ-8VH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -104,6 +104,7 @@
                     <connections>
                         <outlet property="boardImageView" destination="spd-Km-taW" id="acR-aN-vba"/>
                         <outlet property="lossesLabel" destination="WdZ-cp-ES6" id="PUq-z3-aLJ"/>
+                        <outlet property="startGameButton" destination="gsY-rM-ASq" id="vmg-Lu-oNC"/>
                         <outlet property="winsLabel" destination="EYr-bf-OaF" id="pVF-Kt-cFW"/>
                     </connections>
                 </viewController>
