@@ -17,6 +17,13 @@
         playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
+- (void)resetAll {
+    self.compHasCornersNoHumanCenter = NO;
+    self.compHasCornersHumanHasCenter = NO;
+    self.compDoesNotHaveBothGoldenCorners = NO;
+    self.compHasAllThreeCorners = NO;
+}
+
 - (void)secondMove {
     NSLog(@"secondMove");
     if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![playerMoves containsObject:[NSNumber numberWithInt:9]]) {

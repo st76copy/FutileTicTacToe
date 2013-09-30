@@ -21,6 +21,7 @@
 @property (retain, nonatomic) NSMutableArray *playerMoves;
 
 - (void)initMutableArrays;
+- (void)resetAll;
 - (void)secondMove;
 - (void)thirdMove;
 - (void)fourthMove;
