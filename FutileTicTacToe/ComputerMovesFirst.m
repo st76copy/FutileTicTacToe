@@ -137,6 +137,8 @@
     }
     
     else if (self.compHasCornersNoHumanCenter) {
+        NSLog(@"here");
+
         if ([computerMoves containsObject:[NSNumber numberWithInt:7]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]]) {
                 [delegate computerMakesMove:3];
@@ -154,6 +156,12 @@
                 [delegate youLose];
             } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
                 [delegate computerMakesMove:8];
+                [delegate youLose];
+            }
+        }
+        if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
+                [delegate computerMakesMove:6];
                 [delegate youLose];
             }
         }
