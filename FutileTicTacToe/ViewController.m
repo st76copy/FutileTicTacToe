@@ -9,19 +9,17 @@
 #import "ViewController.h"
 #import "Tiles.h"
 #import "ComputerMovesFirst.h"
+#import "PlayerMovesFirst.h"
 
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-//    BOOL                            compHasCornersNoHumanCenter;
-//    BOOL                            compHasCornersHumanHasCenter;
-//    BOOL                            compDoesNotHaveBothGoldenCorners;
-//    BOOL                            compHasAllThreeCorners;
     BOOL                            wonTimerStarted;
     int                             moveCount;
     int                             loseCount;
     int                             count;
-    ComputerMovesFirst               *computerFirstMove;
+    ComputerMovesFirst              *computerMovesFirst;
+    PlayerMovesFirst                *playerMovesFirst;
     NSTimer                         *timer;
     UIColor                         *xBackground;
     //    NSMutableArray                  *computerMoves;
@@ -50,14 +48,16 @@
     //    playerMoves = [[NSMutableArray alloc] initWithCapacity:4];
     //    computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
-    computerFirstMove = [[ComputerMovesFirst alloc] init];
-    [computerFirstMove initMutableArrays];
+    computerMovesFirst = [[ComputerMovesFirst alloc] init];
+    playerMovesFirst = [[PlayerMovesFirst alloc] init];
+    [computerMovesFirst initMutableArrays];
+    [playerMovesFirst initMutableArrays];
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
 
-    computerFirstMove.delegate = self;
+    computerMovesFirst.delegate = self;
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[Tiles class]]) {
             Tiles *tiles = (Tiles *)subview;
@@ -71,10 +71,10 @@
         [tile setUserInteractionEnabled:YES];
     }
     [startGameButton setTitle:@"Reset Game" forState:UIControlStateNormal];
-    computerFirstMove.compHasCornersNoHumanCenter = NO;
-    computerFirstMove.compHasCornersHumanHasCenter = NO;
-    computerFirstMove.compDoesNotHaveBothGoldenCorners = NO;
-    computerFirstMove.compHasAllThreeCorners = NO;
+    computerMovesFirst.compHasCornersNoHumanCenter = NO;
+    computerMovesFirst.compHasCornersHumanHasCenter = NO;
+    computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
+    computerMovesFirst.compHasAllThreeCorners = NO;
     [self firstMove];
 }
 
@@ -83,13 +83,13 @@
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor whiteColor];
     }
-    [computerFirstMove.playerMoves removeAllObjects];
-    [computerFirstMove.computerMoves removeAllObjects];
+    [computerMovesFirst.playerMoves removeAllObjects];
+    [computerMovesFirst.computerMoves removeAllObjects];
     moveCount = 0;
-    computerFirstMove.compHasCornersNoHumanCenter = NO;
-    computerFirstMove.compHasCornersHumanHasCenter = NO;
-    computerFirstMove.compDoesNotHaveBothGoldenCorners = NO;
-    computerFirstMove.compHasAllThreeCorners = NO;
+    computerMovesFirst.compHasCornersNoHumanCenter = NO;
+    computerMovesFirst.compHasCornersHumanHasCenter = NO;
+    computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
+    computerMovesFirst.compHasAllThreeCorners = NO;
     [self firstMove];
 }
 
@@ -99,7 +99,7 @@
         if (firstTile.tag == 1) {
             firstTile.backgroundColor = xBackground;
             [firstTile setUserInteractionEnabled:NO];
-            [computerFirstMove.computerMoves addObject:[NSNumber numberWithInteger:1]];
+            [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInteger:1]];
         }
     }
 }
@@ -121,29 +121,29 @@
         if (tileMove.tag == tagNumber) {
             tileMove.backgroundColor = xBackground;
             [tileMove setUserInteractionEnabled:NO];
-            [computerFirstMove.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+            [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
         }
     }
 }
 
 - (void)tileSelected:(Tiles *)tiles {
-    [computerFirstMove.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+    [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
     moveCount++;
     NSLog(@"moveCount: %i", moveCount);
     if (moveCount == 1) {
-        [computerFirstMove secondMove];
+        [computerMovesFirst secondMove];
     } else if (moveCount == 2) {
-        [computerFirstMove thirdMove];
+        [computerMovesFirst thirdMove];
     } else if (moveCount == 3) {
-        [computerFirstMove fourthMove];
+        [computerMovesFirst fourthMove];
     } else if (moveCount == 4) {
-        [computerFirstMove fifthMove];
+        [computerMovesFirst fifthMove];
     }
 }
 
 - (void)youLose {
     resultLabel.text = @"You Lose";
-    [UIView animateWithDuration:0.03 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:NO];
@@ -161,7 +161,7 @@
 
 - (void)catsTie {
     resultLabel.text = @"Cat's";
-    [UIView animateWithDuration:0.03 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:NO];
@@ -181,7 +181,7 @@
 }
 
 - (IBAction)tryAgain:(id)sender {
-    [UIView animateWithDuration:0.03 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];

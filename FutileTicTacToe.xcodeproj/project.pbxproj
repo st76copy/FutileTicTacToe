@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */; };
+		CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889517FB746F00AC750F /* PlayerMovesFirst.m */; };
 		CFB2A0CB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0CD17F628F70097E0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */; };
 		CFB2A0CF17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerMovesFirst.h; sourceTree = "<group>"; };
 		CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerMovesFirst.m; sourceTree = "<group>"; };
+		CF84889417FB746F00AC750F /* PlayerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMovesFirst.h; sourceTree = "<group>"; };
+		CF84889517FB746F00AC750F /* PlayerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMovesFirst.m; sourceTree = "<group>"; };
 		CFB2A0C717F628F70097E0CB /* FutileTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutileTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0CA17F628F70097E0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 				CFB2A0E017F628F70097E0CB /* ViewController.m */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
+				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
+				CF84889517FB746F00AC750F /* PlayerMovesFirst.m */,
 				CFB2A10117F632B70097E0CB /* Tiles.h */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
@@ -277,6 +282,7 @@
 				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
+				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,
 				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
