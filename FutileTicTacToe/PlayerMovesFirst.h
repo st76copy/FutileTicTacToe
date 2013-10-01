@@ -11,14 +11,16 @@
 
 @interface PlayerMovesFirst : NSObject
 
+@property (strong, nonatomic) id <TilesDelegate> delegate;
+
 @property (retain, nonatomic) NSMutableArray *computerMoves;
 @property (retain, nonatomic) NSMutableArray *playerMoves;
 
 - (void)initMutableArrays;
+- (void)firstMove;
 - (void)secondMove;
 - (void)thirdMove;
 - (void)fourthMove;
 - (void)fifthMove;
-
 
 @end

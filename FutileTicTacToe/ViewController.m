@@ -14,16 +14,10 @@
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-    BOOL                            wonTimerStarted;
-    int                             moveCount;
-    int                             loseCount;
-    int                             count;
     ComputerMovesFirst              *computerMovesFirst;
     PlayerMovesFirst                *playerMovesFirst;
     NSTimer                         *timer;
     UIColor                         *xBackground;
-    //    NSMutableArray                  *computerMoves;
-    //    NSMutableArray                  *playerMoves;
     __weak IBOutlet UILabel         *resultLabel;
     __weak IBOutlet UILabel         *winsLabel;
     __weak IBOutlet UILabel         *lossesLabel;
@@ -41,6 +35,8 @@
 
 @implementation ViewController
 
+@synthesize wonTimerStarted, computerIsFirst, moveCount, loseCount, count;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -56,8 +52,14 @@
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
-
+    
+    
+    computerIsFirst = NO;
+    
+    
     computerMovesFirst.delegate = self;
+    playerMovesFirst.delegate = self;
+    
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[Tiles class]]) {
             Tiles *tiles = (Tiles *)subview;
@@ -85,6 +87,8 @@
     }
     [computerMovesFirst.playerMoves removeAllObjects];
     [computerMovesFirst.computerMoves removeAllObjects];
+    [playerMovesFirst.playerMoves removeAllObjects];
+    [playerMovesFirst.computerMoves removeAllObjects];
     moveCount = 0;
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
@@ -95,11 +99,13 @@
 
 - (void)firstMove {
     NSLog(@"firstMove");
-    for (UIView *firstTile in self.view.subviews) {
-        if (firstTile.tag == 1) {
-            firstTile.backgroundColor = xBackground;
-            [firstTile setUserInteractionEnabled:NO];
-            [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInteger:1]];
+    if (computerIsFirst) {
+        for (UIView *firstTile in self.view.subviews) {
+            if (firstTile.tag == 1) {
+                firstTile.backgroundColor = xBackground;
+                [firstTile setUserInteractionEnabled:NO];
+                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInteger:1]];
+            }
         }
     }
 }
@@ -121,23 +127,42 @@
         if (tileMove.tag == tagNumber) {
             tileMove.backgroundColor = xBackground;
             [tileMove setUserInteractionEnabled:NO];
-            [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+            if (computerIsFirst) {
+                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+            } else {
+                [playerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+            }
         }
     }
 }
 
 - (void)tileSelected:(Tiles *)tiles {
-    [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
     moveCount++;
     NSLog(@"moveCount: %i", moveCount);
-    if (moveCount == 1) {
-        [computerMovesFirst secondMove];
-    } else if (moveCount == 2) {
-        [computerMovesFirst thirdMove];
-    } else if (moveCount == 3) {
-        [computerMovesFirst fourthMove];
-    } else if (moveCount == 4) {
-        [computerMovesFirst fifthMove];
+    if (computerIsFirst) {
+        [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        if (moveCount == 1) {
+            [computerMovesFirst secondMove];
+        } else if (moveCount == 2) {
+            [computerMovesFirst thirdMove];
+        } else if (moveCount == 3) {
+            [computerMovesFirst fourthMove];
+        } else if (moveCount == 4) {
+            [computerMovesFirst fifthMove];
+        }
+    } else {
+        [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        if (moveCount == 1) {
+            [playerMovesFirst firstMove];
+        } else if (moveCount == 2) {
+            [playerMovesFirst secondMove];
+        } else if (moveCount == 3) {
+            [playerMovesFirst thirdMove];
+        } else if (moveCount == 4) {
+            [playerMovesFirst fourthMove];
+        } else if (moveCount == 5) {
+            [playerMovesFirst fifthMove];
+        }
     }
 }
 

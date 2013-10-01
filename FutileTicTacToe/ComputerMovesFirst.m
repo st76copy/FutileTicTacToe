@@ -10,11 +10,11 @@
 
 @implementation ComputerMovesFirst
 
-@synthesize computerMoves, playerMoves, delegate;
+@synthesize compDoesNotHaveBothGoldenCorners, compHasAllThreeCorners, compHasCornersHumanHasCenter, compHasCornersNoHumanCenter, computerMoves, playerMoves, delegate;
 
 - (void)initMutableArrays {
-        computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
-        playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
+    computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
+    playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
 - (void)secondMove {
@@ -119,11 +119,11 @@
 }
 
 - (void)fourthMove {
-    NSLog(@"forthMove");
+    NSLog(@"fourthMove");
     if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
         self.compHasCornersNoHumanCenter = NO;
     }
-    
+    NSLog(@"compHasCornersNoHumanCenter %d, compHasAllThreeCorners %d, compHasCornersNoHumanCenter %d, compDoesNotHaveBothGoldenCorners %d, compHasCornersHumanHasCenter %d", compHasCornersNoHumanCenter, compHasAllThreeCorners, compHasCornersNoHumanCenter, compDoesNotHaveBothGoldenCorners, compHasCornersHumanHasCenter);
     if (self.compHasAllThreeCorners) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             [delegate computerMakesMove:5];
@@ -208,9 +208,7 @@
                 [computerMoves addObject:[NSNumber numberWithInt:7]];
                 [delegate computerMakesMove:7];
             }
-        }
-        // this expression does not work if it is else if....?
-        if (![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+        } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:7]] && [computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 [delegate computerMakesMove:8];
                 [delegate youLose];
@@ -220,7 +218,6 @@
             [delegate youLose];
         }
     }
-    
 }
 
 - (void)fifthMove {
