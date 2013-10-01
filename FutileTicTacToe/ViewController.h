@@ -11,4 +11,9 @@
 
 @interface ViewController : UIViewController <TilesDelegate>
 
+@property (assign, nonatomic) BOOL computerIsFirst;
+@property (assign, nonatomic) BOOL wonTimerStarted;
+@property (assign, nonatomic) int loseCount;
+@property (assign, nonatomic) int count;
+
 @end

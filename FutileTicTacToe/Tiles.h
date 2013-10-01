@@ -13,7 +13,10 @@
 
 @property (strong, nonatomic) id <TilesDelegate> delegate;
 
+@property (assign, nonatomic) int moveCount;
 @property (weak, nonatomic) UIColor *xBackground;
 @property (weak, nonatomic) UIColor *oBackground;
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

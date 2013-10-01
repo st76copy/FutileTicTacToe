@@ -14,12 +14,10 @@
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface ViewController () {
     
-    BOOL                            computerIsFirst;
-    BOOL                            wonTimerStarted;
-    int                             loseCount;
-    int                             count;
-    int                             moveCount;
-    ComputerMovesFirst              *computerFirstMove;
+
+//    int                             tilesmoveCount;
+    Tiles                           *tiles;
+    ComputerMovesFirst              *computerMovesFirst;
     HumanMovesFirst                 *humanMovesFirst;
     NSTimer                         *timer;
     UIColor                         *xBackground;
@@ -39,28 +37,32 @@
 
 @implementation ViewController
 
+@synthesize computerIsFirst, wonTimerStarted, loseCount, count;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     count = 0;
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
-    computerFirstMove = [[ComputerMovesFirst alloc] init];
-    [computerFirstMove initMutableArrays];
+    computerMovesFirst = [[ComputerMovesFirst alloc] init];
+    [computerMovesFirst initMutableArrays];
     humanMovesFirst = [[HumanMovesFirst alloc] init];
     [humanMovesFirst initMutableArrays];
-    computerIsFirst = NO;
+    computerIsFirst = YES;
+    tiles = [[Tiles alloc] init];
+    tiles.moveCount = 0;
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     
-    computerFirstMove.delegate = self;
+    computerMovesFirst.delegate = self;
     humanMovesFirst.delegate = self;
     
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[Tiles class]]) {
-            Tiles *tiles = (Tiles *)subview;
-            tiles.delegate = self;
+            Tiles *_tiles = (Tiles *)subview;
+            _tiles.delegate = self;
         }
     }
 }
@@ -71,11 +73,14 @@
     }
     [startGameButton setHidden:YES];
     [startGameButton setTitle:@"Reset Game" forState:UIControlStateNormal];
-    //    computerFirstMove.compHasCornersNoHumanCenter = NO;
-    //    computerFirstMove.compHasCornersHumanHasCenter = NO;
-    //    computerFirstMove.compDoesNotHaveBothGoldenCorners = NO;
-    //    computerFirstMove.compHasAllThreeCorners = NO;
-    [self firstMove];
+    
+    if (computerIsFirst) {
+        //    computerFirstMove.compHasCornersNoHumanCenter = NO;
+        //    computerFirstMove.compHasCornersHumanHasCenter = NO;
+        //    computerFirstMove.compDoesNotHaveBothGoldenCorners = NO;
+        //    computerFirstMove.compHasAllThreeCorners = NO;
+        [self firstMove];
+    }
 }
 
 - (void)resetGame {
@@ -83,11 +88,10 @@
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor whiteColor];
     }
-    [computerFirstMove.playerMoves removeAllObjects];
-    [computerFirstMove.computerMoves removeAllObjects];
-    moveCount = 0;
     
-    [computerFirstMove resetAll];
+    tiles.moveCount = 0;
+    
+    [computerMovesFirst resetAll];
     [humanMovesFirst resetAll];
     [self firstMove];
 }
@@ -99,11 +103,11 @@
             if (firstTile.tag == 1) {
                 firstTile.backgroundColor = xBackground;
                 [firstTile setUserInteractionEnabled:NO];
-                [computerFirstMove.computerMoves addObject:[NSNumber numberWithInteger:1]];
+                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInteger:1]];
             }
         }
     } else {
-        [self tileSelected:nil];
+        [humanMovesFirst firstMove];
     }
 }
 
@@ -123,45 +127,53 @@
             if (tileMove.tag == tagNumber) {
                 tileMove.backgroundColor = xBackground;
                 [tileMove setUserInteractionEnabled:NO];
-                [computerFirstMove.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
-            }
-        }
-    } else if (!computerIsFirst) {
-        for (UIView *tileMove in self.view.subviews) {
-            if (tileMove.tag == tagNumber) {
-                tileMove.backgroundColor = xBackground;
-                [tileMove setUserInteractionEnabled:NO];
-                [humanMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
             }
         }
     }
 }
 
-- (void)tileSelected:(Tiles *)tiles {
-    moveCount++;
-    NSLog(@"moveCount: %i", moveCount);
+- (void)computerRespondsToPlayerMove:(int)tagNumber {
+    for (UIView *tileMove in self.view.subviews) {
+        if (tileMove.tag == tagNumber) {
+            tileMove.backgroundColor = xBackground;
+            [tileMove setUserInteractionEnabled:NO];
+            [humanMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+        }
+    }
+}
+
+- (void)tileSelected:(Tiles *)_tiles {
+    tiles.moveCount++;
+    NSLog(@"moveCount: %i", tiles.moveCount);
     if (computerIsFirst) {
-        [computerFirstMove.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
-        if (moveCount == 1) {
-            [computerFirstMove secondMove];
-        } else if (moveCount == 2) {
-            [computerFirstMove thirdMove];
-        } else if (moveCount == 3) {
-            [computerFirstMove fourthMove];
-        } else if (moveCount == 4) {
-            [computerFirstMove fifthMove];
+        [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        if (tiles.moveCount == 1) {
+            [computerMovesFirst secondMove];
+        } else if (tiles.moveCount == 2) {
+            [computerMovesFirst thirdMove];
+        } else if (tiles.moveCount == 3) {
+            [computerMovesFirst fourthMove];
+        } else if (tiles.moveCount == 4) {
+            [computerMovesFirst fifthMove];
         }
     } else if (!computerIsFirst) {
         [humanMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
-        if (moveCount == 2) {
+        NSLog(@"player moves: %@", humanMovesFirst.playerMoves);
+        NSLog(@"computer moves: %@", humanMovesFirst.computerMoves);
+
+        if (tiles.moveCount == 1) {
+            [self initialGame];
+        }
+        if (tiles.moveCount == 2) {
             [humanMovesFirst secondMove];
-        } else if (moveCount == 3) {
+        } else if (tiles.moveCount == 3) {
             [humanMovesFirst thirdMove];
-        } else if (moveCount == 4) {
+        } else if (tiles.moveCount == 4) {
             [humanMovesFirst fourthMove];
-        } else if (moveCount == 5) {
+        } else if (tiles.moveCount == 5) {
             [humanMovesFirst fifthMove];
-        } else if (moveCount == 6) {
+        } else if (tiles.moveCount == 6) {
             [humanMovesFirst sixthMove];
         }
     }

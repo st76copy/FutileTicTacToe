@@ -22,6 +22,8 @@
     self.compHasCornersHumanHasCenter = NO;
     self.compDoesNotHaveBothGoldenCorners = NO;
     self.compHasAllThreeCorners = NO;
+    [computerMoves removeAllObjects];
+    [playerMoves removeAllObjects];
 }
 
 - (void)secondMove {

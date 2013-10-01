@@ -13,6 +13,7 @@
 @protocol TilesDelegate <NSObject>
 
 - (void)computerMakesMove:(int)tagNumber;
+- (void)computerRespondsToPlayerMove:(int)tagNumber;
 - (void)tileSelected:(Tiles *)tiles;
 - (void)youLose;
 - (void)catsTie;

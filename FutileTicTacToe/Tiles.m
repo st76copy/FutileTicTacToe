@@ -10,14 +10,14 @@
 
 @implementation Tiles
 
-@synthesize delegate;
+@synthesize xBackground, oBackground, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
-        self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+        oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
     }
     return self;
 }

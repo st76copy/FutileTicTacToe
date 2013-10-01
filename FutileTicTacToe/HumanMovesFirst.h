@@ -20,6 +20,7 @@
 
 - (void)initMutableArrays;
 - (void)resetAll;
+- (void)firstMove;
 - (void)secondMove;
 - (void)thirdMove;
 - (void)fourthMove;
