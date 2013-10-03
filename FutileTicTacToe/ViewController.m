@@ -35,7 +35,7 @@
 
 @implementation ViewController
 
-@synthesize wonTimerStarted, computerIsFirst, moveCount, loseCount, count;
+@synthesize wonTimerStarted, computerIsFirst, moveCount, loseCount, count, roundsCounter;
 
 - (void)viewDidLoad
 {
@@ -53,9 +53,7 @@
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     
-    
-    computerIsFirst = NO;
-    
+    computerIsFirst = YES;
     
     computerMovesFirst.delegate = self;
     playerMovesFirst.delegate = self;
@@ -94,6 +92,12 @@
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
+    roundsCounter++;
+    if (roundsCounter % 2 == 0) {
+        computerIsFirst = YES;
+    } else {
+        computerIsFirst = NO;
+    }
     [self firstMove];
 }
 

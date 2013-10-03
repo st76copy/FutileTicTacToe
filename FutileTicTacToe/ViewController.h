@@ -16,5 +16,6 @@
 @property (assign, nonatomic) int moveCount;
 @property (assign, nonatomic) int loseCount;
 @property (assign, nonatomic) int count;
+@property (assign, nonatomic) int roundsCounter;
 
 @end
