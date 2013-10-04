@@ -12,9 +12,11 @@
 
 @protocol TilesDelegate <NSObject>
 
+- (void)tileUserInteraction:(BOOL)enable;
 - (void)computerMakesMove:(int)tagNumber;
 - (void)tileSelected:(Tiles *)tiles;
-- (void)youLose;
+- (void)playerWon;
+- (void)playerLost;
 - (void)catsTie;
 
 @end

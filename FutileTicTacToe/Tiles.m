@@ -10,7 +10,7 @@
 
 @implementation Tiles
 
-@synthesize delegate;
+@synthesize selfView, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,15 +18,23 @@
     if (self) {
         self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
         self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        selfView = self;
     }
     return self;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.backgroundColor != self.xBackground) {
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
-    [self setUserInteractionEnabled:NO];
-    [delegate tileSelected:self];
+        [delegate tileUserInteraction:NO];
+        self.transform = CGAffineTransformScale(self.transform, 0.01, 0.01);
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        [self setUserInteractionEnabled:NO];
+        [UIView animateWithDuration:0.7 animations:^{
+            self.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [delegate tileUserInteraction:YES];
+            [delegate tileSelected:self];
+        }];
     }
 }
 

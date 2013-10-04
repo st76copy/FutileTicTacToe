@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */; };
 		CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889517FB746F00AC750F /* PlayerMovesFirst.m */; };
+		CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889817FDDE9D00AC750F /* LaunchViewController.m */; };
+		CF84889D17FE6B5B00AC750F /* boardImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889A17FE6B5B00AC750F /* boardImage.jpg */; };
+		CF84889E17FE6B5B00AC750F /* oTileImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889B17FE6B5B00AC750F /* oTileImage.jpg */; };
+		CF84889F17FE6B5B00AC750F /* xTileImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889C17FE6B5B00AC750F /* xTileImage.jpg */; };
 		CFB2A0CB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0CD17F628F70097E0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */; };
 		CFB2A0CF17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
@@ -44,6 +48,11 @@
 		CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerMovesFirst.m; sourceTree = "<group>"; };
 		CF84889417FB746F00AC750F /* PlayerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMovesFirst.h; sourceTree = "<group>"; };
 		CF84889517FB746F00AC750F /* PlayerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerMovesFirst.m; sourceTree = "<group>"; };
+		CF84889717FDDE9C00AC750F /* LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchViewController.h; sourceTree = "<group>"; };
+		CF84889817FDDE9D00AC750F /* LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchViewController.m; sourceTree = "<group>"; };
+		CF84889A17FE6B5B00AC750F /* boardImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boardImage.jpg; sourceTree = "<group>"; };
+		CF84889B17FE6B5B00AC750F /* oTileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oTileImage.jpg; sourceTree = "<group>"; };
+		CF84889C17FE6B5B00AC750F /* xTileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xTileImage.jpg; sourceTree = "<group>"; };
 		CFB2A0C717F628F70097E0CB /* FutileTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutileTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0CA17F628F70097E0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +140,8 @@
 				CFB2A0D917F628F70097E0CB /* AppDelegate.h */,
 				CFB2A0DA17F628F70097E0CB /* AppDelegate.m */,
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
+				CF84889717FDDE9C00AC750F /* LaunchViewController.h */,
+				CF84889817FDDE9D00AC750F /* LaunchViewController.m */,
 				CFB2A0DF17F628F70097E0CB /* ViewController.h */,
 				CFB2A0E017F628F70097E0CB /* ViewController.m */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
@@ -149,6 +160,9 @@
 		CFB2A0D117F628F70097E0CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF84889A17FE6B5B00AC750F /* boardImage.jpg */,
+				CF84889B17FE6B5B00AC750F /* oTileImage.jpg */,
+				CF84889C17FE6B5B00AC750F /* xTileImage.jpg */,
 				CFB2A0FF17F62E3E0097E0CB /* board.png */,
 				CFB2A10D17F754170097E0CB /* o.png */,
 				CFB2A10C17F754170097E0CB /* x.png */,
@@ -257,9 +271,12 @@
 				CFB2A0E317F628F70097E0CB /* Images.xcassets in Resources */,
 				CFB2A10017F62E3E0097E0CB /* board.png in Resources */,
 				CFB2A10E17F754170097E0CB /* x.png in Resources */,
+				CF84889F17FE6B5B00AC750F /* xTileImage.jpg in Resources */,
 				CFB2A10F17F754170097E0CB /* o.png in Resources */,
 				CFB2A0D517F628F70097E0CB /* InfoPlist.strings in Resources */,
+				CF84889E17FE6B5B00AC750F /* oTileImage.jpg in Resources */,
 				CFB2A0DE17F628F70097E0CB /* Main.storyboard in Resources */,
+				CF84889D17FE6B5B00AC750F /* boardImage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +298,7 @@
 				CFB2A0E117F628F70097E0CB /* ViewController.m in Sources */,
 				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
+				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,
 				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,

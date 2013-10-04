@@ -22,34 +22,34 @@
     __weak IBOutlet UILabel         *winsLabel;
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIImageView     *boardImageView;
-    __weak IBOutlet UIButton        *startGameButton;
     __weak IBOutlet UIView          *gameResultsView;
+    __weak IBOutlet UIButton        *startGameButton;
+    
 }
 
 - (IBAction)startGame:(id)sender;
 - (IBAction)resetScores:(id)sender;
 - (IBAction)tryAgain:(id)sender;
+- (IBAction)changeDifficulty:(id)sender;
 
 
 @end
 
 @implementation ViewController
 
-@synthesize wonTimerStarted, computerIsFirst, moveCount, loseCount, count, roundsCounter;
+@synthesize normalDifficulty, wonTimerStarted, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     count = 0;
-    //    playerMoves = [[NSMutableArray alloc] initWithCapacity:4];
-    //    computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
-    xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
     [computerMovesFirst initMutableArrays];
     [playerMovesFirst initMutableArrays];
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
+    xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     
@@ -75,7 +75,7 @@
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
-    [self firstMove];
+    [computerMovesFirst firstMove];
 }
 
 - (void)resetGame {
@@ -95,23 +95,21 @@
     roundsCounter++;
     if (roundsCounter % 2 == 0) {
         computerIsFirst = YES;
+        [computerMovesFirst firstMove];
     } else {
         computerIsFirst = NO;
     }
-    [self firstMove];
 }
 
-- (void)firstMove {
-    NSLog(@"firstMove");
-    if (computerIsFirst) {
-        for (UIView *firstTile in self.view.subviews) {
-            if (firstTile.tag == 1) {
-                firstTile.backgroundColor = xBackground;
-                [firstTile setUserInteractionEnabled:NO];
-                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInteger:1]];
-            }
-        }
+- (void)setNormalDifficulty:(BOOL)setToNormalDifficulty {
+    if (!setToNormalDifficulty) {
+        computerMovesFirst.normalDifficulty = NO;
+        playerMovesFirst.normalDifficulty = NO;
+    } else {
+        computerMovesFirst.normalDifficulty = YES;
+        playerMovesFirst.normalDifficulty = YES;
     }
+    NSLog(@"difficulty was set to %d & %d", computerMovesFirst.normalDifficulty, playerMovesFirst.normalDifficulty);
 }
 
 - (void)blinkWonCount {
@@ -124,18 +122,34 @@
 }
 
 #pragma mark TilesDelegate
+- (void)tileUserInteraction:(BOOL)enable {
+    for (UIView *tileUserInteraction in self.view.subviews) {
+        if (enable) {
+            [tileUserInteraction setUserInteractionEnabled:YES];
+        } else {
+            [tileUserInteraction setUserInteractionEnabled:NO];
+        }
+    }
+}
+
 - (void)computerMakesMove:(int)tagNumber {
     NSLog(@"computerMakesMove Delegate Fired");
     NSLog(@"tagNumber: %i", tagNumber);
+    [self tileUserInteraction:NO];
     for (UIView *tileMove in self.view.subviews) {
         if (tileMove.tag == tagNumber) {
             tileMove.backgroundColor = xBackground;
-            [tileMove setUserInteractionEnabled:NO];
+            tileMove.transform = CGAffineTransformScale(tileMove.transform, 0.01, 0.01);
             if (computerIsFirst) {
                 [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
             } else {
                 [playerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
             }
+            [UIView animateWithDuration:0.7 animations:^{
+                tileMove.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+                [self tileUserInteraction:YES];
+            }];
         }
     }
 }
@@ -143,6 +157,7 @@
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
     NSLog(@"moveCount: %i", moveCount);
+    NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
     if (computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         if (moveCount == 1) {
@@ -170,30 +185,44 @@
     }
 }
 
-- (void)youLose {
-    resultLabel.text = @"You Lose";
+- (void)playerWon {
+    resultLabel.text = @"You Win!!";
+    [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        [gameResultsView setHidden:NO];
+    }];
+    winCount++;
+    winsLabel.text = [NSString stringWithFormat: @"Won: %i", winCount];
+}
+
+- (void)playerLost {
+    resultLabel.text = @"You Lose :(";
+    [gameResultsView setHidden:NO];
+    [UIView animateWithDuration:0.3 animations:^{
+        gameResultsView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
     }];
     loseCount++;
     lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", loseCount];
-    if (!wonTimerStarted) {
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+    if (computerMovesFirst.normalDifficulty == YES) {
+        if (!wonTimerStarted) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+        }
+        if (loseCount == 5 || loseCount == 10) {
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+        }
+        wonTimerStarted = YES;
     }
-    if (loseCount == 5 || loseCount == 10) {
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
-    }
-    wonTimerStarted = YES;
 }
 
 - (void)catsTie {
     resultLabel.text = @"Cat's";
+    [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
-        [gameResultsView setHidden:NO];
+        
     }];
 }
 
@@ -205,7 +234,6 @@
     }
 }
 
-
 - (IBAction)resetScores:(id)sender {
 }
 
@@ -215,6 +243,15 @@
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
         [self resetGame];
+    }];
+}
+
+- (IBAction)changeDifficulty:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+        [gameResultsView setHidden:YES];
+        winCount = 0;
+        loseCount = 0;
     }];
 }
 

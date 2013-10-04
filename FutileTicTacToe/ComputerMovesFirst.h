@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) id <TilesDelegate> delegate;
 
+@property (assign, nonatomic) BOOL normalDifficulty;
 @property (assign, nonatomic) BOOL compHasCornersNoHumanCenter;
 @property (assign, nonatomic) BOOL compHasCornersHumanHasCenter;
 @property (assign, nonatomic) BOOL compDoesNotHaveBothGoldenCorners;
@@ -21,6 +22,7 @@
 @property (retain, nonatomic) NSMutableArray *playerMoves;
 
 - (void)initMutableArrays;
+- (void)firstMove;
 - (void)secondMove;
 - (void)thirdMove;
 - (void)fourthMove;

@@ -15,5 +15,6 @@
 
 @property (weak, nonatomic) UIColor *xBackground;
 @property (weak, nonatomic) UIColor *oBackground;
+@property (strong, nonatomic) UIView *selfView;
 
 @end

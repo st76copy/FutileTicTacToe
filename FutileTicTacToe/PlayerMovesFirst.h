@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) id <TilesDelegate> delegate;
 
+@property (assign, nonatomic) BOOL normalDifficulty;
 @property (retain, nonatomic) NSMutableArray *computerMoves;
 @property (retain, nonatomic) NSMutableArray *playerMoves;
 
