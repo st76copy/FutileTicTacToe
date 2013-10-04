@@ -17,8 +17,7 @@
     ViewController                  *viewController;
 }
 
-- (IBAction)easyPlay:(id)sender;
-- (IBAction)normalPlay:(id)sender;
+- (IBAction)startGame:(id)sender;
 
 @end
 
@@ -47,27 +46,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    viewController = segue.destinationViewController;
-//    if ([segue.identifier isEqualToString:@"startGame"]) {
-//    }
-//    detailsViewController.feedTitle = [feedTitlesArray objectAtIndex:selectedRow];
-}
-
-- (IBAction)easyPlay:(id)sender {
-    [viewController setNormalDifficulty:NO];
-//    computerMovesFirst.normalDifficulty = NO;
-//    playerMovesFirst.normalDifficulty = NO;
-//    [viewController setNormalDifficulty:NO];
-    [self performSegueWithIdentifier:@"startGame" sender:self];
-}
-
-- (IBAction)normalPlay:(id)sender {
-    [viewController setNormalDifficulty:YES];
-//    computerMovesFirst.normalDifficulty = YES;
-//    playerMovesFirst.normalDifficulty = YES;
-//    [computerMovesFirst initDifficulty:YES];
-//    [viewController setNormalDifficulty:YES];
-    [self performSegueWithIdentifier:@"startGame" sender:self];
+- (IBAction)startGame:(id)sender {
+    [self performSegueWithIdentifier:@"playGame" sender:self];
 }
 @end

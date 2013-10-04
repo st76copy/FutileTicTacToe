@@ -30,14 +30,13 @@
 - (IBAction)startGame:(id)sender;
 - (IBAction)resetScores:(id)sender;
 - (IBAction)tryAgain:(id)sender;
-- (IBAction)changeDifficulty:(id)sender;
 
 
 @end
 
 @implementation ViewController
 
-@synthesize normalDifficulty, wonTimerStarted, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
+@synthesize wonTimerStarted, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
 
 - (void)viewDidLoad
 {
@@ -64,6 +63,7 @@
             tiles.delegate = self;
         }
     }
+    [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
 - (void)initialGame {
@@ -99,17 +99,6 @@
     } else {
         computerIsFirst = NO;
     }
-}
-
-- (void)setNormalDifficulty:(BOOL)setToNormalDifficulty {
-    if (!setToNormalDifficulty) {
-        computerMovesFirst.normalDifficulty = NO;
-        playerMovesFirst.normalDifficulty = NO;
-    } else {
-        computerMovesFirst.normalDifficulty = YES;
-        playerMovesFirst.normalDifficulty = YES;
-    }
-    NSLog(@"difficulty was set to %d & %d", computerMovesFirst.normalDifficulty, playerMovesFirst.normalDifficulty);
 }
 
 - (void)blinkWonCount {
@@ -157,9 +146,10 @@
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
     NSLog(@"moveCount: %i", moveCount);
-    NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
     if (computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
+        NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
         if (moveCount == 1) {
             [computerMovesFirst secondMove];
         } else if (moveCount == 2) {
@@ -171,6 +161,8 @@
         }
     } else {
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
+        NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
         if (moveCount == 1) {
             [playerMovesFirst firstMove];
         } else if (moveCount == 2) {
@@ -197,33 +189,39 @@
 }
 
 - (void)playerLost {
+    [self performSelector:@selector(setPlayerLost) withObject:self afterDelay:0.7];
+}
+
+- (void)setPlayerLost {
     resultLabel.text = @"You Lose :(";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-    }];
+    } completion:nil];
     loseCount++;
     lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", loseCount];
-    if (computerMovesFirst.normalDifficulty == YES) {
-        if (!wonTimerStarted) {
-            timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
-        }
-        if (loseCount == 5 || loseCount == 10) {
-            timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
-        }
-        wonTimerStarted = YES;
+    
+    if (!wonTimerStarted) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
     }
+    if (loseCount == 5 || loseCount == 10) {
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(blinkWonCount) userInfo:nil repeats:YES];
+    }
+    wonTimerStarted = YES;
 }
 
 - (void)catsTie {
+    [self setCatsTie];
+    [self performSelector:@selector(setCatsTie) withObject:self afterDelay:0.7];
     resultLabel.text = @"Cat's";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
+}
+
+- (void)setCatsTie {
+    
 }
 
 - (IBAction)startGame:(id)sender {
@@ -243,15 +241,6 @@
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
         [self resetGame];
-    }];
-}
-
-- (IBAction)changeDifficulty:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
-        [gameResultsView setHidden:YES];
-        winCount = 0;
-        loseCount = 0;
     }];
 }
 

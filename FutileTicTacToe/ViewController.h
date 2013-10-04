@@ -11,7 +11,6 @@
 
 @interface ViewController : UIViewController <TilesDelegate>
 
-@property (assign, nonatomic) BOOL normalDifficulty;
 @property (assign, nonatomic) BOOL wonTimerStarted;
 @property (assign, nonatomic) BOOL computerIsFirst;
 @property (assign, nonatomic) int moveCount;
@@ -19,7 +18,5 @@
 @property (assign, nonatomic) int loseCount;
 @property (assign, nonatomic) int count;
 @property (assign, nonatomic) int roundsCounter;
-
-- (void)setNormalDifficulty:(BOOL)setToNormalDifficulty;
 
 @end
