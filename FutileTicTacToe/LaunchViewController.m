@@ -17,7 +17,8 @@
     ViewController                  *viewController;
 }
 
-- (IBAction)startGame:(id)sender;
+- (IBAction)playEasyGame:(id)sender;
+- (IBAction)playNormalGame:(id)sender;
 
 @end
 
@@ -46,7 +47,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startGame:(id)sender {
-    [self performSegueWithIdentifier:@"playGame" sender:self];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.destinationViewController isKindOfClass:[ViewController class]]) {
+        viewController = segue.destinationViewController;
+        if ([segue.identifier isEqualToString:@"normalMode"]) {
+            viewController.normalDifficulty = YES;
+        }
+    }
+}
+
+- (IBAction)playEasyGame:(id)sender {
+    [self performSegueWithIdentifier:@"easyMode" sender:self];
+}
+
+- (IBAction)playNormalGame:(id)sender {
+    [self performSegueWithIdentifier:@"normalMode" sender:self];
+    [viewController setNormalDifficulty];
 }
 @end

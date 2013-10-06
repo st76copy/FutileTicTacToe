@@ -24,19 +24,18 @@
     __weak IBOutlet UIImageView     *boardImageView;
     __weak IBOutlet UIView          *gameResultsView;
     __weak IBOutlet UIButton        *startGameButton;
-    
 }
 
 - (IBAction)startGame:(id)sender;
 - (IBAction)resetScores:(id)sender;
 - (IBAction)tryAgain:(id)sender;
-
+- (IBAction)changeDifficulty:(id)sender;
 
 @end
 
 @implementation ViewController
 
-@synthesize wonTimerStarted, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
+@synthesize normalDifficulty, wonTimerStarted, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
 
 - (void)viewDidLoad
 {
@@ -66,6 +65,10 @@
     [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
+- (void)setNormalDifficulty {
+    normalDifficulty = YES;
+}
+
 - (void)initialGame {
     for (UIView *tile in self.view.subviews) {
         [tile setUserInteractionEnabled:YES];
@@ -75,7 +78,10 @@
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
-    [computerMovesFirst firstMove];
+    if (normalDifficulty) {
+        [computerMovesFirst firstMove:YES];
+    } else
+        [computerMovesFirst firstMove:NO];
 }
 
 - (void)resetGame {
@@ -95,7 +101,9 @@
     roundsCounter++;
     if (roundsCounter % 2 == 0) {
         computerIsFirst = YES;
-        [computerMovesFirst firstMove];
+        if (normalDifficulty) {
+            [computerMovesFirst firstMove:YES];
+        }
     } else {
         computerIsFirst = NO;
     }
@@ -112,17 +120,11 @@
 
 #pragma mark TilesDelegate
 - (void)tileUserInteraction:(BOOL)enable {
-    for (UIView *tileUserInteraction in self.view.subviews) {
-        if (enable) {
-            [tileUserInteraction setUserInteractionEnabled:YES];
-        } else {
-            [tileUserInteraction setUserInteractionEnabled:NO];
-        }
-    }
+    self.view.userInteractionEnabled = enable;
 }
 
 - (void)computerMakesMove:(int)tagNumber {
-    NSLog(@"computerMakesMove Delegate Fired");
+    NSLog(@"normalDifficulty: %d", normalDifficulty);
     NSLog(@"tagNumber: %i", tagNumber);
     [self tileUserInteraction:NO];
     for (UIView *tileMove in self.view.subviews) {
@@ -151,26 +153,58 @@
         NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
         NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
         if (moveCount == 1) {
-            [computerMovesFirst secondMove];
+            if (normalDifficulty) {
+                [computerMovesFirst secondMove:YES];
+            } else {
+                [computerMovesFirst secondMove:NO];
+            }
         } else if (moveCount == 2) {
-            [computerMovesFirst thirdMove];
+            if (normalDifficulty) {
+                [computerMovesFirst thirdMove:YES];
+            } else {
+                [computerMovesFirst thirdMove:NO];
+            }
         } else if (moveCount == 3) {
-            [computerMovesFirst fourthMove];
+            if (normalDifficulty) {
+                [computerMovesFirst fourthMove:YES];
+            } else {
+                [computerMovesFirst fourthMove:NO];
+            }
         } else if (moveCount == 4) {
-            [computerMovesFirst fifthMove];
+            if (normalDifficulty) {
+                [computerMovesFirst fifthMove:YES];
+            } else {
+                [computerMovesFirst firstMove:NO];
+            }
         }
     } else {
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
         NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
         if (moveCount == 1) {
-            [playerMovesFirst firstMove];
+            if (normalDifficulty) {
+                [playerMovesFirst firstMove:YES];
+            } else {
+                [playerMovesFirst firstMove:NO];
+            }
         } else if (moveCount == 2) {
-            [playerMovesFirst secondMove];
+            if (normalDifficulty) {
+                [playerMovesFirst secondMove:YES];
+            } else {
+                [playerMovesFirst secondMove:NO];
+            }
         } else if (moveCount == 3) {
-            [playerMovesFirst thirdMove];
+            if (normalDifficulty) {
+                [playerMovesFirst thirdMove:YES];
+            } else {
+                [playerMovesFirst thirdMove:NO];
+            }
         } else if (moveCount == 4) {
-            [playerMovesFirst fourthMove];
+            if (normalDifficulty) {
+                [playerMovesFirst fourthMove:YES];
+            } else {
+                [playerMovesFirst fourthMove:NO];
+            }
         } else if (moveCount == 5) {
             [playerMovesFirst fifthMove];
         }
@@ -242,6 +276,10 @@
         [gameResultsView setHidden:YES];
         [self resetGame];
     }];
+}
+
+- (IBAction)changeDifficulty:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

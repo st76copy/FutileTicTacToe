@@ -14,14 +14,15 @@
 @property (strong, nonatomic) id <TilesDelegate> delegate;
 
 @property (assign, nonatomic) BOOL finalMove;
+@property (assign, nonatomic) int randomizer;
 @property (retain, nonatomic) NSMutableArray *computerMoves;
 @property (retain, nonatomic) NSMutableArray *playerMoves;
 
 - (void)initMutableArrays;
-- (void)firstMove;
-- (void)secondMove;
-- (void)thirdMove;
-- (void)fourthMove;
+- (void)firstMove:(BOOL)normalPlay;
+- (void)secondMove:(BOOL)normalPlay;
+- (void)thirdMove:(BOOL)normalPlay;
+- (void)fourthMove:(BOOL)normalPlay;
 - (void)fifthMove;
 
 @end

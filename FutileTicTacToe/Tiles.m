@@ -24,7 +24,7 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (self.backgroundColor != self.xBackground) {
+    if (self.backgroundColor != self.xBackground && self.backgroundColor != self.oBackground) {
         [delegate tileUserInteraction:NO];
         self.transform = CGAffineTransformScale(self.transform, 0.01, 0.01);
         self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
