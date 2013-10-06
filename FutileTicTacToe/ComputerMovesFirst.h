@@ -28,5 +28,6 @@
 - (void)thirdMove:(BOOL)normalPlay;
 - (void)fourthMove:(BOOL)normalPlay;
 - (void)fifthMove:(BOOL)normalPlay;
+- (void)winCheck;
 
 @end

@@ -11,9 +11,9 @@
 
 @interface ViewController : UIViewController <TilesDelegate>
 
-@property (assign, nonatomic) BOOL wonTimerStarted;
 @property (assign, nonatomic) BOOL computerIsFirst;
 @property (assign, nonatomic) BOOL normalDifficulty;
+@property (assign, nonatomic) BOOL gameEnded;
 @property (assign, nonatomic) int moveCount;
 @property (assign, nonatomic) int winCount;
 @property (assign, nonatomic) int loseCount;

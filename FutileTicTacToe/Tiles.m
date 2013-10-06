@@ -10,7 +10,7 @@
 
 @implementation Tiles
 
-@synthesize selfView, delegate;
+@synthesize selfView, computerMoves, delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,6 +18,7 @@
     if (self) {
         self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
         self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
         selfView = self;
     }
     return self;

@@ -62,6 +62,6 @@
 
 - (IBAction)playNormalGame:(id)sender {
     [self performSegueWithIdentifier:@"normalMode" sender:self];
-    [viewController setNormalDifficulty];
 }
+
 @end
