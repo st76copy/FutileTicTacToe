@@ -17,19 +17,24 @@
     playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
+- (void)easyPlayRandomizedMove {
+    randomizer = arc4random() % 2;
+    NSLog(@"randomizer: %i", randomizer);
+    switch (randomizer) {
+        case 0: [self attempWinningMove];
+            break;
+        default: [self fillInAnySquare];
+            break;
+    }
+}
+
 - (void)firstMove:(BOOL)normalPlay {
     finalMove = NO;
-    NSLog(@"normalPaly: %d", normalPlay);
     if (normalPlay) {
         [computerMoves addObject:[NSNumber numberWithInteger:1]];
         [delegate computerMakesMove:1];
     } else {
-        int move = arc4random() % 7 + 1;
-        if (move % 2 != 0) {
-            move++;
-        }
-        [computerMoves addObject:[NSNumber numberWithInt:move]];
-        [delegate computerMakesMove:move];
+        [self easyPlayRandomizedMove];
     }
 }
 
@@ -56,14 +61,7 @@
         }
         [self winCheck];
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
 }
 
@@ -163,14 +161,7 @@
             [self attempWinningMove];
         }
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
     [self winCheck];
 }
@@ -297,14 +288,7 @@
         }
         [self winCheck];
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
 }
 

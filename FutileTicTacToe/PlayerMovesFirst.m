@@ -17,6 +17,17 @@
     playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
 }
 
+- (void)easyPlayRandomizedMove {
+    randomizer = arc4random() % 2;
+    NSLog(@"randomizer: %i", randomizer);
+    switch (randomizer) {
+        case 0: [self attempWinningMove];
+            break;
+        default: [self fillInAnySquare];
+            break;
+    }
+}
+
 - (void)firstMove:(BOOL)normalPlay {
     NSLog(@"first move");
     finalMove = NO;
@@ -49,14 +60,7 @@
     if (normalPlay) {
         [self attempWinningMove];
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
 }
 
@@ -64,14 +68,7 @@
     if (normalPlay) {
         [self attempWinningMove];
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
 }
 
@@ -79,14 +76,7 @@
     if (normalPlay) {
         [self attempWinningMove];
     } else {
-        randomizer = arc4random() % 2;
-        NSLog(@"randomizer: %i", randomizer);
-        switch (randomizer) {
-            case 0: [self attempWinningMove];
-                break;
-            default: [self fillInAnySquare];
-                break;
-        }
+        [self easyPlayRandomizedMove];
     }
 }
 
