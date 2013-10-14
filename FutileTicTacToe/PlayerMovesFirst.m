@@ -504,71 +504,15 @@
 }
 
 - (void)fillInAnySquare {
-    BOOL spaceFilled = NO;
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:2]];
-            [delegate computerMakesMove:2];
-            spaceFilled = YES;
+    for (int tileInt = 1; tileInt < 10; tileInt++) {
+        NSLog(@"tileInt: %i", tileInt);
+        if (![playerMoves containsObject:[NSNumber numberWithInt:tileInt]] && ![computerMoves containsObject:[NSNumber numberWithInt:tileInt]]) {
+            [computerMoves addObject:[NSNumber numberWithInt:tileInt]];
+            [delegate computerMakesMove:tileInt];
+            [self winCheck];
+            break;
         }
     }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:8]];
-            [delegate computerMakesMove:8];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:6]];
-            [delegate computerMakesMove:6];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:4]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:4]];
-            [delegate computerMakesMove:4];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:5]];
-            [delegate computerMakesMove:5];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:3]];
-            [delegate computerMakesMove:3];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:9]];
-            [delegate computerMakesMove:9];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:7]];
-            [delegate computerMakesMove:7];
-            spaceFilled = YES;
-        }
-    }
-    if (!spaceFilled) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:1]];
-            [delegate computerMakesMove:1];
-            spaceFilled = YES;
-        }
-    }
-    [self winCheck];
 }
 
 #pragma mark TilesDelegate
