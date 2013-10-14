@@ -131,7 +131,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b0J-SW-jhd"/>
+                                    <action selector="restartGame:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hnj-hE-dE5"/>
                                 </connections>
                             </button>
                             <view alpha="0.94999999999999996" contentMode="scaleToFill" id="fNg-yd-3kC">
@@ -179,7 +179,6 @@
                         <outlet property="gameResultsView" destination="fNg-yd-3kC" id="ha5-mM-8ge"/>
                         <outlet property="lossesLabel" destination="WdZ-cp-ES6" id="PUq-z3-aLJ"/>
                         <outlet property="resultLabel" destination="fzA-lq-GaL" id="x1d-Jm-sSU"/>
-                        <outlet property="startGameButton" destination="gsY-rM-ASq" id="vmg-Lu-oNC"/>
                         <outlet property="winsLabel" destination="EYr-bf-OaF" id="pVF-Kt-cFW"/>
                     </connections>
                 </viewController>

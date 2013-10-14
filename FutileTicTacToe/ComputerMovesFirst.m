@@ -77,24 +77,24 @@
             } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
                 [delegate computerMakesMove:2];
                 [self winCheck];            } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:8]];
-                [delegate computerMakesMove:8];
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:6]];
-                [delegate computerMakesMove:6];
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:8]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:7]];
-                self.compHasAllThreeCorners = YES;
-                [delegate computerMakesMove:7];
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:9]];
-                self.compHasAllThreeCorners = YES;
-                [delegate computerMakesMove:9];
-            }
-            else {
-                [computerMoves addObject:[NSNumber numberWithInt:5]];
-                [delegate computerMakesMove:5];
-            }
+                    [computerMoves addObject:[NSNumber numberWithInt:8]];
+                    [delegate computerMakesMove:8];
+                } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                    [computerMoves addObject:[NSNumber numberWithInt:6]];
+                    [delegate computerMakesMove:6];
+                } else if ([playerMoves containsObject:[NSNumber numberWithInt:8]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                    [computerMoves addObject:[NSNumber numberWithInt:7]];
+                    self.compHasAllThreeCorners = YES;
+                    [delegate computerMakesMove:7];
+                } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                    [computerMoves addObject:[NSNumber numberWithInt:9]];
+                    self.compHasAllThreeCorners = YES;
+                    [delegate computerMakesMove:9];
+                }
+                else {
+                    [computerMoves addObject:[NSNumber numberWithInt:5]];
+                    [delegate computerMakesMove:5];
+                }
         }
         
         else if (self.compDoesNotHaveBothGoldenCorners) {
@@ -134,16 +134,16 @@
                 if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
                     [delegate computerMakesMove:2];
                     [self winCheck];
-                    }
+                }
             }
         }
         if (!moveMade) {
             [self attempWinningMove];
         }
+        [self winCheck];
     } else {
         [self easyPlayRandomizedMove];
     }
-    [self winCheck];
 }
 
 - (void)fourthMove:(BOOL)normalPlay {
@@ -155,12 +155,10 @@
         if (self.compHasAllThreeCorners) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
                 [delegate computerMakesMove:5];
-                [self winCheck];
             } else if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
                 if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && [computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                     [delegate computerMakesMove:6];
-                    [self winCheck];
-                    }
+                }
             }
         }
         
@@ -168,22 +166,18 @@
             if ([computerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                 if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                     [delegate computerMakesMove:3];
-                    [self winCheck];
-                    } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                     [delegate computerMakesMove:9];
-                    [self winCheck];
-                    }
+                }
             } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                 if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                     [delegate computerMakesMove:7];
-                    [self winCheck];
-                    } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                } else if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                     [delegate computerMakesMove:9];
                     [self winCheck];
-                    } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
                     [delegate computerMakesMove:8];
-                    [self winCheck];
-                    }
+                }
             }
         }
         
@@ -193,60 +187,53 @@
                 [self winCheck];
             } else if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
                 [delegate computerMakesMove:5];
-                [self winCheck];
             }
         }
         
         else if (self.compHasCornersHumanHasCenter) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
                 [delegate computerMakesMove:2];
-                [self winCheck];
             } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && ![playerMoves containsObject:[NSNumber numberWithInt:6]]) {
                 if (![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
                     [delegate computerMakesMove:6];
-                    [self winCheck];
-                    }
+                }
             } else if ([playerMoves containsObject:[NSNumber numberWithInt:2]]) {
                 if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                     [delegate computerMakesMove:7];
-                    [self winCheck];
-                    } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
                     if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                         [computerMoves addObject:[NSNumber numberWithInt:3]];
                         [delegate computerMakesMove:3];
-                            }
+                    }
                 }
             } else if ([playerMoves containsObject:[NSNumber numberWithInt:4]]) {
                 if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                     [delegate computerMakesMove:3];
-                    [self winCheck];
-                    } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
                     if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                         [computerMoves addObject:[NSNumber numberWithInt:7]];
                         [delegate computerMakesMove:7];
-                            }
+                    }
                 }
             } else if ([playerMoves containsObject:[NSNumber numberWithInt:6]]) {
                 if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                     [delegate computerMakesMove:7];
-                        [self winCheck];
                 } else if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                     [computerMoves addObject:[NSNumber numberWithInt:3]];
                     [delegate computerMakesMove:3];
-                    }
+                }
             } else if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
                 if ([computerMoves containsObject:[NSNumber numberWithInt:7]] && [computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                     [delegate computerMakesMove:8];
-                    [self winCheck];
-                    }
+                }
             } else if (![playerMoves containsObject:[NSNumber numberWithInt:4]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
                 [delegate computerMakesMove:4];
-                [self winCheck];
             }
         }
         if (!moveMade) {
             [self attempWinningMove];
         }
+        [self winCheck];
     } else {
         [self easyPlayRandomizedMove];
     }

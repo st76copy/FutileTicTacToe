@@ -23,10 +23,9 @@
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIImageView     *boardImageView;
     __weak IBOutlet UIView          *gameResultsView;
-    __weak IBOutlet UIButton        *startGameButton;
 }
 
-- (IBAction)startGame:(id)sender;
+- (IBAction)restartGame:(id)sender;
 - (IBAction)tryAgain:(id)sender;
 - (IBAction)changeDifficulty:(id)sender;
 
@@ -44,45 +43,41 @@
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
     [computerMovesFirst initMutableArrays];
     [playerMovesFirst initMutableArrays];
+    computerMovesFirst.delegate = self;
+    playerMovesFirst.delegate = self;
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
-    
     computerIsFirst = YES;
-    
-    computerMovesFirst.delegate = self;
-    playerMovesFirst.delegate = self;
     
     for(Tiles *tileViews in self.view.subviews) {
         if([tileViews isKindOfClass:[UIView class]]) {
             [tileViews setExclusiveTouch:YES];
         }
     }
-    
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[Tiles class]]) {
             Tiles *tiles = (Tiles *)subview;
             tiles.delegate = self;
         }
     }
+    for (UIView *tile in self.view.subviews) {
+        [tile setUserInteractionEnabled:YES];
+        tile.backgroundColor = [UIColor clearColor];
+    }
     [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
-- (void)setNormalDifficulty {
-    normalDifficulty = YES;
-}
-
 - (void)initialGame {
-    for (UIView *tile in self.view.subviews) {
-        [tile setUserInteractionEnabled:YES];
-    }
-    [startGameButton setTitle:@"Reset Game" forState:UIControlStateNormal];
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
+    for (UIView *tile in self.view.subviews) {
+        [tile setUserInteractionEnabled:YES];
+    }
     if (normalDifficulty) {
         [computerMovesFirst firstMove:YES];
     } else
@@ -90,25 +85,27 @@
 }
 
 - (void)resetGame {
-    gameEnded = NO;
-    for (UIView *tile in self.view.subviews) {
-        [tile setUserInteractionEnabled:YES];
-        tile.backgroundColor = [UIColor whiteColor];
-    }
-    [computerMovesFirst.playerMoves removeAllObjects];
-    [computerMovesFirst.computerMoves removeAllObjects];
-    [playerMovesFirst.playerMoves removeAllObjects];
-    [playerMovesFirst.computerMoves removeAllObjects];
     moveCount = 0;
+    roundsCounter++;
+    gameEnded = NO;
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
-    roundsCounter++;
+    [computerMovesFirst.playerMoves removeAllObjects];
+    [computerMovesFirst.computerMoves removeAllObjects];
+    [playerMovesFirst.playerMoves removeAllObjects];
+    [playerMovesFirst.computerMoves removeAllObjects];
+    for (UIView *tile in self.view.subviews) {
+        [tile setUserInteractionEnabled:YES];
+        tile.backgroundColor = [UIColor clearColor];
+    }
     if (roundsCounter % 2 == 0) {
         computerIsFirst = YES;
         if (normalDifficulty) {
             [computerMovesFirst firstMove:YES];
+        } else {
+            [computerMovesFirst firstMove:NO];
         }
     } else {
         computerIsFirst = NO;
@@ -265,12 +262,8 @@
     } completion:nil];
 }
 
-- (IBAction)startGame:(id)sender {
-    if ([startGameButton.titleLabel.text isEqualToString:@"Start Game"]) {
-        [self initialGame];
-    } else if ([startGameButton.titleLabel.text isEqualToString:@"Reset Game"]) {
-        [self resetGame];
-    }
+- (IBAction)restartGame:(id)sender {
+    [self resetGame];
 }
 
 - (IBAction)tryAgain:(id)sender {
