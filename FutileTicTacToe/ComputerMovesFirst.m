@@ -19,7 +19,6 @@
 
 - (void)easyPlayRandomizedMove {
     randomizer = arc4random() % 2;
-    NSLog(@"randomizer: %i", randomizer);
     switch (randomizer) {
         case 0: [self attempWinningMove];
             break;
@@ -66,7 +65,6 @@
 }
 
 - (void)thirdMove:(BOOL)normalPlay {
-    NSLog(@"thirdMove");
     BOOL moveMade = NO;
     if (normalPlay) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:5]]) {
@@ -499,7 +497,6 @@
 }
 
 - (void)checkIfBlockIsNeeded {
-    NSLog(@"called CheckIfBlockIsNeeded");
     BOOL moveMade = NO;
     if (!moveMade) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:2]]) {
@@ -717,11 +714,9 @@
 }
 
 - (void)fillInAnySquare {
-    NSLog(@"fillInAnySqare called");
     BOOL spaceFilled = NO;
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
-            NSLog(@"fillInAnySqare 2");
             [computerMoves addObject:[NSNumber numberWithInt:2]];
             [delegate computerMakesMove:2];
             spaceFilled = YES;
@@ -729,7 +724,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-            NSLog(@"fillInAnySqare 8");
             [computerMoves addObject:[NSNumber numberWithInt:8]];
             [delegate computerMakesMove:8];
             spaceFilled = YES;
@@ -737,7 +731,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
-            NSLog(@"fillInAnySqare 6");
             [computerMoves addObject:[NSNumber numberWithInt:6]];
             [delegate computerMakesMove:6];
             spaceFilled = YES;
@@ -745,7 +738,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:4]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
-            NSLog(@"fillInAnySqare 4");
             [computerMoves addObject:[NSNumber numberWithInt:4]];
             [delegate computerMakesMove:4];
             spaceFilled = YES;
@@ -753,7 +745,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
-            NSLog(@"fillInAnySqare 5");
             [computerMoves addObject:[NSNumber numberWithInt:5]];
             [delegate computerMakesMove:5];
             spaceFilled = YES;
@@ -761,7 +752,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-            NSLog(@"fillInAnySqare 3");
             [computerMoves addObject:[NSNumber numberWithInt:3]];
             [delegate computerMakesMove:3];
             spaceFilled = YES;
@@ -769,7 +759,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-            NSLog(@"fillInAnySqare 9");
             [computerMoves addObject:[NSNumber numberWithInt:9]];
             [delegate computerMakesMove:9];
             spaceFilled = YES;
@@ -777,7 +766,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-            NSLog(@"fillInAnySqare 7");
             [computerMoves addObject:[NSNumber numberWithInt:7]];
             [delegate computerMakesMove:7];
             spaceFilled = YES;
@@ -785,7 +773,6 @@
     }
     if (!spaceFilled) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-            NSLog(@"fillInAnySqare 1");
             [computerMoves addObject:[NSNumber numberWithInt:1]];
             [delegate computerMakesMove:1];
             spaceFilled = YES;
@@ -796,7 +783,6 @@
 
 #pragma mark TilesDelegate
 - (void)winCheck {
-    NSLog(@"winCheck called");
     BOOL gameOver = NO;
     if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:1]] && [computerMoves containsObject:[NSNumber numberWithInt:2]]) {

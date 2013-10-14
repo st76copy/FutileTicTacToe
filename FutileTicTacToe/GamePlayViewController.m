@@ -121,8 +121,6 @@
 }
 
 - (void)computerMakesMove:(int)tagNumber {
-    NSLog(@"normalDifficulty: %d", normalDifficulty);
-    NSLog(@"tagNumber: %i", tagNumber);
     [self tileUserInteraction:NO];
     for (UIView *tileMove in self.view.subviews) {
         if (tileMove.tag == tagNumber) {
@@ -145,68 +143,84 @@
 
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
-    NSLog(@"moveCount: %i", moveCount);
     if (computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [computerMovesFirst winCheck];
         NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
         NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
-        if (moveCount == 1) {
-            if (normalDifficulty) {
-                [computerMovesFirst secondMove:YES];
-            } else {
-                [computerMovesFirst secondMove:NO];
-            }
-        } else if (moveCount == 2) {
-            if (normalDifficulty) {
-                [computerMovesFirst thirdMove:YES];
-            } else {
-                [computerMovesFirst thirdMove:NO];
-            }
-        } else if (moveCount == 3) {
-            if (normalDifficulty) {
-                [computerMovesFirst fourthMove:YES];
-            } else {
-                [computerMovesFirst fourthMove:NO];
-            }
-        } else if (moveCount == 4) {
-            if (normalDifficulty) {
-                [computerMovesFirst fifthMove:YES];
-            } else {
-                [computerMovesFirst fifthMove:NO];
-            }
+        switch (moveCount) {
+            case 1:
+                if (normalDifficulty) {
+                    [computerMovesFirst secondMove:YES];
+                } else {
+                    [computerMovesFirst secondMove:NO];
+                }
+                break;
+            case 2:
+                    if (normalDifficulty) {
+                        [computerMovesFirst thirdMove:YES];
+                    } else {
+                        [computerMovesFirst thirdMove:NO];
+                    }
+                break;
+            case 3:
+                    if (normalDifficulty) {
+                        [computerMovesFirst fourthMove:YES];
+                    } else {
+                        [computerMovesFirst fourthMove:NO];
+                    }
+
+                break;
+            case 4:
+                if (normalDifficulty) {
+                    [computerMovesFirst fifthMove:YES];
+                } else {
+                    [computerMovesFirst fifthMove:NO];
+                }
+                break;
+            default:NSLog(@"error in move count");
+                break;
         }
     } else {
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [playerMovesFirst winCheck];
         NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
         NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
-        if (moveCount == 1) {
-            if (normalDifficulty) {
-                [playerMovesFirst firstMove:YES];
-            } else {
-                [playerMovesFirst firstMove:NO];
-            }
-        } else if (moveCount == 2) {
-            if (normalDifficulty) {
-                [playerMovesFirst secondMove:YES];
-            } else {
-                [playerMovesFirst secondMove:NO];
-            }
-        } else if (moveCount == 3) {
-            if (normalDifficulty) {
-                [playerMovesFirst thirdMove:YES];
-            } else {
-                [playerMovesFirst thirdMove:NO];
-            }
-        } else if (moveCount == 4) {
-            if (normalDifficulty) {
-                [playerMovesFirst fourthMove:YES];
-            } else {
-                [playerMovesFirst fourthMove:NO];
-            }
-        } else if (moveCount == 5) {
-            [playerMovesFirst fifthMove];
+        switch (moveCount) {
+            case 1:
+                if (normalDifficulty) {
+                    [playerMovesFirst firstMove:YES];
+                } else {
+                    [playerMovesFirst firstMove:NO];
+                }
+                break;
+            case 2:
+                if (normalDifficulty) {
+                    [playerMovesFirst secondMove:YES];
+                } else {
+                    [playerMovesFirst secondMove:NO];
+                }
+                break;
+            case 3:
+                if (normalDifficulty) {
+                    [playerMovesFirst thirdMove:YES];
+                } else {
+                    [playerMovesFirst thirdMove:NO];
+                }
+                break;
+            case 4:
+                if (normalDifficulty) {
+                    [playerMovesFirst fourthMove:YES];
+                } else {
+                    [playerMovesFirst fourthMove:NO];
+                }
+                break;
+            case 5:
+                [playerMovesFirst fifthMove];
+                break;
+                
+            default:NSLog(@"error in move count");
+                break;
         }
     }
 }
