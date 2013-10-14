@@ -7,14 +7,14 @@
 //
 
 #import "LaunchViewController.h"
-#import "ViewController.h"
+#import "GamePlayViewController.h"
 #import "ComputerMovesFirst.h"
 #import "PlayerMovesFirst.h"
 
 @interface LaunchViewController () {
     ComputerMovesFirst              *computerMovesFirst;
     PlayerMovesFirst                *playerMovesFirst;
-    ViewController                  *viewController;
+    GamePlayViewController                  *viewController;
 }
 
 - (IBAction)playEasyGame:(id)sender;
@@ -27,13 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    viewController = [[ViewController alloc] init];
+    viewController = [[GamePlayViewController alloc] init];
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.destinationViewController isKindOfClass:[ViewController class]]) {
+    if ([segue.destinationViewController isKindOfClass:[GamePlayViewController class]]) {
         viewController = segue.destinationViewController;
         if ([segue.identifier isEqualToString:@"normalMode"]) {
             viewController.normalDifficulty = YES;

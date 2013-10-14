@@ -21,7 +21,7 @@
 		CFB2A0D717F628F70097E0CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0D617F628F70097E0CB /* main.m */; };
 		CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0DA17F628F70097E0CB /* AppDelegate.m */; };
 		CFB2A0DE17F628F70097E0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0DC17F628F70097E0CB /* Main.storyboard */; };
-		CFB2A0E117F628F70097E0CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0E017F628F70097E0CB /* ViewController.m */; };
+		CFB2A0E117F628F70097E0CB /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */; };
 		CFB2A0EA17F628F70097E0CB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0E917F628F70097E0CB /* XCTest.framework */; };
 		CFB2A0EB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0EC17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
@@ -63,8 +63,8 @@
 		CFB2A0D917F628F70097E0CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CFB2A0DA17F628F70097E0CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CFB2A0DD17F628F70097E0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CFB2A0DF17F628F70097E0CB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CFB2A0E017F628F70097E0CB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamePlayViewController.h; sourceTree = "<group>"; };
+		CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamePlayViewController.m; sourceTree = "<group>"; };
 		CFB2A0E817F628F70097E0CB /* FutileTicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutileTicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0E917F628F70097E0CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CFB2A0FF17F62E3E0097E0CB /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
@@ -134,17 +134,13 @@
 				CFB2A0D917F628F70097E0CB /* AppDelegate.h */,
 				CFB2A0DA17F628F70097E0CB /* AppDelegate.m */,
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
-				CF84889717FDDE9C00AC750F /* LaunchViewController.h */,
 				CF84889817FDDE9D00AC750F /* LaunchViewController.m */,
-				CFB2A0DF17F628F70097E0CB /* ViewController.h */,
-				CFB2A0E017F628F70097E0CB /* ViewController.m */,
-				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
+				CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
-				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
 				CF84889517FB746F00AC750F /* PlayerMovesFirst.m */,
-				CFB2A10117F632B70097E0CB /* Tiles.h */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
+				CFC0C54C180C6EAF0006A96E /* Headers */,
 				CF10ECAE1801D8C00092ADD9 /* Images.xcassets */,
 				CFB2A0D117F628F70097E0CB /* Supporting Files */,
 			);
@@ -166,6 +162,18 @@
 				CFB2A0D817F628F70097E0CB /* FutileTicTacToe-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFC0C54C180C6EAF0006A96E /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				CF84889717FDDE9C00AC750F /* LaunchViewController.h */,
+				CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */,
+				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
+				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
+				CFB2A10117F632B70097E0CB /* Tiles.h */,
+			);
+			name = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB2A0E117F628F70097E0CB /* ViewController.m in Sources */,
+				CFB2A0E117F628F70097E0CB /* GamePlayViewController.m in Sources */,
 				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
 				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,

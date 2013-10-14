@@ -6,13 +6,13 @@
 //  Copyright (c) 2s13 Jeremy Herrero. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "GamePlayViewController.h"
 #import "Tiles.h"
 #import "ComputerMovesFirst.h"
 #import "PlayerMovesFirst.h"
 
 // I learned to create outlets here rather than in the header file because it keeps them private
-@interface ViewController () {
+@interface GamePlayViewController () {
     
     ComputerMovesFirst              *computerMovesFirst;
     PlayerMovesFirst                *playerMovesFirst;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation ViewController
+@implementation GamePlayViewController
 
 @synthesize normalDifficulty, gameEnded, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
 

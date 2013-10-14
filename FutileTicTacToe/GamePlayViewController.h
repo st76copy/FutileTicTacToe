@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TilesDelegate.h"
 
-@interface ViewController : UIViewController <TilesDelegate>
+@interface GamePlayViewController : UIViewController <TilesDelegate>
 
 @property (assign, nonatomic) BOOL computerIsFirst;
 @property (assign, nonatomic) BOOL normalDifficulty;

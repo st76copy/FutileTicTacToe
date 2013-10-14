@@ -57,10 +57,12 @@
         [self winCheck];
     } else {
         randomizer = arc4random() % 2;
-        if (randomizer != 0) {
-            [self attempWinningMove];
-        } else {
-            [self fillInAnySquare];
+        NSLog(@"randomizer: %i", randomizer);
+        switch (randomizer) {
+            case 0: [self attempWinningMove];
+                break;
+            default: [self fillInAnySquare];
+                break;
         }
     }
 }
@@ -162,10 +164,12 @@
         }
     } else {
         randomizer = arc4random() % 2;
-        if (randomizer != 0) {
-            [self attempWinningMove];
-        } else {
-            [self fillInAnySquare];
+        NSLog(@"randomizer: %i", randomizer);
+        switch (randomizer) {
+            case 0: [self attempWinningMove];
+                break;
+            default: [self fillInAnySquare];
+                break;
         }
     }
     [self winCheck];
@@ -294,10 +298,12 @@
         [self winCheck];
     } else {
         randomizer = arc4random() % 2;
-        if (randomizer != 0) {
-            [self attempWinningMove];
-        } else {
-            [self fillInAnySquare];
+        NSLog(@"randomizer: %i", randomizer);
+        switch (randomizer) {
+            case 0: [self attempWinningMove];
+                break;
+            default: [self fillInAnySquare];
+                break;
         }
     }
 }
