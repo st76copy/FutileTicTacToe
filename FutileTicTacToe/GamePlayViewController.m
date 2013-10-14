@@ -137,6 +137,7 @@
             } completion:^(BOOL finished) {
                 [self tileUserInteraction:YES];
             }];
+            break;
         }
     }
 }
