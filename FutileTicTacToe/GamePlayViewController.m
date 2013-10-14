@@ -141,7 +141,6 @@
 
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
-    NSLog(@"gameEnded: %d", gameEnded);
     if (computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [computerMovesFirst winCheck];

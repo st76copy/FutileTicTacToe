@@ -585,7 +585,6 @@
 
 - (void)fillInAnySquare {
     for (int tileInt = 1; tileInt < 10; tileInt++) {
-        NSLog(@"tileInt: %i", tileInt);
         if (![playerMoves containsObject:[NSNumber numberWithInt:tileInt]] && ![computerMoves containsObject:[NSNumber numberWithInt:tileInt]]) {
             [computerMoves addObject:[NSNumber numberWithInt:tileInt]];
             [delegate computerMakesMove:tileInt];
