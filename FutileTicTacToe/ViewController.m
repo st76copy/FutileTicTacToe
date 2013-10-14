@@ -27,7 +27,6 @@
 }
 
 - (IBAction)startGame:(id)sender;
-- (IBAction)resetScores:(id)sender;
 - (IBAction)tryAgain:(id)sender;
 - (IBAction)changeDifficulty:(id)sender;
 
@@ -262,9 +261,6 @@
     }
 }
 
-- (IBAction)resetScores:(id)sender {
-}
-
 - (IBAction)tryAgain:(id)sender {
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
@@ -276,12 +272,6 @@
 
 - (IBAction)changeDifficulty:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

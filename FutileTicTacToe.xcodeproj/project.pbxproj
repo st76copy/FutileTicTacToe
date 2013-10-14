@@ -25,8 +25,6 @@
 		CFB2A0EA17F628F70097E0CB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0E917F628F70097E0CB /* XCTest.framework */; };
 		CFB2A0EB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0EC17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
-		CFB2A0F417F628F70097E0CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0F217F628F70097E0CB /* InfoPlist.strings */; };
-		CFB2A0F617F628F70097E0CB /* FutileTicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */; };
 		CFB2A10017F62E3E0097E0CB /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0FF17F62E3E0097E0CB /* board.png */; };
 		CFB2A10317F632B70097E0CB /* Tiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A10217F632B70097E0CB /* Tiles.m */; };
 		CFB2A10E17F754170097E0CB /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A10C17F754170097E0CB /* x.png */; };
@@ -69,9 +67,6 @@
 		CFB2A0E017F628F70097E0CB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CFB2A0E817F628F70097E0CB /* FutileTicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutileTicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0E917F628F70097E0CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CFB2A0F117F628F70097E0CB /* FutileTicTacToeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FutileTicTacToeTests-Info.plist"; sourceTree = "<group>"; };
-		CFB2A0F317F628F70097E0CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FutileTicTacToeTests.m; sourceTree = "<group>"; };
 		CFB2A0FF17F62E3E0097E0CB /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		CFB2A10117F632B70097E0CB /* Tiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tiles.h; sourceTree = "<group>"; };
 		CFB2A10217F632B70097E0CB /* Tiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tiles.m; sourceTree = "<group>"; };
@@ -108,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				CFB2A0D017F628F70097E0CB /* FutileTicTacToe */,
-				CFB2A0EF17F628F70097E0CB /* FutileTicTacToeTests */,
 				CFB2A0C917F628F70097E0CB /* Frameworks */,
 				CFB2A0C817F628F70097E0CB /* Products */,
 			);
@@ -170,24 +164,6 @@
 				CFB2A0D317F628F70097E0CB /* InfoPlist.strings */,
 				CFB2A0D617F628F70097E0CB /* main.m */,
 				CFB2A0D817F628F70097E0CB /* FutileTicTacToe-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CFB2A0EF17F628F70097E0CB /* FutileTicTacToeTests */ = {
-			isa = PBXGroup;
-			children = (
-				CFB2A0F517F628F70097E0CB /* FutileTicTacToeTests.m */,
-				CFB2A0F017F628F70097E0CB /* Supporting Files */,
-			);
-			path = FutileTicTacToeTests;
-			sourceTree = "<group>";
-		};
-		CFB2A0F017F628F70097E0CB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CFB2A0F117F628F70097E0CB /* FutileTicTacToeTests-Info.plist */,
-				CFB2A0F217F628F70097E0CB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -284,7 +260,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB2A0F417F628F70097E0CB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +284,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB2A0F617F628F70097E0CB /* FutileTicTacToeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,14 +312,6 @@
 				CFB2A0DD17F628F70097E0CB /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		CFB2A0F217F628F70097E0CB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CFB2A0F317F628F70097E0CB /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
