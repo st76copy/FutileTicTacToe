@@ -268,6 +268,15 @@
         }
     }
     if (!winningMoveAttempted) {
+        if ([computerMoves containsObject:[NSNumber numberWithInt:2]] && [computerMoves containsObject:[NSNumber numberWithInt:8]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
+                winningMoveAttempted = YES;
+                [delegate computerMakesMove:5];
+                [delegate playerLost];
+            }
+        }
+    }
+    if (!winningMoveAttempted) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:5]] && [computerMoves containsObject:[NSNumber numberWithInt:7]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                 winningMoveAttempted = YES;
