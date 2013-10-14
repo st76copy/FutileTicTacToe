@@ -143,107 +143,106 @@
 
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
+    NSLog(@"gameEnded: %d", gameEnded);
     if (computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [computerMovesFirst winCheck];
-        NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
-        NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
-        switch (moveCount) {
-            case 1:
-                if (normalDifficulty) {
-                    [computerMovesFirst secondMove:YES];
-                } else {
-                    [computerMovesFirst secondMove:NO];
-                }
-                break;
-            case 2:
+        if (!gameEnded) {
+            NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
+            NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
+            switch (moveCount) {
+                case 1:
+                    if (normalDifficulty) {
+                        [computerMovesFirst secondMove:YES];
+                    } else {
+                        [computerMovesFirst secondMove:NO];
+                    }
+                    break;
+                case 2:
                     if (normalDifficulty) {
                         [computerMovesFirst thirdMove:YES];
                     } else {
                         [computerMovesFirst thirdMove:NO];
                     }
-                break;
-            case 3:
+                    break;
+                case 3:
                     if (normalDifficulty) {
                         [computerMovesFirst fourthMove:YES];
                     } else {
                         [computerMovesFirst fourthMove:NO];
                     }
-
-                break;
-            case 4:
-                if (normalDifficulty) {
-                    [computerMovesFirst fifthMove:YES];
-                } else {
-                    [computerMovesFirst fifthMove:NO];
-                }
-                break;
-            default:NSLog(@"error in move count");
-                break;
+                    break;
+                case 4:
+                    if (normalDifficulty) {
+                        [computerMovesFirst fifthMove:YES];
+                    } else {
+                        [computerMovesFirst fifthMove:NO];
+                    }
+                    break;
+                default:NSLog(@"error in move count");
+                    break;
+            }
         }
     } else {
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [playerMovesFirst winCheck];
-        NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
-        NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
-        switch (moveCount) {
-            case 1:
-                if (normalDifficulty) {
-                    [playerMovesFirst firstMove:YES];
-                } else {
-                    [playerMovesFirst firstMove:NO];
-                }
-                break;
-            case 2:
-                if (normalDifficulty) {
-                    [playerMovesFirst secondMove:YES];
-                } else {
-                    [playerMovesFirst secondMove:NO];
-                }
-                break;
-            case 3:
-                if (normalDifficulty) {
-                    [playerMovesFirst thirdMove:YES];
-                } else {
-                    [playerMovesFirst thirdMove:NO];
-                }
-                break;
-            case 4:
-                if (normalDifficulty) {
-                    [playerMovesFirst fourthMove:YES];
-                } else {
-                    [playerMovesFirst fourthMove:NO];
-                }
-                break;
-            case 5:
-                [playerMovesFirst fifthMove];
-                break;
-                
-            default:NSLog(@"error in move count");
-                break;
+        if (!gameEnded) {
+            NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
+            NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
+            switch (moveCount) {
+                case 1:
+                    if (normalDifficulty) {
+                        [playerMovesFirst firstMove:YES];
+                    } else {
+                        [playerMovesFirst firstMove:NO];
+                    }
+                    break;
+                case 2:
+                    if (normalDifficulty) {
+                        [playerMovesFirst secondMove:YES];
+                    } else {
+                        [playerMovesFirst secondMove:NO];
+                    }
+                    break;
+                case 3:
+                    if (normalDifficulty) {
+                        [playerMovesFirst thirdMove:YES];
+                    } else {
+                        [playerMovesFirst thirdMove:NO];
+                    }
+                    break;
+                case 4:
+                    if (normalDifficulty) {
+                        [playerMovesFirst fourthMove:YES];
+                    } else {
+                        [playerMovesFirst fourthMove:NO];
+                    }
+                    break;
+                case 5:
+                    [playerMovesFirst fifthMove];
+                    break;
+                default:NSLog(@"error in move count");
+                    break;
+            }
         }
     }
 }
 
 - (void)playerWon {
-    if (!gameEnded) {
-        gameEnded = YES;
-        resultLabel.text = @"You Win!!";
-        [gameResultsView setHidden:NO];
-        [UIView animateWithDuration:0.3 animations:^{
-            gameResultsView.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished) {
-        }];
-        winCount++;
-        winsLabel.text = [NSString stringWithFormat: @"Won: %i", winCount];
-    }
+    gameEnded = YES;
+    resultLabel.text = @"You Win!!";
+    [gameResultsView setHidden:NO];
+    [UIView animateWithDuration:0.3 animations:^{
+        gameResultsView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+    }];
+    winCount++;
+    winsLabel.text = [NSString stringWithFormat: @"Won: %i", winCount];
 }
 
 - (void)playerLost {
-    if (!gameEnded) {
-        gameEnded = YES;
-        [self performSelector:@selector(setPlayerLost) withObject:self afterDelay:0.7];
-    }
+    gameEnded = YES;
+    [self performSelector:@selector(setPlayerLost) withObject:self afterDelay:0.7];
 }
 
 - (void)setPlayerLost {
@@ -257,14 +256,12 @@
 }
 
 - (void)catsTie {
-    if (!gameEnded) {
-        gameEnded = YES;
-        resultLabel.text = @"Cat's";
-        [gameResultsView setHidden:NO];
-        [UIView animateWithDuration:0.3 animations:^{
-            gameResultsView.transform = CGAffineTransformIdentity;
-        } completion:nil];
-    }
+    gameEnded = YES;
+    resultLabel.text = @"Cat's";
+    [gameResultsView setHidden:NO];
+    [UIView animateWithDuration:0.3 animations:^{
+        gameResultsView.transform = CGAffineTransformIdentity;
+    } completion:nil];
 }
 
 - (IBAction)startGame:(id)sender {

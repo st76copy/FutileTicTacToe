@@ -728,131 +728,117 @@
 #pragma mark TilesDelegate
 - (void)winCheck {
     BOOL gameOver = NO;
-    if (!gameOver) {
+    for (int arbitrary = 0; arbitrary < 1; arbitrary++) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:1]] && [computerMoves containsObject:[NSNumber numberWithInt:2]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:3]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:1]] && [computerMoves containsObject:[NSNumber numberWithInt:4]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:1]] && [computerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:2]] && [computerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:8]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && [computerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:7]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:3]] && [computerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:4]] && [computerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:6]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([computerMoves containsObject:[NSNumber numberWithInt:7]] && [computerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if ([computerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerLost];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:2]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:3]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:4]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:7]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:4]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:6]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if ([playerMoves containsObject:[NSNumber numberWithInt:9]]) {
                 gameOver = YES;
                 [delegate playerWon];
+                break;
             }
         }
-    }
-    if (!gameOver) {
         if (finalMove == YES) {
             finalMove = NO;
             gameOver = YES;
             [self performSelector:@selector(catsTie) withObject:self afterDelay:0.7];
+            break;
         }
     }
 }
