@@ -48,6 +48,7 @@
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     computerIsFirst = YES;

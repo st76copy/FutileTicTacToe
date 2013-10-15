@@ -31,22 +31,18 @@
     finalMove = NO;
     if (normalPlay) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:5]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:5]];
             [delegate computerMakesMove:5];
         } else {
             int move = arc4random() % 7 + 1;
             if (move % 2 != 0) {
                 move++;
             }
-            [computerMoves addObject:[NSNumber numberWithInt:move]];
             [delegate computerMakesMove:move];
         }
     } else {
         if (![computerMoves containsObject:[NSNumber numberWithInt:4]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:4]];
             [delegate computerMakesMove:4];
         } else if (![computerMoves containsObject:[NSNumber numberWithInt:8]] && ![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:8]];
             [delegate computerMakesMove:8];
         }
     }
@@ -247,35 +243,30 @@
     for (int arbitrary = 0; arbitrary < 1; arbitrary++) {
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:2]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:3]];
                 [delegate computerMakesMove:3];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:3]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:2]];
                 [delegate computerMakesMove:2];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:2]] && [playerMoves containsObject:[NSNumber numberWithInt:3]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:1]];
                 [delegate computerMakesMove:1];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:9]];
                 [delegate computerMakesMove:9];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:1]];
                 [delegate computerMakesMove:1];
                 [self winCheck];
                 break;
@@ -283,105 +274,90 @@
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:7]];
                 [delegate computerMakesMove:7];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:7]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:3]];
                 [delegate computerMakesMove:3];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:4]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:6]];
                 [delegate computerMakesMove:6];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:4]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:4]];
                 [delegate computerMakesMove:4];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:4]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:5]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:5]];
                 [delegate computerMakesMove:5];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:4]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:7]];
                 [delegate computerMakesMove:7];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:4]] && [playerMoves containsObject:[NSNumber numberWithInt:7]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:1]];
                 [delegate computerMakesMove:1];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:7]]) {
             if (![computerMoves containsObject:[NSNumber numberWithInt:4]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:4]];
                 [delegate computerMakesMove:4];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:9]];
                 [delegate computerMakesMove:9];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:6]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:3]];
                 [delegate computerMakesMove:3];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:6]];
                 [delegate computerMakesMove:6];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:9]];
                 [delegate computerMakesMove:9];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:8]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:7]];
                 [delegate computerMakesMove:7];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:7]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:8]];
                 [delegate computerMakesMove:8];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:2]] && [playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:8]];
                 [delegate computerMakesMove:8];
                 break;
             }
@@ -389,28 +365,24 @@
         
         if ([playerMoves containsObject:[NSNumber numberWithInt:2]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:3]] && ![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:3]];
                 [delegate computerMakesMove:3];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:2]] && [playerMoves containsObject:[NSNumber numberWithInt:4]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:1]] && ![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:1]];
                 [delegate computerMakesMove:1];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:4]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:7]] && ![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:7]];
                 [delegate computerMakesMove:7];
                 break;
             }
         }
         if ([playerMoves containsObject:[NSNumber numberWithInt:6]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
             if (![playerMoves containsObject:[NSNumber numberWithInt:9]] && ![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                [computerMoves addObject:[NSNumber numberWithInt:9]];
                 [delegate computerMakesMove:9];
                 break;
             }
@@ -423,7 +395,6 @@
 - (void)fillInAnySquare {
     for (int tileInt = 1; tileInt < 10; tileInt++) {
         if (![playerMoves containsObject:[NSNumber numberWithInt:tileInt]] && ![computerMoves containsObject:[NSNumber numberWithInt:tileInt]]) {
-            [computerMoves addObject:[NSNumber numberWithInt:tileInt]];
             [delegate computerMakesMove:tileInt];
             [self winCheck];
             break;
@@ -547,6 +518,10 @@
             break;
         }
     }
+}
+
+- (void)catsTie {
+    [delegate catsTie];
 }
 
 @end

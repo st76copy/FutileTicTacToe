@@ -20,7 +20,4 @@
 @property (assign, nonatomic) int count;
 @property (assign, nonatomic) int roundsCounter;
 
-
-- (void)setNormalDifficulty;
-
 @end
