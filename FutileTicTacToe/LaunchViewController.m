@@ -24,12 +24,13 @@
 
 @implementation LaunchViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     viewController = [[GamePlayViewController alloc] init];
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

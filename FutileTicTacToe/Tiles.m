@@ -16,8 +16,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
-        self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+        self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
         computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
         selfView = self;
     }
@@ -28,7 +28,7 @@
     if (self.backgroundColor != self.xBackground && self.backgroundColor != self.oBackground) {
         [delegate tileUserInteraction:NO];
         self.transform = CGAffineTransformScale(self.transform, 0.01, 0.01);
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
         [self setUserInteractionEnabled:NO];
         [UIView animateWithDuration:0.7 animations:^{
             self.transform = CGAffineTransformIdentity;

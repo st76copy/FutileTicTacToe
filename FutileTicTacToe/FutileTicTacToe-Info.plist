@@ -8,6 +8,21 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>FinalTicTacToeIcon</string>
+				<string>FinalTicTacToeIconSpotlight</string>
+				<string>TicTacToeIcon</string>
+				<string>Mint</string>
+				<string>Mint@2</string>
+				<string>Aqua_Spotlight@2</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>com.jeremyherrero.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

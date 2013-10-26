@@ -8,13 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		CF10ECAF1801D8C00092ADD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF10ECAE1801D8C00092ADD9 /* Images.xcassets */; };
-		CF230003181C50750060A5C0 /* StandardAutomatedMove.m in Sources */ = {isa = PBXBuildFile; fileRef = CF230002181C50750060A5C0 /* StandardAutomatedMove.m */; };
+		CF230009181C6E6E0060A5C0 /* Backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = CF230007181C6E6E0060A5C0 /* Backgrounds */; };
+		CF23000A181C6E6E0060A5C0 /* ICON FINAL in Resources */ = {isa = PBXBuildFile; fileRef = CF230008181C6E6E0060A5C0 /* ICON FINAL */; };
+		CF23000D181C73CA0060A5C0 /* Aqua.png in Resources */ = {isa = PBXBuildFile; fileRef = CF23000B181C73CA0060A5C0 /* Aqua.png */; };
+		CF23000E181C73CA0060A5C0 /* Aqua@2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF23000C181C73CA0060A5C0 /* Aqua@2.png */; };
+		CF230011181C74100060A5C0 /* o_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CF23000F181C74100060A5C0 /* o_tile.png */; };
+		CF230012181C74100060A5C0 /* o_tile@2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF230010181C74100060A5C0 /* o_tile@2.png */; };
 		CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */; };
 		CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889517FB746F00AC750F /* PlayerMovesFirst.m */; };
 		CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889817FDDE9D00AC750F /* LaunchViewController.m */; };
 		CF84889D17FE6B5B00AC750F /* boardImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889A17FE6B5B00AC750F /* boardImage.jpg */; };
 		CF84889E17FE6B5B00AC750F /* oTileImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889B17FE6B5B00AC750F /* oTileImage.jpg */; };
 		CF84889F17FE6B5B00AC750F /* xTileImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF84889C17FE6B5B00AC750F /* xTileImage.jpg */; };
+		CF98EBA6181C7428005ED176 /* x_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBA4181C7428005ED176 /* x_tile.png */; };
+		CF98EBA7181C7428005ED176 /* x_tile@2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBA5181C7428005ED176 /* x_tile@2.png */; };
+		CF98EBB8181C7D28005ED176 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBB6181C7D28005ED176 /* board.png */; };
+		CF98EBB9181C7D28005ED176 /* board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBB7181C7D28005ED176 /* board@2x.png */; };
+		CF98EBBC181C802A005ED176 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBBA181C802A005ED176 /* Red.png */; };
+		CF98EBBD181C802A005ED176 /* Red@2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF98EBBB181C802A005ED176 /* Red@2.png */; };
 		CFB2A0CB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0CD17F628F70097E0CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */; };
 		CFB2A0CF17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
@@ -26,7 +37,7 @@
 		CFB2A0EA17F628F70097E0CB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0E917F628F70097E0CB /* XCTest.framework */; };
 		CFB2A0EB17F628F70097E0CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CA17F628F70097E0CB /* Foundation.framework */; };
 		CFB2A0EC17F628F70097E0CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB2A0CE17F628F70097E0CB /* UIKit.framework */; };
-		CFB2A10017F62E3E0097E0CB /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0FF17F62E3E0097E0CB /* board.png */; };
+		CFB2A10017F62E3E0097E0CB /* backupBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A0FF17F62E3E0097E0CB /* backupBoard.png */; };
 		CFB2A10317F632B70097E0CB /* Tiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A10217F632B70097E0CB /* Tiles.m */; };
 		CFB2A10E17F754170097E0CB /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A10C17F754170097E0CB /* x.png */; };
 		CFB2A10F17F754170097E0CB /* o.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A10D17F754170097E0CB /* o.png */; };
@@ -44,8 +55,12 @@
 
 /* Begin PBXFileReference section */
 		CF10ECAE1801D8C00092ADD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
-		CF230001181C50750060A5C0 /* StandardAutomatedMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardAutomatedMove.h; sourceTree = "<group>"; };
-		CF230002181C50750060A5C0 /* StandardAutomatedMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardAutomatedMove.m; sourceTree = "<group>"; };
+		CF230007181C6E6E0060A5C0 /* Backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Backgrounds; path = SupportingImages/Backgrounds; sourceTree = SOURCE_ROOT; };
+		CF230008181C6E6E0060A5C0 /* ICON FINAL */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ICON FINAL"; path = "SupportingImages/ICON FINAL"; sourceTree = SOURCE_ROOT; };
+		CF23000B181C73CA0060A5C0 /* Aqua.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Aqua.png; sourceTree = "<group>"; };
+		CF23000C181C73CA0060A5C0 /* Aqua@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Aqua@2.png"; sourceTree = "<group>"; };
+		CF23000F181C74100060A5C0 /* o_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = o_tile.png; sourceTree = "<group>"; };
+		CF230010181C74100060A5C0 /* o_tile@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o_tile@2.png"; sourceTree = "<group>"; };
 		CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerMovesFirst.h; sourceTree = "<group>"; };
 		CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerMovesFirst.m; sourceTree = "<group>"; };
 		CF84889417FB746F00AC750F /* PlayerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMovesFirst.h; sourceTree = "<group>"; };
@@ -55,6 +70,12 @@
 		CF84889A17FE6B5B00AC750F /* boardImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boardImage.jpg; sourceTree = "<group>"; };
 		CF84889B17FE6B5B00AC750F /* oTileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = oTileImage.jpg; sourceTree = "<group>"; };
 		CF84889C17FE6B5B00AC750F /* xTileImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = xTileImage.jpg; sourceTree = "<group>"; };
+		CF98EBA4181C7428005ED176 /* x_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_tile.png; sourceTree = "<group>"; };
+		CF98EBA5181C7428005ED176 /* x_tile@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x_tile@2.png"; sourceTree = "<group>"; };
+		CF98EBB6181C7D28005ED176 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		CF98EBB7181C7D28005ED176 /* board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board@2x.png"; sourceTree = "<group>"; };
+		CF98EBBA181C802A005ED176 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		CF98EBBB181C802A005ED176 /* Red@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2.png"; sourceTree = "<group>"; };
 		CFB2A0C717F628F70097E0CB /* FutileTicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FutileTicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0CA17F628F70097E0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,7 +91,7 @@
 		CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamePlayViewController.m; sourceTree = "<group>"; };
 		CFB2A0E817F628F70097E0CB /* FutileTicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutileTicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0E917F628F70097E0CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CFB2A0FF17F62E3E0097E0CB /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
+		CFB2A0FF17F62E3E0097E0CB /* backupBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backupBoard.png; sourceTree = "<group>"; };
 		CFB2A10117F632B70097E0CB /* Tiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tiles.h; sourceTree = "<group>"; };
 		CFB2A10217F632B70097E0CB /* Tiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tiles.m; sourceTree = "<group>"; };
 		CFB2A10C17F754170097E0CB /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = x.png; path = ../x.png; sourceTree = "<group>"; };
@@ -141,7 +162,6 @@
 				CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
 				CF84889517FB746F00AC750F /* PlayerMovesFirst.m */,
-				CF230002181C50750060A5C0 /* StandardAutomatedMove.m */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
 				CFC0C54C180C6EAF0006A96E /* Headers */,
@@ -154,10 +174,22 @@
 		CFB2A0D117F628F70097E0CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF23000B181C73CA0060A5C0 /* Aqua.png */,
+				CF23000C181C73CA0060A5C0 /* Aqua@2.png */,
+				CF98EBB6181C7D28005ED176 /* board.png */,
+				CF98EBB7181C7D28005ED176 /* board@2x.png */,
+				CF98EBBA181C802A005ED176 /* Red.png */,
+				CF98EBBB181C802A005ED176 /* Red@2.png */,
+				CF23000F181C74100060A5C0 /* o_tile.png */,
+				CF230010181C74100060A5C0 /* o_tile@2.png */,
+				CF98EBA4181C7428005ED176 /* x_tile.png */,
+				CF98EBA5181C7428005ED176 /* x_tile@2.png */,
+				CF230007181C6E6E0060A5C0 /* Backgrounds */,
+				CF230008181C6E6E0060A5C0 /* ICON FINAL */,
 				CF84889A17FE6B5B00AC750F /* boardImage.jpg */,
 				CF84889B17FE6B5B00AC750F /* oTileImage.jpg */,
 				CF84889C17FE6B5B00AC750F /* xTileImage.jpg */,
-				CFB2A0FF17F62E3E0097E0CB /* board.png */,
+				CFB2A0FF17F62E3E0097E0CB /* backupBoard.png */,
 				CFB2A10D17F754170097E0CB /* o.png */,
 				CFB2A10C17F754170097E0CB /* x.png */,
 				CFB2A0D217F628F70097E0CB /* FutileTicTacToe-Info.plist */,
@@ -175,7 +207,6 @@
 				CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
 				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
-				CF230001181C50750060A5C0 /* StandardAutomatedMove.h */,
 				CFB2A10117F632B70097E0CB /* Tiles.h */,
 			);
 			name = Headers;
@@ -258,14 +289,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF10ECAF1801D8C00092ADD9 /* Images.xcassets in Resources */,
-				CFB2A10017F62E3E0097E0CB /* board.png in Resources */,
+				CF98EBBC181C802A005ED176 /* Red.png in Resources */,
+				CF98EBA7181C7428005ED176 /* x_tile@2.png in Resources */,
+				CF98EBB8181C7D28005ED176 /* board.png in Resources */,
+				CFB2A10017F62E3E0097E0CB /* backupBoard.png in Resources */,
+				CF98EBBD181C802A005ED176 /* Red@2.png in Resources */,
+				CF98EBA6181C7428005ED176 /* x_tile.png in Resources */,
 				CFB2A10E17F754170097E0CB /* x.png in Resources */,
+				CF23000D181C73CA0060A5C0 /* Aqua.png in Resources */,
 				CF84889F17FE6B5B00AC750F /* xTileImage.jpg in Resources */,
+				CF23000A181C6E6E0060A5C0 /* ICON FINAL in Resources */,
+				CF230009181C6E6E0060A5C0 /* Backgrounds in Resources */,
+				CF23000E181C73CA0060A5C0 /* Aqua@2.png in Resources */,
 				CFB2A10F17F754170097E0CB /* o.png in Resources */,
+				CF98EBB9181C7D28005ED176 /* board@2x.png in Resources */,
 				CFB2A0D517F628F70097E0CB /* InfoPlist.strings in Resources */,
 				CF84889E17FE6B5B00AC750F /* oTileImage.jpg in Resources */,
 				CFB2A0DE17F628F70097E0CB /* Main.storyboard in Resources */,
 				CF84889D17FE6B5B00AC750F /* boardImage.jpg in Resources */,
+				CF230011181C74100060A5C0 /* o_tile.png in Resources */,
+				CF230012181C74100060A5C0 /* o_tile@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +332,6 @@
 				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,
-				CF230003181C50750060A5C0 /* StandardAutomatedMove.m in Sources */,
 				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

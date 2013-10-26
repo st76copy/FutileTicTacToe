@@ -21,8 +21,9 @@
     __weak IBOutlet UILabel         *resultLabel;
     __weak IBOutlet UILabel         *winsLabel;
     __weak IBOutlet UILabel         *lossesLabel;
-    __weak IBOutlet UIImageView     *boardImageView;
     __weak IBOutlet UIView          *gameResultsView;
+    __weak IBOutlet UIImageView     *backgroundImageView;
+    __weak IBOutlet UIImageView     *boardImageView;
 }
 
 - (IBAction)restartGame:(id)sender;
@@ -35,8 +36,7 @@
 
 @synthesize normalDifficulty, gameEnded, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     count = 0;
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
@@ -46,8 +46,9 @@
     computerMovesFirst.delegate = self;
     playerMovesFirst.delegate = self;
     
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
-    xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
+    xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
     
     [gameResultsView setAlpha:1];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
@@ -69,8 +70,9 @@
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor clearColor];
     }
-    
-    gameResultsView.backgroundColor = [UIColor whiteColor];
+    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
+    backgroundImageView.image = [UIImage imageNamed:@"Aqua.png"];
+    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
@@ -104,6 +106,7 @@
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor clearColor];
     }
+    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     if (roundsCounter % 2 == 0) {
         computerIsFirst = YES;
         if (normalDifficulty) {
@@ -149,8 +152,6 @@
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [computerMovesFirst winCheck];
         if (!gameEnded) {
-            NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
-            NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
             switch (moveCount) {
                 case 1:
                     if (normalDifficulty) {
@@ -188,8 +189,6 @@
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [playerMovesFirst winCheck];
         if (!gameEnded) {
-            NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
-            NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
             switch (moveCount) {
                 case 1:
                     if (normalDifficulty) {
