@@ -10,10 +10,12 @@
 #import "Tiles.h"
 #import "ComputerMovesFirst.h"
 #import "PlayerMovesFirst.h"
+#import "StandardAutomatedMove.h"
 
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface GamePlayViewController () {
-    
+    Tiles                           *tilesClass;
+    StandardAutomatedMove           *standardAutomatedMove;
     ComputerMovesFirst              *computerMovesFirst;
     PlayerMovesFirst                *playerMovesFirst;
     NSTimer                         *timer;
@@ -41,8 +43,11 @@
     count = 0;
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
-    [computerMovesFirst initMutableArrays];
-    [playerMovesFirst initMutableArrays];
+    tilesClass.computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
+    tilesClass.playerMoves = [[NSMutableArray alloc] initWithCapacity:5];
+
+//    [computerMovesFirst initMutableArrays];
+//    [playerMovesFirst initMutableArrays];
     computerMovesFirst.delegate = self;
     playerMovesFirst.delegate = self;
     
@@ -96,10 +101,10 @@
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
     computerMovesFirst.compHasAllThreeCorners = NO;
-    [computerMovesFirst.playerMoves removeAllObjects];
-    [computerMovesFirst.computerMoves removeAllObjects];
-    [playerMovesFirst.playerMoves removeAllObjects];
-    [playerMovesFirst.computerMoves removeAllObjects];
+    [tilesClass.playerMoves removeAllObjects];
+    [tilesClass.computerMoves removeAllObjects];
+    [tilesClass.playerMoves removeAllObjects];
+    [tilesClass.computerMoves removeAllObjects];
     for (UIView *tile in self.view.subviews) {
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor clearColor];
@@ -128,11 +133,17 @@
             tileMove.backgroundColor = xBackground;
             [tileMove setUserInteractionEnabled:NO];
             tileMove.transform = CGAffineTransformScale(tileMove.transform, 0.01, 0.01);
-            if (computerIsFirst) {
-                [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
-            } else {
-                [playerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
-            }
+//            NSLog(@"%i", tagNumber);
+            [tilesClass.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+            [tilesClass.computerMoves addObject:@"hey"];
+            NSLog(@"%@", tilesClass.computerMoves);
+//            if (computerIsFirst) {
+//                [tilesClass.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+//                NSLog(@"%@", tilesClass.computerMoves);
+//            } else {
+//                [tilesClass.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
+//                                NSLog(@"%@", tilesClass.computerMoves);
+//            }
             [UIView animateWithDuration:0.7 animations:^{
                 tileMove.transform = CGAffineTransformIdentity;
             } completion:^(BOOL finished) {
@@ -146,11 +157,11 @@
 - (void)tileSelected:(Tiles *)tiles {
     moveCount++;
     if (computerIsFirst) {
-        [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
-        [computerMovesFirst winCheck];
+        [tilesClass.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        [standardAutomatedMove winCheck];
         if (!gameEnded) {
-            NSLog(@"computerMoves: %@" , computerMovesFirst.computerMoves);
-            NSLog(@"playerMoves: %@" , computerMovesFirst.playerMoves);
+            NSLog(@"computerMoves: %@" , tilesClass.computerMoves);
+            NSLog(@"playerMoves: %@" , tilesClass.playerMoves);
             switch (moveCount) {
                 case 1:
                     if (normalDifficulty) {
@@ -185,11 +196,11 @@
             }
         }
     } else {
-        [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
-        [playerMovesFirst winCheck];
+        [tilesClass.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
+        [standardAutomatedMove winCheck];
         if (!gameEnded) {
-            NSLog(@"computerMoves: %@" , playerMovesFirst.computerMoves);
-            NSLog(@"playerMoves: %@" , playerMovesFirst.playerMoves);
+            NSLog(@"computerMoves: %@" , tilesClass.computerMoves);
+            NSLog(@"playerMoves: %@" , tilesClass.playerMoves);
             switch (moveCount) {
                 case 1:
                     if (normalDifficulty) {

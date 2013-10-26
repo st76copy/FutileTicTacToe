@@ -16,6 +16,7 @@
 @property (weak, nonatomic) UIColor *xBackground;
 @property (weak, nonatomic) UIColor *oBackground;
 @property (strong, nonatomic) UIView *selfView;
-@property (strong, nonatomic) NSMutableArray *computerMoves;
+@property (nonatomic) NSMutableArray *computerMoves;
+@property (nonatomic) NSMutableArray *playerMoves;
 
 @end

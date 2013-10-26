@@ -10,15 +10,13 @@
 
 @implementation Tiles
 
-@synthesize selfView, computerMoves, delegate;
+@synthesize selfView, computerMoves, playerMoves, delegate;
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
         self.oBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o.png"]];
-        computerMoves = [[NSMutableArray alloc] initWithCapacity:5];
         selfView = self;
     }
     return self;

@@ -7,27 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "StandardAutomatedMove.h"
 #import "TilesDelegate.h"
 
 @interface ComputerMovesFirst : NSObject
 
 @property (strong, nonatomic) id <TilesDelegate> delegate;
 
-@property (assign, nonatomic) int randomizer;
-@property (assign, nonatomic) BOOL compHasCornersNoHumanCenter;
-@property (assign, nonatomic) BOOL compHasCornersHumanHasCenter;
-@property (assign, nonatomic) BOOL compDoesNotHaveBothGoldenCorners;
-@property (assign, nonatomic) BOOL compHasAllThreeCorners;
-@property (assign, nonatomic) BOOL finalMove;
-@property (retain, nonatomic) NSMutableArray *computerMoves;
-@property (retain, nonatomic) NSMutableArray *playerMoves;
+@property (nonatomic) int randomizer;
+@property (nonatomic) BOOL compHasCornersNoHumanCenter;
+@property (nonatomic) BOOL compHasCornersHumanHasCenter;
+@property (nonatomic) BOOL compDoesNotHaveBothGoldenCorners;
+@property (nonatomic) BOOL compHasAllThreeCorners;
+//@property (nonatomic) BOOL finalMove;
+//@property (nonatomic) NSMutableArray *computerMoves;
+//@property (nonatomic) NSMutableArray *playerMoves;
+@property (nonatomic) StandardAutomatedMove *standardAutomatedMove;
+@property (nonatomic) Tiles *tiles;
 
-- (void)initMutableArrays;
+//- (void)initMutableArrays;
 - (void)firstMove:(BOOL)normalPlay;
 - (void)secondMove:(BOOL)normalPlay;
 - (void)thirdMove:(BOOL)normalPlay;
 - (void)fourthMove:(BOOL)normalPlay;
 - (void)fifthMove:(BOOL)normalPlay;
-- (void)winCheck;
+//- (void)winCheck;
 
 @end

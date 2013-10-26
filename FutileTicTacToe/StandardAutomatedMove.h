@@ -7,7 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Tiles.h"
+#import "TilesDelegate.h"
 
 @interface StandardAutomatedMove : NSObject
+
+@property (nonatomic) id <TilesDelegate> delegate;
+
+@property (nonatomic) BOOL finalMove;
+@property (nonatomic) NSMutableArray *computerMoves;
+@property (nonatomic) NSMutableArray *playerMoves;
+@property (nonatomic) Tiles *tiles;
+
+- (void)attempWinningMove;
+- (void)checkIfBlockIsNeeded;
+- (void)fillInAnySquare;
+- (void)winCheck;
+- (void)catsTie;
 
 @end
