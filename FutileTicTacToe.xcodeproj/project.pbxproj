@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF10ECAF1801D8C00092ADD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF10ECAE1801D8C00092ADD9 /* Images.xcassets */; };
+		CF230003181C50750060A5C0 /* StandardAutomatedMove.m in Sources */ = {isa = PBXBuildFile; fileRef = CF230002181C50750060A5C0 /* StandardAutomatedMove.m */; };
 		CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */; };
 		CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889517FB746F00AC750F /* PlayerMovesFirst.m */; };
 		CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF84889817FDDE9D00AC750F /* LaunchViewController.m */; };
@@ -43,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		CF10ECAE1801D8C00092ADD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
+		CF230001181C50750060A5C0 /* StandardAutomatedMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardAutomatedMove.h; sourceTree = "<group>"; };
+		CF230002181C50750060A5C0 /* StandardAutomatedMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardAutomatedMove.m; sourceTree = "<group>"; };
 		CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerMovesFirst.h; sourceTree = "<group>"; };
 		CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerMovesFirst.m; sourceTree = "<group>"; };
 		CF84889417FB746F00AC750F /* PlayerMovesFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerMovesFirst.h; sourceTree = "<group>"; };
@@ -138,6 +141,7 @@
 				CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
 				CF84889517FB746F00AC750F /* PlayerMovesFirst.m */,
+				CF230002181C50750060A5C0 /* StandardAutomatedMove.m */,
 				CFB2A10217F632B70097E0CB /* Tiles.m */,
 				CFB2A11017F763250097E0CB /* TilesDelegate.h */,
 				CFC0C54C180C6EAF0006A96E /* Headers */,
@@ -171,6 +175,7 @@
 				CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
 				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
+				CF230001181C50750060A5C0 /* StandardAutomatedMove.h */,
 				CFB2A10117F632B70097E0CB /* Tiles.h */,
 			);
 			name = Headers;
@@ -284,6 +289,7 @@
 				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,
+				CF230003181C50750060A5C0 /* StandardAutomatedMove.m in Sources */,
 				CFB2A10317F632B70097E0CB /* Tiles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

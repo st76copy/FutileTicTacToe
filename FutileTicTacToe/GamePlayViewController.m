@@ -48,7 +48,8 @@
     
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x.png"]];
-
+    
+    [gameResultsView setAlpha:1];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     computerIsFirst = YES;
@@ -68,6 +69,8 @@
         [tile setUserInteractionEnabled:YES];
         tile.backgroundColor = [UIColor clearColor];
     }
+    
+    gameResultsView.backgroundColor = [UIColor whiteColor];
     [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
