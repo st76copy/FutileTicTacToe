@@ -14,6 +14,9 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>AppSpotlight</string>
+				<string>AppIcon</string>
+				<string>Mint_Spotlight@2</string>
 				<string>FinalTicTacToeIcon</string>
 				<string>FinalTicTacToeIconSpotlight</string>
 				<string>TicTacToeIcon</string>

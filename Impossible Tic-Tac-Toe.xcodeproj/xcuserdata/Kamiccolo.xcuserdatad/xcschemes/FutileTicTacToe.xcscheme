@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CFB2A0C617F628F70097E0CB"
-               BuildableName = "FutileTicTacToe.app"
-               BlueprintName = "FutileTicTacToe"
-               ReferencedContainer = "container:FutileTicTacToe.xcodeproj">
+               BuildableName = "ImpossibleTicTacToe.app"
+               BlueprintName = "Impossible Tic-Tac-Toe"
+               ReferencedContainer = "container:Impossible Tic-Tac-Toe.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CFB2A0E717F628F70097E0CB"
-               BuildableName = "FutileTicTacToeTests.xctest"
-               BlueprintName = "FutileTicTacToeTests"
-               ReferencedContainer = "container:FutileTicTacToe.xcodeproj">
+               BuildableName = "ImpossibleTicTacToeTests.xctest"
+               BlueprintName = "Impossible Tic-Tac-ToeTests"
+               ReferencedContainer = "container:Impossible Tic-Tac-Toe.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CFB2A0C617F628F70097E0CB"
-            BuildableName = "FutileTicTacToe.app"
-            BlueprintName = "FutileTicTacToe"
-            ReferencedContainer = "container:FutileTicTacToe.xcodeproj">
+            BuildableName = "ImpossibleTicTacToe.app"
+            BlueprintName = "Impossible Tic-Tac-Toe"
+            ReferencedContainer = "container:Impossible Tic-Tac-Toe.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CFB2A0C617F628F70097E0CB"
-            BuildableName = "FutileTicTacToe.app"
-            BlueprintName = "FutileTicTacToe"
-            ReferencedContainer = "container:FutileTicTacToe.xcodeproj">
+            BuildableName = "ImpossibleTicTacToe.app"
+            BlueprintName = "Impossible Tic-Tac-Toe"
+            ReferencedContainer = "container:Impossible Tic-Tac-Toe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CFB2A0C617F628F70097E0CB"
-            BuildableName = "FutileTicTacToe.app"
-            BlueprintName = "FutileTicTacToe"
-            ReferencedContainer = "container:FutileTicTacToe.xcodeproj">
+            BuildableName = "ImpossibleTicTacToe.app"
+            BlueprintName = "Impossible Tic-Tac-Toe"
+            ReferencedContainer = "container:Impossible Tic-Tac-Toe.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
