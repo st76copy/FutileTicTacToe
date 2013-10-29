@@ -82,20 +82,20 @@
 		CF98EBB7181C7D28005ED176 /* board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "board@2x.png"; sourceTree = "<group>"; };
 		CF98EBBA181C802A005ED176 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
 		CF98EBBB181C802A005ED176 /* Red@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2.png"; sourceTree = "<group>"; };
-		CFB2A0C717F628F70097E0CB /* Impossible Tic-Tac-Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Impossible Tic-Tac-Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB2A0C717F628F70097E0CB /* Futile TTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Futile TTT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0CA17F628F70097E0CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFB2A0CC17F628F70097E0CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CFB2A0CE17F628F70097E0CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		CFB2A0D217F628F70097E0CB /* Impossible Tic-Tac-Toe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Impossible Tic-Tac-Toe-Info.plist"; sourceTree = "<group>"; };
+		CFB2A0D217F628F70097E0CB /* Futile TTT-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Futile TTT-Info.plist"; sourceTree = "<group>"; };
 		CFB2A0D417F628F70097E0CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CFB2A0D617F628F70097E0CB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CFB2A0D817F628F70097E0CB /* Impossible Tic-Tac-Toe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Impossible Tic-Tac-Toe-Prefix.pch"; sourceTree = "<group>"; };
+		CFB2A0D817F628F70097E0CB /* Futile TTT-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Futile TTT-Prefix.pch"; sourceTree = "<group>"; };
 		CFB2A0D917F628F70097E0CB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CFB2A0DA17F628F70097E0CB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CFB2A0DD17F628F70097E0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamePlayViewController.h; sourceTree = "<group>"; };
 		CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamePlayViewController.m; sourceTree = "<group>"; };
-		CFB2A0E817F628F70097E0CB /* Impossible Tic-Tac-ToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Impossible Tic-Tac-ToeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB2A0E817F628F70097E0CB /* Futile TTTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Futile TTTTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFB2A0E917F628F70097E0CB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CFB2A0FF17F62E3E0097E0CB /* backupBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backupBoard.png; sourceTree = "<group>"; };
 		CFB2A10117F632B70097E0CB /* Tiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tiles.h; sourceTree = "<group>"; };
@@ -141,8 +141,8 @@
 		CFB2A0C817F628F70097E0CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFB2A0C717F628F70097E0CB /* Impossible Tic-Tac-Toe.app */,
-				CFB2A0E817F628F70097E0CB /* Impossible Tic-Tac-ToeTests.xctest */,
+				CFB2A0C717F628F70097E0CB /* Futile TTT.app */,
+				CFB2A0E817F628F70097E0CB /* Futile TTTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,10 +201,10 @@
 				CFB2A0FF17F62E3E0097E0CB /* backupBoard.png */,
 				CFB2A10D17F754170097E0CB /* o.png */,
 				CFB2A10C17F754170097E0CB /* x.png */,
-				CFB2A0D217F628F70097E0CB /* Impossible Tic-Tac-Toe-Info.plist */,
+				CFB2A0D217F628F70097E0CB /* Futile TTT-Info.plist */,
 				CFB2A0D317F628F70097E0CB /* InfoPlist.strings */,
 				CFB2A0D617F628F70097E0CB /* main.m */,
-				CFB2A0D817F628F70097E0CB /* Impossible Tic-Tac-Toe-Prefix.pch */,
+				CFB2A0D817F628F70097E0CB /* Futile TTT-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CFB2A0C617F628F70097E0CB /* Impossible Tic-Tac-Toe */ = {
+		CFB2A0C617F628F70097E0CB /* Futile TTT */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFB2A0F917F628F70097E0CB /* Build configuration list for PBXNativeTarget "Impossible Tic-Tac-Toe" */;
+			buildConfigurationList = CFB2A0F917F628F70097E0CB /* Build configuration list for PBXNativeTarget "Futile TTT" */;
 			buildPhases = (
 				CFB2A0C317F628F70097E0CB /* Sources */,
 				CFB2A0C417F628F70097E0CB /* Frameworks */,
@@ -236,14 +236,14 @@
 			);
 			dependencies = (
 			);
-			name = "Impossible Tic-Tac-Toe";
+			name = "Futile TTT";
 			productName = FutileTicTacToe;
-			productReference = CFB2A0C717F628F70097E0CB /* Impossible Tic-Tac-Toe.app */;
+			productReference = CFB2A0C717F628F70097E0CB /* Futile TTT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CFB2A0E717F628F70097E0CB /* Impossible Tic-Tac-ToeTests */ = {
+		CFB2A0E717F628F70097E0CB /* Futile TTTTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFB2A0FC17F628F70097E0CB /* Build configuration list for PBXNativeTarget "Impossible Tic-Tac-ToeTests" */;
+			buildConfigurationList = CFB2A0FC17F628F70097E0CB /* Build configuration list for PBXNativeTarget "Futile TTTTests" */;
 			buildPhases = (
 				CFB2A0E417F628F70097E0CB /* Sources */,
 				CFB2A0E517F628F70097E0CB /* Frameworks */,
@@ -254,9 +254,9 @@
 			dependencies = (
 				CFB2A0EE17F628F70097E0CB /* PBXTargetDependency */,
 			);
-			name = "Impossible Tic-Tac-ToeTests";
+			name = "Futile TTTTests";
 			productName = FutileTicTacToeTests;
-			productReference = CFB2A0E817F628F70097E0CB /* Impossible Tic-Tac-ToeTests.xctest */;
+			productReference = CFB2A0E817F628F70097E0CB /* Futile TTTTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -273,7 +273,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CFB2A0C217F628F70097E0CB /* Build configuration list for PBXProject "Impossible Tic-Tac-Toe" */;
+			buildConfigurationList = CFB2A0C217F628F70097E0CB /* Build configuration list for PBXProject "Futile TTT" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -286,8 +286,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFB2A0C617F628F70097E0CB /* Impossible Tic-Tac-Toe */,
-				CFB2A0E717F628F70097E0CB /* Impossible Tic-Tac-ToeTests */,
+				CFB2A0C617F628F70097E0CB /* Futile TTT */,
+				CFB2A0E717F628F70097E0CB /* Futile TTTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -360,7 +360,7 @@
 /* Begin PBXTargetDependency section */
 		CFB2A0EE17F628F70097E0CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CFB2A0C617F628F70097E0CB /* Impossible Tic-Tac-Toe */;
+			target = CFB2A0C617F628F70097E0CB /* Futile TTT */;
 			targetProxy = CFB2A0ED17F628F70097E0CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -460,11 +460,14 @@
 		CFB2A0FA17F628F70097E0CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Herrero (PC24U4Z546)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FutileTicTacToe/Impossible Tic-Tac-Toe-Prefix.pch";
-				INFOPLIST_FILE = "FutileTicTacToe/Impossible Tic-Tac-Toe-Info.plist";
-				PRODUCT_NAME = "Impossible Tic-Tac-Toe";
+				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
+				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
+				PRODUCT_NAME = "Futile TTT";
+				PROVISIONING_PROFILE = "C17747A3-EA4F-4856-BA0A-F1A2C21595B5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -472,11 +475,14 @@
 		CFB2A0FB17F628F70097E0CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Jeremy Herrero (4QJ6EE43D9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FutileTicTacToe/Impossible Tic-Tac-Toe-Prefix.pch";
-				INFOPLIST_FILE = "FutileTicTacToe/Impossible Tic-Tac-Toe-Info.plist";
-				PRODUCT_NAME = "Impossible Tic-Tac-Toe";
+				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
+				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
+				PRODUCT_NAME = "Futile TTT";
+				PROVISIONING_PROFILE = "C17747A3-EA4F-4856-BA0A-F1A2C21595B5";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -498,7 +504,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "FutileTicTacToeTests/FutileTicTacToeTests-Info.plist";
-				PRODUCT_NAME = "Impossible Tic-Tac-ToeTests";
+				PRODUCT_NAME = "Futile TTTTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -517,7 +523,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FutileTicTacToe/FutileTicTacToe-Prefix.pch";
 				INFOPLIST_FILE = "FutileTicTacToeTests/FutileTicTacToeTests-Info.plist";
-				PRODUCT_NAME = "Impossible Tic-Tac-ToeTests";
+				PRODUCT_NAME = "Futile TTTTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -526,7 +532,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CFB2A0C217F628F70097E0CB /* Build configuration list for PBXProject "Impossible Tic-Tac-Toe" */ = {
+		CFB2A0C217F628F70097E0CB /* Build configuration list for PBXProject "Futile TTT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFB2A0F717F628F70097E0CB /* Debug */,
@@ -535,7 +541,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFB2A0F917F628F70097E0CB /* Build configuration list for PBXNativeTarget "Impossible Tic-Tac-Toe" */ = {
+		CFB2A0F917F628F70097E0CB /* Build configuration list for PBXNativeTarget "Futile TTT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFB2A0FA17F628F70097E0CB /* Debug */,
@@ -544,7 +550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFB2A0FC17F628F70097E0CB /* Build configuration list for PBXNativeTarget "Impossible Tic-Tac-ToeTests" */ = {
+		CFB2A0FC17F628F70097E0CB /* Build configuration list for PBXNativeTarget "Futile TTTTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFB2A0FD17F628F70097E0CB /* Debug */,
