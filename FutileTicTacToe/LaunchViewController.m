@@ -12,11 +12,13 @@
 #import "PlayerMovesFirst.h"
 
 @interface LaunchViewController () {
-    ComputerMovesFirst              *computerMovesFirst;
-    PlayerMovesFirst                *playerMovesFirst;
+    ComputerMovesFirst                      *computerMovesFirst;
+    PlayerMovesFirst                        *playerMovesFirst;
     GamePlayViewController                  *viewController;
+    __weak IBOutlet UIView                  *launchView;
 }
-
+- (IBAction)playGame:(id)sender;
+- (IBAction)goToSettings:(id)sender;
 - (IBAction)playEasyGame:(id)sender;
 - (IBAction)playNormalGame:(id)sender;
 
@@ -31,6 +33,11 @@
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
+    launchView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [launchView setHidden:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -40,6 +47,13 @@
             viewController.normalDifficulty = YES;
         }
     }
+}
+
+- (IBAction)playGame:(id)sender {
+    [launchView setHidden:YES];
+}
+
+- (IBAction)goToSettings:(id)sender {
 }
 
 - (IBAction)playEasyGame:(id)sender {

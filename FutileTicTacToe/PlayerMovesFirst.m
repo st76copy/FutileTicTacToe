@@ -34,7 +34,7 @@
             [delegate computerMakesMove:5];
         } else {
             int move = arc4random() % 7 + 1;
-            if (move % 2 != 0) {
+            if (move % 2 == 0) {
                 move++;
             }
             [delegate computerMakesMove:move];
