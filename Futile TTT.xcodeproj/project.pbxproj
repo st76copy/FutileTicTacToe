@@ -44,6 +44,7 @@
 		CFB2A10317F632B70097E0CB /* Tiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB2A10217F632B70097E0CB /* Tiles.m */; };
 		CFB2A10E17F754170097E0CB /* x.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A10C17F754170097E0CB /* x.png */; };
 		CFB2A10F17F754170097E0CB /* o.png in Resources */ = {isa = PBXBuildFile; fileRef = CFB2A10D17F754170097E0CB /* o.png */; };
+		CFBCF66E182E7C390038AC65 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF66D182E7C390038AC65 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		CFB2A10C17F754170097E0CB /* x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = x.png; path = ../x.png; sourceTree = "<group>"; };
 		CFB2A10D17F754170097E0CB /* o.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = o.png; path = ../o.png; sourceTree = "<group>"; };
 		CFB2A11017F763250097E0CB /* TilesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TilesDelegate.h; sourceTree = "<group>"; };
+		CFBCF66C182E7C390038AC65 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		CFBCF66D182E7C390038AC65 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,7 @@
 				CFB2A0DA17F628F70097E0CB /* AppDelegate.m */,
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
 				CF84889817FDDE9D00AC750F /* LaunchViewController.m */,
+				CFBCF66D182E7C390038AC65 /* SettingsViewController.m */,
 				CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
 				CF84889517FB746F00AC750F /* PlayerMovesFirst.m */,
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				CF84889717FDDE9C00AC750F /* LaunchViewController.h */,
+				CFBCF66C182E7C390038AC65 /* SettingsViewController.h */,
 				CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
 				CF84889417FB746F00AC750F /* PlayerMovesFirst.h */,
@@ -341,6 +346,7 @@
 				CFB2A0E117F628F70097E0CB /* GamePlayViewController.m in Sources */,
 				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
+				CFBCF66E182E7C390038AC65 /* SettingsViewController.m in Sources */,
 				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,

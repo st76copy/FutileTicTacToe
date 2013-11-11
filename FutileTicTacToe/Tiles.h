@@ -18,4 +18,6 @@
 @property (strong, nonatomic) UIView *selfView;
 @property (strong, nonatomic) NSMutableArray *computerMoves;
 
+- (void)initTilePiece;
+
 @end

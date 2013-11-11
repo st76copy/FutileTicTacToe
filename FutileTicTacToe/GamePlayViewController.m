@@ -28,6 +28,7 @@
 
 - (IBAction)restartGame:(id)sender;
 - (IBAction)tryAgain:(id)sender;
+- (IBAction)mainMenu:(id)sender;
 - (IBAction)changeDifficulty:(id)sender;
 
 @end
@@ -43,12 +44,18 @@
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
     [computerMovesFirst initMutableArrays];
     [playerMovesFirst initMutableArrays];
+    
     computerMovesFirst.delegate = self;
     playerMovesFirst.delegate = self;
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
+            xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
+    } else {
     xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+    }
     
     [gameResultsView setAlpha:1];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
@@ -274,6 +281,12 @@
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
         [self resetGame];
+    }];
+}
+
+- (IBAction)mainMenu:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        nil;
     }];
 }
 

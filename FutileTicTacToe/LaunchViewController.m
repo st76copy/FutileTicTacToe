@@ -15,10 +15,14 @@
     ComputerMovesFirst                      *computerMovesFirst;
     PlayerMovesFirst                        *playerMovesFirst;
     GamePlayViewController                  *viewController;
+    UIImage                                 *backgroundImage;
     __weak IBOutlet UIView                  *launchView;
+    __weak IBOutlet UIView                  *gameTypeView;
 }
 - (IBAction)playGame:(id)sender;
 - (IBAction)goToSettings:(id)sender;
+- (IBAction)onePlayerGame:(id)sender;
+- (IBAction)twoPlayerGame:(id)sender;
 - (IBAction)playEasyGame:(id)sender;
 - (IBAction)playNormalGame:(id)sender;
 
@@ -32,8 +36,15 @@
     computerMovesFirst = [[ComputerMovesFirst alloc] init];
     playerMovesFirst = [[PlayerMovesFirst alloc] init];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
-    launchView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
+    backgroundImage = [UIImage imageNamed:@"Aqua.png"];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    launchView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    gameTypeView.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"playingPiece"];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,6 +65,13 @@
 }
 
 - (IBAction)goToSettings:(id)sender {
+    [self performSegueWithIdentifier:@"settingsModal" sender:self];
+}
+
+- (IBAction)onePlayerGame:(id)sender {
+}
+
+- (IBAction)twoPlayerGame:(id)sender {
 }
 
 - (IBAction)playEasyGame:(id)sender {

@@ -565,7 +565,7 @@
         if (finalMove == YES) {
             finalMove = NO;
             gameOver = YES;
-            [self performSelector:@selector(catsTie) withObject:self afterDelay:0.7];
+            [self catsTie];
             break;
         }
     }
