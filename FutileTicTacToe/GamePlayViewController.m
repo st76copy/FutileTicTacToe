@@ -104,13 +104,6 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    _impossibleLevel = 0;
-    _normalDifficulty = 0;
-    _singlePlayerGame = 0;
-    
-}
-
 - (void)initialSinglePlayerGame {
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
@@ -120,16 +113,18 @@
         [tile setUserInteractionEnabled:YES];
     }
     if (_normalDifficulty) {
-        int randomizer = arc4random() % 1;
+        int randomizer = arc4random() % 2;
         switch (randomizer) {
             case 0:
                 [computerMovesFirst firstMove:YES];
+                _impossibleDifficulty = YES;
                 break;
-                [computerMovesFirst firstMove:NO];
             default:
+                [computerMovesFirst firstMove:NO];
+                _impossibleDifficulty = NO;
                 break;
         }
-    } else if (_impossibleLevel) {
+    } else if (_impossibleDifficulty) {
         [computerMovesFirst firstMove:YES];
     } else
         [computerMovesFirst firstMove:NO];
@@ -145,10 +140,11 @@
     [computerMovesFirst.computerMoves removeAllObjects];
     [playerMovesFirst.playerMoves removeAllObjects];
     [playerMovesFirst.computerMoves removeAllObjects];
+    [self resetStandardSettings];
     
     if (_roundsCounter % 2 == 0) {
         _computerIsFirst = YES;
-        if (_impossibleLevel) {
+        if (_impossibleDifficulty) {
             [computerMovesFirst firstMove:YES];
         } else {
             [computerMovesFirst firstMove:NO];
@@ -156,7 +152,6 @@
     } else {
         _computerIsFirst = NO;
     }
-    [self resetStandardSettings];
 }
 
 - (void)resetTwoPlayerGame {
@@ -210,28 +205,28 @@
         if (!_gameEnded) {
             switch (_moveCount) {
                 case 1:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [computerMovesFirst secondMove:YES];
                     } else {
                         [computerMovesFirst secondMove:NO];
                     }
                     break;
                 case 2:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [computerMovesFirst thirdMove:YES];
                     } else {
                         [computerMovesFirst thirdMove:NO];
                     }
                     break;
                 case 3:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [computerMovesFirst fourthMove:YES];
                     } else {
                         [computerMovesFirst fourthMove:NO];
                     }
                     break;
                 case 4:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [computerMovesFirst fifthMove:YES];
                     } else {
                         [computerMovesFirst fifthMove:NO];
@@ -242,33 +237,44 @@
             }
         }
     } else {
+        if (_normalDifficulty && _moveCount == 1) {
+            int randomizer = arc4random() % 2;
+            switch (randomizer) {
+                case 0:
+                    _impossibleDifficulty = YES;
+                    break;
+                default:
+                    _impossibleDifficulty = NO;
+                    break;
+            }
+        }
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [playerMovesFirst winCheck];
         if (!_gameEnded) {
             switch (_moveCount) {
                 case 1:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [playerMovesFirst firstMove:YES];
                     } else {
                         [playerMovesFirst firstMove:NO];
                     }
                     break;
                 case 2:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [playerMovesFirst secondMove:YES];
                     } else {
                         [playerMovesFirst secondMove:NO];
                     }
                     break;
                 case 3:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [playerMovesFirst thirdMove:YES];
                     } else {
                         [playerMovesFirst thirdMove:NO];
                     }
                     break;
                 case 4:
-                    if (_impossibleLevel) {
+                    if (_impossibleDifficulty) {
                         [playerMovesFirst fourthMove:YES];
                     } else {
                         [playerMovesFirst fourthMove:NO];
@@ -416,7 +422,7 @@
         } else {
             [self resetTwoPlayerGame];
         }
-     }];
+    }];
 }
 
 - (IBAction)mainMenu:(id)sender {

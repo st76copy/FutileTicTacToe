@@ -13,7 +13,7 @@
 
 @property (nonatomic) BOOL computerIsFirst;
 @property (nonatomic) BOOL normalDifficulty;
-@property (nonatomic) BOOL impossibleLevel;
+@property (nonatomic) BOOL impossibleDifficulty;
 @property (nonatomic) BOOL gameEnded;
 @property (nonatomic) BOOL singlePlayerGame;
 @property (nonatomic) int moveCount;

@@ -64,11 +64,15 @@
         gamePlayViewController = segue.destinationViewController;
         if ([segue.identifier isEqualToString:@"easyMode"]) {
             gamePlayViewController.singlePlayerGame = YES;
+            gamePlayViewController.normalDifficulty = NO;
+            gamePlayViewController.impossibleDifficulty = NO;
         } else if ([segue.identifier isEqualToString:@"normalMode"]) {
             gamePlayViewController.normalDifficulty = YES;
+            gamePlayViewController.impossibleDifficulty = NO;
             gamePlayViewController.singlePlayerGame = YES;
         } else if ([segue.identifier isEqualToString:@"impossibleMode"]) {
-            gamePlayViewController.impossibleLevel = YES;
+            gamePlayViewController.normalDifficulty = NO;
+            gamePlayViewController.impossibleDifficulty = YES;
             gamePlayViewController.singlePlayerGame = YES;
         } else if ([segue.identifier isEqualToString:@"twoPlayerMode"]) {
             gamePlayViewController.singlePlayerGame = NO;
