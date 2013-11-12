@@ -15,9 +15,9 @@
 
 @property (weak, nonatomic) UIColor *xBackground;
 @property (weak, nonatomic) UIColor *oBackground;
-@property (strong, nonatomic) UIView *selfView;
-@property (strong, nonatomic) NSMutableArray *computerMoves;
-
-- (void)initTilePiece;
+//@property (strong, nonatomic) UIView *selfView;
+//@property (strong, nonatomic) UIImage *xTileImage;
+//@property (strong, nonatomic) UIImage *oTileImage;
+//@property (strong, nonatomic) NSMutableArray *computerMoves;
 
 @end

@@ -10,19 +10,20 @@
 #import "Tiles.h"
 #import "ComputerMovesFirst.h"
 #import "PlayerMovesFirst.h"
+#import "TwoPlayerMoves.h"
 
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface GamePlayViewController () {
     
     ComputerMovesFirst              *computerMovesFirst;
     PlayerMovesFirst                *playerMovesFirst;
+    TwoPlayerMoves                  *twoPlayerMoves;
     NSTimer                         *timer;
     UIColor                         *xBackground;
     __weak IBOutlet UILabel         *resultLabel;
     __weak IBOutlet UILabel         *winsLabel;
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIView          *gameResultsView;
-    __weak IBOutlet UIImageView     *backgroundImageView;
     __weak IBOutlet UIImageView     *boardImageView;
 }
 
@@ -35,33 +36,21 @@
 
 @implementation GamePlayViewController
 
-@synthesize normalDifficulty, gameEnded, computerIsFirst, moveCount, winCount, loseCount, count, roundsCounter;
-
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    count = 0;
-    computerMovesFirst = [[ComputerMovesFirst alloc] init];
-    playerMovesFirst = [[PlayerMovesFirst alloc] init];
-    [computerMovesFirst initMutableArrays];
-    [playerMovesFirst initMutableArrays];
     
-    computerMovesFirst.delegate = self;
-    playerMovesFirst.delegate = self;
+    [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
-            xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
-    } else {
-    xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
-    }
-    
     [gameResultsView setAlpha:1];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
-    computerIsFirst = YES;
     
+    for (UIView *tile in self.view.subviews) {
+        [tile setUserInteractionEnabled:YES];
+        tile.backgroundColor = [UIColor clearColor];
+    }
     for(Tiles *tileViews in self.view.subviews) {
         if([tileViews isKindOfClass:[UIView class]]) {
             [tileViews setExclusiveTouch:YES];
@@ -73,17 +62,56 @@
             tiles.delegate = self;
         }
     }
-    for (UIView *tile in self.view.subviews) {
-        [tile setUserInteractionEnabled:YES];
-        tile.backgroundColor = [UIColor clearColor];
-    }
     gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
-    backgroundImageView.image = [UIImage imageNamed:@"Aqua.png"];
-    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
-    [self performSelector:@selector(initialGame) withObject:self afterDelay:0.3];
 }
 
-- (void)initialGame {
+- (void)viewWillAppear:(BOOL)animated {
+    if (_singlePlayerGame) {
+        winsLabel.text = @"Won: 0";
+        lossesLabel.text = @"Lost: 0";
+        
+        [[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"singlePlayerGame"];
+        
+        computerMovesFirst = [[ComputerMovesFirst alloc] init];
+        playerMovesFirst = [[PlayerMovesFirst alloc] init];
+        [computerMovesFirst initMutableArrays];
+        [playerMovesFirst initMutableArrays];
+        
+        computerMovesFirst.delegate = self;
+        playerMovesFirst.delegate = self;
+        
+        _computerIsFirst = YES;
+        
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
+            xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
+        } else {
+            xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+        }
+        
+        [self performSelector:@selector(initialSinglePlayerGame) withObject:self afterDelay:0.3];
+    } else {
+        winsLabel.text = @"Player 1: 0";
+        lossesLabel.text = @"Player 2: 0";
+        
+        twoPlayerMoves = [[TwoPlayerMoves alloc] init];
+        [twoPlayerMoves initMutableArrays];
+        
+        twoPlayerMoves.delegate = self;
+        
+        [[NSUserDefaults standardUserDefaults] setBool:0 forKey:@"singlePlayerGame"];
+        _moveCount = 0;
+        xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    _impossibleLevel = 0;
+    _normalDifficulty = 0;
+    _singlePlayerGame = 0;
+    
+}
+
+- (void)initialSinglePlayerGame {
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
@@ -91,16 +119,24 @@
     for (UIView *tile in self.view.subviews) {
         [tile setUserInteractionEnabled:YES];
     }
-    if (normalDifficulty) {
+    if (_normalDifficulty) {
+        int randomizer = arc4random() % 1;
+        switch (randomizer) {
+            case 0:
+                [computerMovesFirst firstMove:YES];
+                break;
+                [computerMovesFirst firstMove:NO];
+            default:
+                break;
+        }
+    } else if (_impossibleLevel) {
         [computerMovesFirst firstMove:YES];
     } else
         [computerMovesFirst firstMove:NO];
 }
 
-- (void)resetGame {
-    moveCount = 0;
-    roundsCounter++;
-    gameEnded = NO;
+- (void)resetSinglePlayerGame {
+    _gameEnded = NO;
     computerMovesFirst.compHasCornersNoHumanCenter = NO;
     computerMovesFirst.compHasCornersHumanHasCenter = NO;
     computerMovesFirst.compDoesNotHaveBothGoldenCorners = NO;
@@ -109,21 +145,34 @@
     [computerMovesFirst.computerMoves removeAllObjects];
     [playerMovesFirst.playerMoves removeAllObjects];
     [playerMovesFirst.computerMoves removeAllObjects];
-    for (UIView *tile in self.view.subviews) {
-        [tile setUserInteractionEnabled:YES];
-        tile.backgroundColor = [UIColor clearColor];
-    }
-    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
-    if (roundsCounter % 2 == 0) {
-        computerIsFirst = YES;
-        if (normalDifficulty) {
+    
+    if (_roundsCounter % 2 == 0) {
+        _computerIsFirst = YES;
+        if (_impossibleLevel) {
             [computerMovesFirst firstMove:YES];
         } else {
             [computerMovesFirst firstMove:NO];
         }
     } else {
-        computerIsFirst = NO;
+        _computerIsFirst = NO;
     }
+    [self resetStandardSettings];
+}
+
+- (void)resetTwoPlayerGame {
+    [twoPlayerMoves.playerOneMoves removeAllObjects];
+    [twoPlayerMoves.playerTwoMoves removeAllObjects];
+    [self resetStandardSettings];
+}
+
+- (void)resetStandardSettings {
+    _moveCount = 0;
+    _roundsCounter++;
+    for (UIView *tile in self.view.subviews) {
+        [tile setUserInteractionEnabled:YES];
+        tile.backgroundColor = [UIColor clearColor];
+    }
+    gameResultsView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
 }
 
 #pragma mark TilesDelegate
@@ -138,7 +187,7 @@
             tileMove.backgroundColor = xBackground;
             [tileMove setUserInteractionEnabled:NO];
             tileMove.transform = CGAffineTransformScale(tileMove.transform, 0.01, 0.01);
-            if (computerIsFirst) {
+            if (_computerIsFirst) {
                 [computerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
             } else {
                 [playerMovesFirst.computerMoves addObject:[NSNumber numberWithInt:tagNumber]];
@@ -153,36 +202,36 @@
     }
 }
 
-- (void)tileSelected:(Tiles *)tiles {
-    moveCount++;
-    if (computerIsFirst) {
+- (void)singlePlayerTileSelected:(Tiles *)tiles {
+    _moveCount++;
+    if (_computerIsFirst) {
         [computerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [computerMovesFirst winCheck];
-        if (!gameEnded) {
-            switch (moveCount) {
+        if (!_gameEnded) {
+            switch (_moveCount) {
                 case 1:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [computerMovesFirst secondMove:YES];
                     } else {
                         [computerMovesFirst secondMove:NO];
                     }
                     break;
                 case 2:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [computerMovesFirst thirdMove:YES];
                     } else {
                         [computerMovesFirst thirdMove:NO];
                     }
                     break;
                 case 3:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [computerMovesFirst fourthMove:YES];
                     } else {
                         [computerMovesFirst fourthMove:NO];
                     }
                     break;
                 case 4:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [computerMovesFirst fifthMove:YES];
                     } else {
                         [computerMovesFirst fifthMove:NO];
@@ -195,31 +244,31 @@
     } else {
         [playerMovesFirst.playerMoves addObject:[NSNumber numberWithInteger:tiles.tag]];
         [playerMovesFirst winCheck];
-        if (!gameEnded) {
-            switch (moveCount) {
+        if (!_gameEnded) {
+            switch (_moveCount) {
                 case 1:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [playerMovesFirst firstMove:YES];
                     } else {
                         [playerMovesFirst firstMove:NO];
                     }
                     break;
                 case 2:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [playerMovesFirst secondMove:YES];
                     } else {
                         [playerMovesFirst secondMove:NO];
                     }
                     break;
                 case 3:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [playerMovesFirst thirdMove:YES];
                     } else {
                         [playerMovesFirst thirdMove:NO];
                     }
                     break;
                 case 4:
-                    if (normalDifficulty) {
+                    if (_impossibleLevel) {
                         [playerMovesFirst fourthMove:YES];
                     } else {
                         [playerMovesFirst fourthMove:NO];
@@ -235,20 +284,102 @@
     }
 }
 
+- (void)twoPlayerTileSelected:(Tiles *)tiles {
+    UIImage *xTile;
+    UIImage *oTile;
+    if (_roundsCounter % 2 == 0) {
+        xTile = [UIImage imageNamed:@"x_tile.png"];
+        oTile = [UIImage imageNamed:@"o_tile.png"];
+    } else {
+        xTile = [UIImage imageNamed:@"o_tile.png"];
+        oTile = [UIImage imageNamed:@"x_tile.png"];
+    }
+    _moveCount++;
+    if (_moveCount % 2 != 0) {
+        [twoPlayerMoves.playerOneMoves addObject:[NSNumber numberWithInt:tiles.tag]];
+        tiles.transform = CGAffineTransformScale(tiles.transform, 0.01, 0.01);
+        tiles.backgroundColor = [UIColor colorWithPatternImage:xTile];
+        [tiles setUserInteractionEnabled:NO];
+        [UIView animateWithDuration:0.7 animations:^{
+            tiles.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [self tileUserInteraction:YES];
+        }];
+    } else {
+        [twoPlayerMoves.playerTwoMoves addObject:[NSNumber numberWithInt:tiles.tag]];
+        tiles.transform = CGAffineTransformScale(tiles.transform, 0.01, 0.01);
+        tiles.backgroundColor = [UIColor colorWithPatternImage:oTile];
+        [tiles setUserInteractionEnabled:NO];
+        [UIView animateWithDuration:0.7 animations:^{
+            tiles.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            [self tileUserInteraction:YES];
+        }];
+    }
+    if (_moveCount >= 5 && _moveCount < 9) {
+        [twoPlayerMoves winCheck:NO];
+    } else if (_moveCount == 9) {
+        [twoPlayerMoves winCheck:YES];
+    }
+}
+
+- (void)playerOneWon:(BOOL)isPlayerOne {
+    if (_roundsCounter % 2 == 0) {
+        if (isPlayerOne) {
+            resultLabel.text = @"Player 1 Won!";
+            [gameResultsView setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                gameResultsView.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+            }];
+            _winCount++;
+            winsLabel.text = [NSString stringWithFormat: @"Player 1: %i", _winCount];
+        } else {
+            resultLabel.text = @"Player 2 Won!";
+            [gameResultsView setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                gameResultsView.transform = CGAffineTransformIdentity;
+            } completion:nil];
+            _loseCount++;
+            lossesLabel.text = [NSString stringWithFormat: @"Player 2: %i", _loseCount];
+        }
+    } else {
+        if (!isPlayerOne) {
+            resultLabel.text = @"Player 1 Won!";
+            [gameResultsView setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                gameResultsView.transform = CGAffineTransformIdentity;
+            } completion:^(BOOL finished) {
+            }];
+            _winCount++;
+            winsLabel.text = [NSString stringWithFormat: @"Player 1: %i", _winCount];
+        } else {
+            resultLabel.text = @"Player 2 Won!";
+            [gameResultsView setHidden:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                gameResultsView.transform = CGAffineTransformIdentity;
+            } completion:nil];
+            _loseCount++;
+            lossesLabel.text = [NSString stringWithFormat: @"Player 2: %i", _loseCount];
+        }
+        
+    }
+}
+
 - (void)playerWon {
-    gameEnded = YES;
+    _gameEnded = YES;
     resultLabel.text = @"You Win!!";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
     }];
-    winCount++;
-    winsLabel.text = [NSString stringWithFormat: @"Won: %i", winCount];
+    _winCount++;
+    winsLabel.text = [NSString stringWithFormat: @"Won: %i", _winCount];
 }
 
 - (void)playerLost {
-    gameEnded = YES;
+    _gameEnded = YES;
     [self performSelector:@selector(setPlayerLost) withObject:self afterDelay:0.7];
 }
 
@@ -258,12 +389,12 @@
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;
     } completion:nil];
-    loseCount++;
-    lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", loseCount];
+    _loseCount++;
+    lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", _loseCount];
 }
 
 - (void)catsTie {
-    gameEnded = YES;
+    _gameEnded = YES;
     resultLabel.text = @"Cat's";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
@@ -272,7 +403,7 @@
 }
 
 - (IBAction)restartGame:(id)sender {
-    [self resetGame];
+    [self resetSinglePlayerGame];
 }
 
 - (IBAction)tryAgain:(id)sender {
@@ -280,8 +411,12 @@
         gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
-        [self resetGame];
-    }];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
+            [self resetSinglePlayerGame];
+        } else {
+            [self resetTwoPlayerGame];
+        }
+     }];
 }
 
 - (IBAction)mainMenu:(id)sender {

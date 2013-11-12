@@ -11,13 +11,14 @@
 
 @interface GamePlayViewController : UIViewController <TilesDelegate>
 
-@property (assign, nonatomic) BOOL computerIsFirst;
-@property (assign, nonatomic) BOOL normalDifficulty;
-@property (assign, nonatomic) BOOL gameEnded;
-@property (assign, nonatomic) int moveCount;
-@property (assign, nonatomic) int winCount;
-@property (assign, nonatomic) int loseCount;
-@property (assign, nonatomic) int count;
-@property (assign, nonatomic) int roundsCounter;
+@property (nonatomic) BOOL computerIsFirst;
+@property (nonatomic) BOOL normalDifficulty;
+@property (nonatomic) BOOL impossibleLevel;
+@property (nonatomic) BOOL gameEnded;
+@property (nonatomic) BOOL singlePlayerGame;
+@property (nonatomic) int moveCount;
+@property (nonatomic) int winCount;
+@property (nonatomic) int loseCount;
+@property (nonatomic) int roundsCounter;
 
 @end

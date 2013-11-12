@@ -14,9 +14,11 @@
 
 - (void)tileUserInteraction:(BOOL)enable;
 - (void)computerMakesMove:(int)tagNumber;
-- (void)tileSelected:(Tiles *)tiles;
+- (void)singlePlayerTileSelected:(Tiles *)tiles;
+- (void)twoPlayerTileSelected:(Tiles *)tiles;
 - (void)playerWon;
 - (void)playerLost;
+- (void)playerOneWon:(BOOL)isPlayerOne;
 - (void)catsTie;
 
 @end
