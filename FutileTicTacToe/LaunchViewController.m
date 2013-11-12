@@ -28,6 +28,8 @@
 - (IBAction)playEasyGame:(id)sender;
 - (IBAction)playNormalGame:(id)sender;
 - (IBAction)playImpossibleGame:(id)sender;
+- (IBAction)goBackToPlayers:(id)sender;
+- (IBAction)goBackToLaunchMenu:(id)sender;
 
 @end
 
@@ -102,6 +104,16 @@
 
 - (IBAction)playImpossibleGame:(id)sender {
     [self performSegueWithIdentifier:@"impossibleMode" sender:self];
+}
+
+- (IBAction)goBackToPlayers:(id)sender {
+    [gameDifficultyView setHidden:YES];
+    [gameTypeView setHidden:NO];
+}
+
+- (IBAction)goBackToLaunchMenu:(id)sender {
+    [gameTypeView setHidden:YES];
+    [launchView setHidden:NO];
 }
 
 @end
