@@ -43,7 +43,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     
-    [gameResultsView setAlpha:1];
+    [gameResultsView setAlpha:0.85];
     gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setHidden:YES];
     
@@ -66,7 +66,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (_singlePlayerGame) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
         winsLabel.text = @"Won: 0";
         lossesLabel.text = @"Lost: 0";
         
@@ -82,8 +82,12 @@
         
         _computerIsFirst = YES;
         
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
-            xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
+            if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
+                xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
+            } else {
+                xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+            }
         } else {
             xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
         }
@@ -401,7 +405,7 @@
 
 - (void)catsTie {
     _gameEnded = YES;
-    resultLabel.text = @"Cat's";
+    resultLabel.text = @"Cat's Tie";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         gameResultsView.transform = CGAffineTransformIdentity;

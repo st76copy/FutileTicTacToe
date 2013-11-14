@@ -63,19 +63,14 @@
     if ([segue.destinationViewController isKindOfClass:[GamePlayViewController class]]) {
         gamePlayViewController = segue.destinationViewController;
         if ([segue.identifier isEqualToString:@"easyMode"]) {
-            gamePlayViewController.singlePlayerGame = YES;
             gamePlayViewController.normalDifficulty = NO;
             gamePlayViewController.impossibleDifficulty = NO;
         } else if ([segue.identifier isEqualToString:@"normalMode"]) {
             gamePlayViewController.normalDifficulty = YES;
             gamePlayViewController.impossibleDifficulty = NO;
-            gamePlayViewController.singlePlayerGame = YES;
         } else if ([segue.identifier isEqualToString:@"impossibleMode"]) {
             gamePlayViewController.normalDifficulty = NO;
             gamePlayViewController.impossibleDifficulty = YES;
-            gamePlayViewController.singlePlayerGame = YES;
-        } else if ([segue.identifier isEqualToString:@"twoPlayerMode"]) {
-            gamePlayViewController.singlePlayerGame = NO;
         }
     }
 }
@@ -90,11 +85,13 @@
 }
 
 - (IBAction)onePlayerGame:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:1 forKey:@"singlePlayerGame"];
     [gameTypeView setHidden:YES];
     [gameDifficultyView setHidden:NO];
 }
 
 - (IBAction)twoPlayerGame:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:0 forKey:@"singlePlayerGame"];
     [self performSegueWithIdentifier:@"twoPlayerMode" sender:self];
 }
 

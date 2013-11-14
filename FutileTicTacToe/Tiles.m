@@ -17,8 +17,12 @@
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
             [delegate tileUserInteraction:NO];
             self.transform = CGAffineTransformScale(self.transform, 0.01, 0.01);
-            if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
-                self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
+                if (![[NSUserDefaults standardUserDefaults] boolForKey:@"playingPiece"]) {
+                    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
+                } else {
+                    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
+                }
             } else {
                 self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"o_tile.png"]];
             }

@@ -33,11 +33,16 @@
         if (![playerMoves containsObject:[NSNumber numberWithInt:5]]) {
             [delegate computerMakesMove:5];
         } else {
-            int move = arc4random() % 7 + 1;
-            if (move % 2 == 0) {
-                move++;
+            for (;;) {
+                int move = arc4random() % 7 + 1;
+                if (move % 2 == 0) {
+                    move++;
+                }
+                if (move != 5) {
+                    [delegate computerMakesMove:move];
+                    break;
+                }
             }
-            [delegate computerMakesMove:move];
         }
     } else {
         if (![computerMoves containsObject:[NSNumber numberWithInt:4]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
@@ -51,7 +56,26 @@
 
 - (void)secondMove:(BOOL)normalPlay {
     if (normalPlay) {
-        [self checkIfBlockIsNeeded:YES];
+        for (int arbitrary = 0; arbitrary < 1; arbitrary++) {
+            if ([playerMoves containsObject:[NSNumber numberWithInt:1]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                    [delegate computerMakesMove:8];
+                    break;
+                } else if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:6]]) {
+                    [delegate computerMakesMove:6];
+                    break;
+                }
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:3]] && [playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                if (![playerMoves containsObject:[NSNumber numberWithInt:8]] && ![computerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                    [delegate computerMakesMove:8];
+                    break;
+                } else if (![playerMoves containsObject:[NSNumber numberWithInt:6]] && ![computerMoves containsObject:[NSNumber numberWithInt:4]]) {
+                    [delegate computerMakesMove:4];
+                    break;
+                }
+            }
+            [self checkIfBlockIsNeeded:YES];
+        }
     } else {
         [self easyPlayRandomizedMove];
     }
@@ -242,7 +266,7 @@
             }
         }
         if ([computerMoves containsObject:[NSNumber numberWithInt:5]] && [computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-            if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
                 [delegate computerMakesMove:2];
                 [self winCheck];
                 break;
@@ -410,41 +434,17 @@
         
         
         if (secondMovePlayerForkAttempt == YES) {
-            if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:2]]) {
-                if (![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                    [delegate computerMakesMove:1];
-                } else if (![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                    [delegate computerMakesMove:3];
-                } else {
-                    [self attempWinningMove];
-                }
+            if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:1]]) {
+                [self secondMoveBlock];
                 break;
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:4]]) {
-                if (![computerMoves containsObject:[NSNumber numberWithInt:1]]) {
-                    [delegate computerMakesMove:1];
-                } else if (![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                    [delegate computerMakesMove:7];
-                } else {
-                    [self attempWinningMove];
-                }
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:3]]) {
+                [self secondMoveBlock];
                 break;
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:6]]) {
-                if (![computerMoves containsObject:[NSNumber numberWithInt:3]]) {
-                    [delegate computerMakesMove:3];
-                } else if (![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                    [delegate computerMakesMove:9];
-                } else {
-                    [self attempWinningMove];
-                }
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:7]]) {
+                [self secondMoveBlock];
                 break;
-            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:8]]) {
-                if (![computerMoves containsObject:[NSNumber numberWithInt:9]]) {
-                    [delegate computerMakesMove:9];
-                } else if (![computerMoves containsObject:[NSNumber numberWithInt:7]]) {
-                    [delegate computerMakesMove:7];
-                } else {
-                    [self attempWinningMove];
-                }
+            } else if ([playerMoves containsObject:[NSNumber numberWithInt:5]] && [playerMoves containsObject:[NSNumber numberWithInt:9]]) {
+                [self secondMoveBlock];
                 break;
             }
         }
@@ -457,17 +457,62 @@
     }
 }
 
-- (void)fillInAnySquare {
-    for (int tileInt = 1; tileInt < 10; tileInt++) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:tileInt]] && ![computerMoves containsObject:[NSNumber numberWithInt:tileInt]]) {
-            [delegate computerMakesMove:tileInt];
-            [self winCheck];
-            break;
+- (void)secondMoveBlock {
+    for (;;) {
+        if ([computerMoves containsObject:[NSNumber numberWithInt:1]]) {
+            if (![computerMoves containsObject:[NSNumber numberWithInt:2]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+                [delegate computerMakesMove:2];
+                break;
+            } else if (![computerMoves containsObject:[NSNumber numberWithInt:4]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
+                [delegate computerMakesMove:4];
+                break;
+            }
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:3]]) {
+            if (![computerMoves containsObject:[NSNumber numberWithInt:2]] && ![playerMoves containsObject:[NSNumber numberWithInt:2]]) {
+                [delegate computerMakesMove:2];
+                break;
+            } else if (![computerMoves containsObject:[NSNumber numberWithInt:6]] && ![playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+                [delegate computerMakesMove:6];
+                break;
+            }
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:7]]) {
+            if (![computerMoves containsObject:[NSNumber numberWithInt:4]] && ![playerMoves containsObject:[NSNumber numberWithInt:4]]) {
+                [delegate computerMakesMove:4];
+                break;
+            } else if (![computerMoves containsObject:[NSNumber numberWithInt:8]] && ![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                [delegate computerMakesMove:8];
+                break;
+            }
+        } else if ([computerMoves containsObject:[NSNumber numberWithInt:9]]) {
+            if (![computerMoves containsObject:[NSNumber numberWithInt:6]] && ![playerMoves containsObject:[NSNumber numberWithInt:6]]) {
+                [delegate computerMakesMove:6];
+                break;
+            } else if (![computerMoves containsObject:[NSNumber numberWithInt:8]] && ![playerMoves containsObject:[NSNumber numberWithInt:8]]) {
+                [delegate computerMakesMove:8];
+                break;
+            }
         }
     }
 }
 
-#pragma mark TilesDelegate
+- (void)fillInAnySquare {
+    NSMutableArray *takenMoves = [[NSMutableArray alloc] initWithCapacity:9];
+    for (;;) {
+        int move = arc4random() % 9;
+        move++;
+        if (![takenMoves containsObject:[NSNumber numberWithInt:move]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:move]] && ![computerMoves containsObject:[NSNumber numberWithInt:move]]) {
+                [delegate computerMakesMove:move];
+                [self winCheck];
+                break;
+            } else {
+                [takenMoves addObject:[NSNumber numberWithInt:move]];
+                NSLog(@"%@", takenMoves);
+            }
+        }
+    }
+}
+
 - (void)winCheck {
     BOOL gameOver = NO;
     for (int arbitrary = 0; arbitrary < 1; arbitrary++) {

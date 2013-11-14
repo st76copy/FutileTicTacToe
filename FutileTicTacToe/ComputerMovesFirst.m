@@ -594,7 +594,7 @@
             }
         }
         if ([computerMoves containsObject:[NSNumber numberWithInt:5]] && [computerMoves containsObject:[NSNumber numberWithInt:8]]) {
-            if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:5]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:2]] && ![computerMoves containsObject:[NSNumber numberWithInt:2]]) {
                 [delegate computerMakesMove:2];
                 [self winCheck];
                 break;
@@ -606,16 +606,23 @@
 }
 
 - (void)fillInAnySquare {
-    for (int tileInt = 1; tileInt < 10; tileInt++) {
-        if (![playerMoves containsObject:[NSNumber numberWithInt:tileInt]] && ![computerMoves containsObject:[NSNumber numberWithInt:tileInt]]) {
-            [delegate computerMakesMove:tileInt];
-            [self winCheck];
-            break;
+    NSMutableArray *takenMoves = [[NSMutableArray alloc] initWithCapacity:9];
+    for (;;) {
+        int move = arc4random() % 9;
+        move++;
+        if (![takenMoves containsObject:[NSNumber numberWithInt:move]]) {
+            if (![playerMoves containsObject:[NSNumber numberWithInt:move]] && ![computerMoves containsObject:[NSNumber numberWithInt:move]]) {
+                [delegate computerMakesMove:move];
+                [self winCheck];
+                break;
+            } else {
+                [takenMoves addObject:[NSNumber numberWithInt:move]];
+                NSLog(@"%@", takenMoves);
+            }
         }
     }
 }
 
-#pragma mark TilesDelegate
 - (void)winCheck {
     BOOL gameOver = NO;
     for (int arbitrary = 0; arbitrary < 1; arbitrary++) {
