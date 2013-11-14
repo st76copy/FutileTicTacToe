@@ -507,7 +507,6 @@
                 break;
             } else {
                 [takenMoves addObject:[NSNumber numberWithInt:move]];
-                NSLog(@"%@", takenMoves);
             }
         }
     }
