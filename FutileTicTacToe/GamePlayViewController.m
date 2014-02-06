@@ -413,6 +413,8 @@
 }
 
 - (IBAction)restartGame:(id)sender {
+    _loseCount++;
+    lossesLabel.text = [NSString stringWithFormat: @"Player 2: %i", _loseCount];
     [self resetSinglePlayerGame];
 }
 
