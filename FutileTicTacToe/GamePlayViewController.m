@@ -25,6 +25,7 @@
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIView          *gameResultsView;
     __weak IBOutlet UIImageView     *boardImageView;
+    __weak IBOutlet ADBannerView    *adBannerView;
 }
 
 - (IBAction)restartGame:(id)sender;
@@ -43,8 +44,9 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
     
-    [gameResultsView setAlpha:0.85];
-    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+//    [gameResultsView setAlpha:0.85];
+//    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+    [gameResultsView setAlpha:0];
     [gameResultsView setHidden:YES];
     
     for (UIView *tile in self.view.subviews) {
@@ -339,7 +341,8 @@
             resultLabel.text = @"Player 1 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-                gameResultsView.transform = CGAffineTransformIdentity;
+//                gameResultsView.transform = CGAffineTransformIdentity;
+                [gameResultsView setAlpha:0.85];
             } completion:^(BOOL finished) {
             }];
             _winCount++;
@@ -348,7 +351,8 @@
             resultLabel.text = @"Player 2 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-                gameResultsView.transform = CGAffineTransformIdentity;
+//                gameResultsView.transform = CGAffineTransformIdentity;
+                [gameResultsView setAlpha:0.85];
             } completion:nil];
             _loseCount++;
             lossesLabel.text = [NSString stringWithFormat: @"Player 2: %i", _loseCount];
@@ -358,7 +362,8 @@
             resultLabel.text = @"Player 1 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-                gameResultsView.transform = CGAffineTransformIdentity;
+//                gameResultsView.transform = CGAffineTransformIdentity;
+                [gameResultsView setAlpha:0.85];
             } completion:^(BOOL finished) {
             }];
             _winCount++;
@@ -367,7 +372,8 @@
             resultLabel.text = @"Player 2 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-                gameResultsView.transform = CGAffineTransformIdentity;
+//                gameResultsView.transform = CGAffineTransformIdentity;
+                [gameResultsView setAlpha:0.85];
             } completion:nil];
             _loseCount++;
             lossesLabel.text = [NSString stringWithFormat: @"Player 2: %i", _loseCount];
@@ -381,7 +387,8 @@
     resultLabel.text = @"You Win!!";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-        gameResultsView.transform = CGAffineTransformIdentity;
+//        gameResultsView.transform = CGAffineTransformIdentity;
+        [gameResultsView setAlpha:0.85];
     } completion:^(BOOL finished) {
     }];
     _winCount++;
@@ -397,7 +404,9 @@
     resultLabel.text = @"You Lose :(";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-        gameResultsView.transform = CGAffineTransformIdentity;
+        [self.view layoutIfNeeded];
+//        gameResultsView.transform = CGAffineTransformIdentity;
+        [gameResultsView setAlpha:0.85];
     } completion:nil];
     _loseCount++;
     lossesLabel.text = [NSString stringWithFormat: @"Lost: %i", _loseCount];
@@ -408,8 +417,40 @@
     resultLabel.text = @"Cat's Tie";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-        gameResultsView.transform = CGAffineTransformIdentity;
+//        gameResultsView.transform = CGAffineTransformIdentity;
+        [gameResultsView setAlpha:0.85];
     } completion:nil];
+}
+
+#pragma mark iAd BannerView Delegate
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    [UIView animateWithDuration:0.5 animations:^{
+        [banner setAlpha:1];
+    }];
+    //    [UIView beginAnimations:nil context:NULL];
+    //    [UIView setAnimationDuration:0.01];
+    //    [banner setAlpha:1];
+    //    [UIView commitAnimations];
+    //    CGRect adFrame = iAdBannerView.frame;
+    //    adFrame.origin.y = self.view.frame.size.height;
+    //    iAdBannerView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    return YES;
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [UIView animateWithDuration:0.5 animations:^{
+        [banner setAlpha:0];
+    }];
+    //    [UIView beginAnimations:nil context:NULL];
+    //    [UIView setAnimationDuration:1];
+    //    [banner setAlpha:0];
+    //    [iAdBannerView setAlpha:0];
+    //    [UIView commitAnimations];
+    
+    //    NSLog(@"iAd Failed: %@", error);
 }
 
 - (IBAction)restartGame:(id)sender {
@@ -420,7 +461,9 @@
 
 - (IBAction)tryAgain:(id)sender {
     [UIView animateWithDuration:0.3 animations:^{
-        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+        [gameResultsView setAlpha:0];
+//        [gameResultsView layoutIfNeeded];
+//        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {

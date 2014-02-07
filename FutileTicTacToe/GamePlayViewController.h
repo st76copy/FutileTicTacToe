@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "TilesDelegate.h"
 
-@interface GamePlayViewController : UIViewController <TilesDelegate>
+@interface GamePlayViewController : UIViewController <TilesDelegate, ADBannerViewDelegate>
 
 @property (nonatomic) BOOL computerIsFirst;
 @property (nonatomic) BOOL normalDifficulty;
