@@ -7,12 +7,21 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [Parse setApplicationId:@"ZOY5rU737BbUuCBPuc1PPCr6wTm85aZH0fReCiwr" clientKey:@"r2MY7UJsc3CMntNSBmkvSrHTF85eWNUEPRSLOrxp"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults boolForKey:@"firstTime"]) {
+        int userID = arc4random() % 1000000;
+        [defaults setInteger:userID forKey:@"userID"];
+        [defaults setBool:YES forKey:@"firstTime"];
+    }
     return YES;
 }
 							

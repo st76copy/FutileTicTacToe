@@ -11,6 +11,7 @@
 #import "ComputerMovesFirst.h"
 #import "PlayerMovesFirst.h"
 #import "TwoPlayerMoves.h"
+#import <Parse/Parse.h>
 
 // I learned to create outlets here rather than in the header file because it keeps them private
 @interface GamePlayViewController () {
@@ -25,6 +26,8 @@
     __weak IBOutlet UILabel         *lossesLabel;
     __weak IBOutlet UIView          *gameResultsView;
     __weak IBOutlet UIImageView     *boardImageView;
+    __weak IBOutlet UIButton        *mainMenuButton;
+    __weak IBOutlet UIButton        *resetButton;
     __weak IBOutlet ADBannerView    *adBannerView;
 }
 
@@ -43,9 +46,15 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Aqua.png"]];
     boardImageView.image = [UIImage imageNamed:@"board.png"];
+    if ([UIScreen mainScreen].bounds.size.height > 480) {
+        mainMenuButton.transform = CGAffineTransformTranslate(mainMenuButton.transform, 0, 100);
+        resetButton.transform = CGAffineTransformTranslate(resetButton.transform, 0, 100);
+    }
     
-//    [gameResultsView setAlpha:0.85];
-//    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    //    [gameResultsView setAlpha:0.85];
+    //    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setAlpha:0];
     [gameResultsView setHidden:YES];
     
@@ -108,6 +117,46 @@
         _moveCount = 0;
         xBackground = [UIColor colorWithPatternImage:[UIImage imageNamed:@"x_tile.png"]];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    PFObject *object = [PFObject objectWithClassName:@"Results"];
+    if (_normalDifficulty) {
+        object[@"NormalWins"] = winsLabel.text;
+        object[@"NormalLosses"] = lossesLabel.text;
+    } else if (_impossibleDifficulty) {
+        object[@"ImpossibleWins"] = winsLabel.text;
+        object[@"ImpossibleLosses"] = lossesLabel.text;
+    } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
+        object[@"P1Wins"] = winsLabel.text;
+        object[@"P2Wins"] = lossesLabel.text;
+    } else {
+        object[@"EasyWins"] = winsLabel.text;
+        object[@"EasyLosses"] = lossesLabel.text;
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
+    [object saveInBackground];
+}
+
+- (void)applicationDidEnterBackground:(NSNotificationCenter *)notification {
+    PFObject *object = [PFObject objectWithClassName:@"Results"];
+    if (_normalDifficulty) {
+        object[@"NormalWins"] = winsLabel.text;
+        object[@"NormalLosses"] = lossesLabel.text;
+    } else if (_impossibleDifficulty) {
+        object[@"ImpossibleWins"] = winsLabel.text;
+        object[@"ImpossibleLosses"] = lossesLabel.text;
+    } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
+        object[@"P1Wins"] = winsLabel.text;
+        object[@"P2Wins"] = lossesLabel.text;
+    } else {
+        object[@"EasyWins"] = winsLabel.text;
+        object[@"EasyLosses"] = lossesLabel.text;
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
+    [object saveInBackground];
 }
 
 - (void)initialSinglePlayerGame {
@@ -341,7 +390,7 @@
             resultLabel.text = @"Player 1 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-//                gameResultsView.transform = CGAffineTransformIdentity;
+                //                gameResultsView.transform = CGAffineTransformIdentity;
                 [gameResultsView setAlpha:0.85];
             } completion:^(BOOL finished) {
             }];
@@ -351,7 +400,7 @@
             resultLabel.text = @"Player 2 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-//                gameResultsView.transform = CGAffineTransformIdentity;
+                //                gameResultsView.transform = CGAffineTransformIdentity;
                 [gameResultsView setAlpha:0.85];
             } completion:nil];
             _loseCount++;
@@ -362,7 +411,7 @@
             resultLabel.text = @"Player 1 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-//                gameResultsView.transform = CGAffineTransformIdentity;
+                //                gameResultsView.transform = CGAffineTransformIdentity;
                 [gameResultsView setAlpha:0.85];
             } completion:^(BOOL finished) {
             }];
@@ -372,7 +421,7 @@
             resultLabel.text = @"Player 2 Won!";
             [gameResultsView setHidden:NO];
             [UIView animateWithDuration:0.3 animations:^{
-//                gameResultsView.transform = CGAffineTransformIdentity;
+                //                gameResultsView.transform = CGAffineTransformIdentity;
                 [gameResultsView setAlpha:0.85];
             } completion:nil];
             _loseCount++;
@@ -387,7 +436,7 @@
     resultLabel.text = @"You Win!!";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-//        gameResultsView.transform = CGAffineTransformIdentity;
+        //        gameResultsView.transform = CGAffineTransformIdentity;
         [gameResultsView setAlpha:0.85];
     } completion:^(BOOL finished) {
     }];
@@ -405,7 +454,7 @@
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
         [self.view layoutIfNeeded];
-//        gameResultsView.transform = CGAffineTransformIdentity;
+        //        gameResultsView.transform = CGAffineTransformIdentity;
         [gameResultsView setAlpha:0.85];
     } completion:nil];
     _loseCount++;
@@ -417,7 +466,7 @@
     resultLabel.text = @"Cat's Tie";
     [gameResultsView setHidden:NO];
     [UIView animateWithDuration:0.3 animations:^{
-//        gameResultsView.transform = CGAffineTransformIdentity;
+        //        gameResultsView.transform = CGAffineTransformIdentity;
         [gameResultsView setAlpha:0.85];
     } completion:nil];
 }
@@ -441,6 +490,11 @@
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    PFObject *object = [PFObject objectWithClassName:@"iAdReport"];
+    object[@"FailureReport"] = [NSString stringWithFormat:@"%@", error];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
+    [object saveInBackground];
     [UIView animateWithDuration:0.5 animations:^{
         [banner setAlpha:0];
     }];
@@ -462,8 +516,8 @@
 - (IBAction)tryAgain:(id)sender {
     [UIView animateWithDuration:0.3 animations:^{
         [gameResultsView setAlpha:0];
-//        [gameResultsView layoutIfNeeded];
-//        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
+        //        [gameResultsView layoutIfNeeded];
+        //        gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     } completion:^(BOOL finished) {
         [gameResultsView setHidden:YES];
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
