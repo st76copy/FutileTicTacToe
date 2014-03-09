@@ -21,6 +21,8 @@
     __weak IBOutlet UIView                  *gameDifficultyView;
     
 }
+
+- (IBAction)legalButtonPressed:(id)sender;
 - (IBAction)playGame:(id)sender;
 - (IBAction)goToSettings:(id)sender;
 - (IBAction)onePlayerGame:(id)sender;
@@ -73,6 +75,10 @@
             gamePlayViewController.impossibleDifficulty = YES;
         }
     }
+}
+
+- (IBAction)legalButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"terms" sender:self];
 }
 
 - (IBAction)playGame:(id)sender {

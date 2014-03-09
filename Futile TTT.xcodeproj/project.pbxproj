@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF005AB018CC8B870015DDD6 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF005AAF18CC8B870015DDD6 /* PrivacyPolicyViewController.m */; };
 		CF10ECAF1801D8C00092ADD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF10ECAE1801D8C00092ADD9 /* Images.xcassets */; };
 		CF12059B18B8C475008ECFC7 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF12059A18B8C475008ECFC7 /* Parse.framework */; };
 		CF12059D18B8C483008ECFC7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF12059C18B8C483008ECFC7 /* AudioToolbox.framework */; };
@@ -74,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF005AAE18CC8B870015DDD6 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		CF005AAF18CC8B870015DDD6 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		CF10ECAE1801D8C00092ADD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		CF12059A18B8C475008ECFC7 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		CF12059C18B8C483008ECFC7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -233,6 +236,7 @@
 				CFB2A0DA17F628F70097E0CB /* AppDelegate.m */,
 				CFB2A0DC17F628F70097E0CB /* Main.storyboard */,
 				CF84889817FDDE9D00AC750F /* LaunchViewController.m */,
+				CF005AAF18CC8B870015DDD6 /* PrivacyPolicyViewController.m */,
 				CFBCF66D182E7C390038AC65 /* SettingsViewController.m */,
 				CFB2A0E017F628F70097E0CB /* GamePlayViewController.m */,
 				CF6D1FEC17F8AB6C001F1899 /* ComputerMovesFirst.m */,
@@ -285,6 +289,7 @@
 			children = (
 				CFB2A0D917F628F70097E0CB /* AppDelegate.h */,
 				CF84889717FDDE9C00AC750F /* LaunchViewController.h */,
+				CF005AAE18CC8B870015DDD6 /* PrivacyPolicyViewController.h */,
 				CFBCF66C182E7C390038AC65 /* SettingsViewController.h */,
 				CFB2A0DF17F628F70097E0CB /* GamePlayViewController.h */,
 				CF6D1FEB17F8AB6C001F1899 /* ComputerMovesFirst.h */,
@@ -423,6 +428,7 @@
 				CF6D1FED17F8AB6C001F1899 /* ComputerMovesFirst.m in Sources */,
 				CFB2A0DB17F628F70097E0CB /* AppDelegate.m in Sources */,
 				CFBCF66E182E7C390038AC65 /* SettingsViewController.m in Sources */,
+				CF005AB018CC8B870015DDD6 /* PrivacyPolicyViewController.m in Sources */,
 				CF84889917FDDE9D00AC750F /* LaunchViewController.m in Sources */,
 				CFB2A0D717F628F70097E0CB /* main.m in Sources */,
 				CF84889617FB746F00AC750F /* PlayerMovesFirst.m in Sources */,
@@ -545,7 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Herrero (PC24U4Z546)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Kamiccolo/Documents/Coding/Xcode/Past\\ Projects/Futile\\ Tic-Tac-Toe\\ Main/FutileTicTacToe",
@@ -554,7 +560,7 @@
 				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
 				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
 				PRODUCT_NAME = "Futile TTT";
-				PROVISIONING_PROFILE = "BE57CFD3-003E-4C73-B60D-11080A5F2AC4";
+				PROVISIONING_PROFILE = "83D4ECA3-2E8D-4A8A-A804-08ECA7D7BACD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -564,7 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Herrero (PC24U4Z546)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Kamiccolo/Documents/Coding/Xcode/Past\\ Projects/Futile\\ Tic-Tac-Toe\\ Main/FutileTicTacToe",
@@ -573,7 +579,7 @@
 				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
 				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
 				PRODUCT_NAME = "Futile TTT";
-				PROVISIONING_PROFILE = "BE57CFD3-003E-4C73-B60D-11080A5F2AC4";
+				PROVISIONING_PROFILE = "83D4ECA3-2E8D-4A8A-A804-08ECA7D7BACD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
