@@ -18,7 +18,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults boolForKey:@"regularUser"]) {
-        int userID = arc4random() % 1000000;
+        int userID = arc4random() % 100000000;
         [defaults setInteger:userID forKey:@"userID"];
         [defaults setBool:YES forKey:@"regularUser"];
     }
