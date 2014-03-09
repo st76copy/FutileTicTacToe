@@ -17,10 +17,10 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults boolForKey:@"firstTime"]) {
+    if (![defaults boolForKey:@"regularUser"]) {
         int userID = arc4random() % 1000000;
         [defaults setInteger:userID forKey:@"userID"];
-        [defaults setBool:YES forKey:@"firstTime"];
+        [defaults setBool:YES forKey:@"regularUser"];
     }
     return YES;
 }

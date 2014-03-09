@@ -545,7 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Herrero (PC24U4Z546)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Kamiccolo/Documents/Coding/Xcode/Past\\ Projects/Futile\\ Tic-Tac-Toe\\ Main/FutileTicTacToe",
@@ -554,7 +554,7 @@
 				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
 				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
 				PRODUCT_NAME = "Futile TTT";
-				PROVISIONING_PROFILE = "A3035A41-95A3-4ABC-A793-947E39831F33";
+				PROVISIONING_PROFILE = "BE57CFD3-003E-4C73-B60D-11080A5F2AC4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -564,7 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeremy Herrero (PC24U4Z546)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/Kamiccolo/Documents/Coding/Xcode/Past\\ Projects/Futile\\ Tic-Tac-Toe\\ Main/FutileTicTacToe",
@@ -573,7 +573,7 @@
 				GCC_PREFIX_HEADER = "FutileTicTacToe/Futile TTT-Prefix.pch";
 				INFOPLIST_FILE = "FutileTicTacToe/Futile TTT-Info.plist";
 				PRODUCT_NAME = "Futile TTT";
-				PROVISIONING_PROFILE = "A3035A41-95A3-4ABC-A793-947E39831F33";
+				PROVISIONING_PROFILE = "BE57CFD3-003E-4C73-B60D-11080A5F2AC4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

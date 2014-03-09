@@ -53,6 +53,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
+
+    
     //    [gameResultsView setAlpha:0.85];
     //    gameResultsView.transform = CGAffineTransformScale(gameResultsView.transform, 0.01, 0.01);
     [gameResultsView setAlpha:0];
@@ -119,27 +122,45 @@
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    PFObject *object = [PFObject objectWithClassName:@"Results"];
-    if (_normalDifficulty) {
-        object[@"NormalWins"] = winsLabel.text;
-        object[@"NormalLosses"] = lossesLabel.text;
-    } else if (_impossibleDifficulty) {
-        object[@"ImpossibleWins"] = winsLabel.text;
-        object[@"ImpossibleLosses"] = lossesLabel.text;
-    } else if (![[NSUserDefaults standardUserDefaults] boolForKey:@"singlePlayerGame"]) {
-        object[@"P1Wins"] = winsLabel.text;
-        object[@"P2Wins"] = lossesLabel.text;
+- (void)viewDidAppear:(BOOL)animated {
+    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"objectID"]) {
+        PFObject *object = [PFObject objectWithClassName:@"Results"];
+        object[@"GameViewDidAppear"] = @1;
+        [object saveEventually];
+        [[NSUserDefaults standardUserDefaults] setValue:[object objectId] forKey:@"objectID"];
     } else {
-        object[@"EasyWins"] = winsLabel.text;
-        object[@"EasyLosses"] = lossesLabel.text;
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Results"];
+        
+        // Retrieve the object by id
+        [query getObjectInBackgroundWithId:[[NSUserDefaults standardUserDefaults] stringForKey:@"objectID"] block:^(PFObject *object, NSError *error) {
+            
+            int count = [object[@"GameViewDidAppear"] intValue];
+            count++;
+            object[@"GameViewDidAppear"] = [NSString stringWithFormat:@"%i", count];
+            [object saveEventually];
+        }];
     }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
-    [object saveInBackground];
+    //    PFObject *object = [PFObject objectWithClassName:@"Results"];
+    //    object[@"GameViewDidAppear"] = @"YES";
+    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //    object[@"UserID"] = [NSString stringWithFormat:@"%li", (long)[defaults integerForKey:@"userID"]];
+    //    [object saveEventually];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [self saveAnalyticData:1];
 }
 
 - (void)applicationDidEnterBackground:(NSNotificationCenter *)notification {
+    [self saveAnalyticData:2];
+}
+
+- (void)applicationWillTerminate:(NSNotificationCenter *)notification {
+    [self saveAnalyticData:3];
+}
+
+- (void)saveAnalyticData :(int)returnedToMenu {
     PFObject *object = [PFObject objectWithClassName:@"Results"];
     if (_normalDifficulty) {
         object[@"NormalWins"] = winsLabel.text;
@@ -154,9 +175,21 @@
         object[@"EasyWins"] = winsLabel.text;
         object[@"EasyLosses"] = lossesLabel.text;
     }
+    
+    switch (returnedToMenu) {
+        case 1: object[@"ReportType"] = @"Returned To Main Menu";
+            break;
+        case 2: object[@"ReportType"] = @"Home Button Pressed";
+            break;
+        case 3: object[@"ReportType"] = @"Termination";
+            break;
+        default: object[@"ReportType"] = @"Unknown";
+            break;
+    }
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
-    [object saveInBackground];
+    object[@"UserID"] = [NSString stringWithFormat:@"%li", (long)[defaults integerForKey:@"userID"]];
+    [object saveEventually];
 }
 
 - (void)initialSinglePlayerGame {
@@ -493,8 +526,8 @@
     PFObject *object = [PFObject objectWithClassName:@"iAdReport"];
     object[@"FailureReport"] = [NSString stringWithFormat:@"%@", error];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    object[@"UserID"] = [NSString stringWithFormat:@"%i", [defaults integerForKey:@"userID"]];
-    [object saveInBackground];
+    object[@"UserID"] = [NSString stringWithFormat:@"%li", (long)[defaults integerForKey:@"userID"]];
+    [object saveEventually];
     [UIView animateWithDuration:0.5 animations:^{
         [banner setAlpha:0];
     }];
